@@ -54,7 +54,8 @@ const Hero = () => {
         <div className="absolute w-96 h-96 bg-gradient-to-r from-pink-400/20 to-purple-600/20 blur-3xl -bottom-32 -right-32 rotate-180" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center container mx-auto px-4 z-10">
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-screen-xl mx-auto px-4 py-12 md:py-24 z-10">
+
         {/* Text Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
