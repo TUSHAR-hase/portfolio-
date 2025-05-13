@@ -1,27 +1,82 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
+
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
 
   const projects = [
-    {
-      id: 1,
-      title: "Buddy Bank",
-      type: "app",
-      description: "Track borrowed/lent money with friends with clear transactions",
-      tech: ["Flutter", "SQLite", "Dart"],
-      details: {
-        features: ["Smart Expense Tracking", "Detailed Transaction History"],
-        duration: "10 Days",
-        role: "Mobile App Developer",
-        links: {
-          github: "https://github.repository.com/",
-          download: "https://www.downloads.org/"
-        }
-      }
-    },
+   {
+  id: 1,
+  title: "Restaurant Management System",
+  type: "web",
+  description: "A web application to manage restaurant operations, including menu management, order tracking, and user authentication, inspired by Zomato.",
+  tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
+  image: "/images/restaurant.png",  // Make sure this image is in /public/images/
+  details: {
+    features: [
+      "Admin Dashboard for Managing Menu & Orders",
+      "Add to Cart Functionality",
+      "User Authentication (Login/Signup)",
+      "Menu Management by Admin",
+      "Live Order Tracking",
+      "Customer Reviews and Ratings"
+    ],
+    duration: "12 Days",
+    role: "Full Stack Developer",
+    links: {
+      github: "https://github.com/TUSHAR-hase/resto.git",
+      live: "https://github.com/TUSHAR-hase/resto.git" // Replace with actual live demo link
+    }
+  }
+}
+,{
+  id: 2,
+  title: "Hospital Management",
+  type: "web",
+  description: "A web-based system to efficiently manage hospital workflows including doctors, patients, and appointments.",
+  image: '../../assets/hospital.jpg', 
+  tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
+  details: {
+    features: [
+      "Doctor Dashboard with Patient Details",
+      "Patient Registration and Management",
+      "Appointment Booking and Scheduling",
+      "Medical Record Maintenance"
+    ],
+    duration: "15 Days",
+    role: "Backend Developer & Frontend Developer",
+    links: {
+      github: "https://github.com/TUSHAR-hase/hospital-management.git",
+      live: "https://hospital-management-puce.vercel.app"
+    }
+  }
+},
+{
+  id: 3,  // New project ID for Blue Color App
+  title: "Blue Color App",
+  type: "app",
+  description: "A mobile app designed to connect skill-based individuals with society, empowering them to participate in community-driven projects and initiatives.",
+  tech: ["Flutter", "Dart", "Firebase"],
+  image: "/images/bluecolorapp.png",  // Add the image path for the app here
+  details: {
+    features: [
+      "Connects skill-based individuals with community projects",
+      "Find local opportunities to contribute based on skills",
+      "Create and join events for skill-based volunteering",
+      "User profiles with skills, achievements, and interests",
+      "Real-time notifications about available projects and events"
+    ],
+    duration: "8 Days",
+    role: "Mobile App Developer",
+    links: {
+      github: "https://github.com/TUSHAR-hase/blue-color-app.git", // Replace with your actual repo link
+      live: "https://your-live-demo-link.com"  // Replace with your live demo link if available
+    }
+  }
+}
+
     // Add more projects here
   ];
 
@@ -80,6 +135,11 @@ const Portfolio = () => {
             >
               <div className="h-48 bg-gray-800/50 rounded-lg mb-4 overflow-hidden">
                 {/* Add project image here */}
+                 <img
+    src={project.image}
+    alt={project.title}
+    className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+  />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
               <p className="text-white/70 mb-4">{project.description}</p>
@@ -168,12 +228,12 @@ const Portfolio = () => {
                     GitHub Repository
                   </a>
                   <a
-                    href={selectedProject.details.links.download}
+                 href={selectedProject.details.links.live}
                     className="px-6 py-2 border border-white/20 rounded-lg text-white hover:bg-white/10 transition-all"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Download Project
+                    Live Project
                   </a>
                 </div>
               </motion.div>
