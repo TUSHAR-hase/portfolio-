@@ -36,7 +36,7 @@ const Portfolio = () => {
   title: "Hospital Management",
   type: "web",
   description: "A web-based system to efficiently manage hospital workflows including doctors, patients, and appointments.",
-  image: '../../assets/hospital.jpg', 
+  image: '../../assets/images/hospital.jpg', 
   tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
   details: {
     features: [

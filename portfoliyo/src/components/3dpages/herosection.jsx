@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import yourImage from '../../assets/tushrphoto.jpg';
+import yourImage from '../../assets/images/tushrphoto.jpg';
 
 const Hero = () => {
   const roles = ['Web Developer', 'App Developer'];
