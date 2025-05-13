@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import yourImage from '../../assets/tushrphoto.jpg';
+
 
 const Resume = () => {
   const container = {
@@ -56,7 +56,7 @@ const Resume = () => {
 
         {/* Download Button */}
         <a
-          href="/path/to/YourResume.pdf"
+          href="../assets/resum.pdf"
           download
           className="inline-block px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 mb-8"
         >
