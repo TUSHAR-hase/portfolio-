@@ -88,7 +88,7 @@ const About = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex items-center space-x-6">
+            {/* <motion.div variants={itemVariants} className="flex items-center space-x-6">
               <div className="flex-shrink-0 relative">
                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
                   <span className="text-4xl font-bold text-white">5+</span>
@@ -98,7 +98,7 @@ const About = () => {
                 <h3 className="text-xl font-semibold text-gray-100 mb-2">Years Experience</h3>
                 <p className="text-gray-400">Building digital products and solutions</p>
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Skills Section */}

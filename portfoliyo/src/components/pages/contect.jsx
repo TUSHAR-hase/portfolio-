@@ -114,9 +114,46 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-pink-300 mb-1">Phone</h3>
-                    <p className="text-white/80">+91 6351937876</p>
+                    <p className="text-white/80">+91 9054896753</p>
                   </div>
                 </motion.div>
+                 <motion.div 
+      initial={{ x: 50 }}
+      whileInView={{ x: 0 }}
+      className="flex items-start gap-4"
+    >
+      <div className="p-2 bg-purple-500/20 rounded-lg">
+        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold text-pink-300 mb-1">Email</h3>
+        <a 
+          href="mailto:hernansutala@gmail.com" 
+          className="text-white/80 hover:text-purple-300 transition-colors"
+        >
+          thakorrajta859@gmail.com
+        </a>
+      </div>
+    </motion.div>
+    <motion.div 
+      initial={{ x: -50 }}
+      whileInView={{ x: 0 }}
+      className="flex items-start gap-4"
+    >
+      <div className="p-2 bg-purple-500/20 rounded-lg">
+        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold text-pink-300 mb-1">Location</h3>
+        <p className="text-white/80">Ahmedabad, Gujarat</p>
+        <p className="text-white/60 text-sm mt-1">India</p>
+      </div>
+    </motion.div>
 
                 {/* Repeat similar blocks for Email and Location */}
                 
@@ -127,7 +164,7 @@ const Contact = () => {
                 >
                   <h3 className="text-lg font-semibold text-purple-400 mb-4">Availability</h3>
                   <p className="text-white/80 mb-2">I'm currently available for freelance work and full-time positions</p>
-                  <p className="text-white/60 text-sm">Working hours: Mon - Fri, 9:00 AM - 5:00 PM EST</p>
+                  <p className="text-white/60 text-sm">Working hours: Mon - Fri, 9:00 AM - 5:00 PM </p>
                 </motion.div>
               </div>
             </div>
