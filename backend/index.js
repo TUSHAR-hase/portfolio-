@@ -8,7 +8,10 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 
 const app = express();
-
+mongoose.set("strictQuery", false);
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
 // MongoDB connection
 const connectDB = async () => {
   try {
@@ -27,13 +30,7 @@ const connectDB = async () => {
 connectDB();
 
 // Middleware
-app.use(cors({
-  origin: 'https://portfolio-io4rhnm1u-tushar-hases-projects.vercel.app', // Allow your frontend domain
-  methods: ['GET', 'POST', 'OPTIONS'], // Allow specific methods (include OPTIONS for preflight)
-  allowedHeaders: ['Content-Type'], // Allow specific headers
-}));
-app.use(cookieParser());
-app.use(express.json());
+
 
 // Routes
 app.use('/api/messages', mailmessage);
