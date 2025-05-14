@@ -12,7 +12,7 @@ mongoose.set("strictQuery", false);
 const allowedOrigins = [
   'https://portfolio-gapvgq3at-tushar-hases-projects.vercel.app',
   'https://portfolio-7s19q57yu-tushar-hases-projects.vercel.app',
-  "https://portfolio-tushar-hases-projects.vercel.app/"
+  "https://portfolio-tushar-hases-projects.vercel.app"
 ];
 
 const corsOptions = {
