@@ -7,35 +7,35 @@ const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
   const [status, setStatus] = useState('idle');
 
- const onSubmit = async (data) => {
-  setStatus('sending');
-  try {
-    const res = await fetch(`${BASE_URL}/api/messages/sendmail`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+  const onSubmit = async (data) => {
+    setStatus('sending');
+    try {
+      const res = await fetch(`${BASE_URL}/api/messages/sendmail`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (!res.ok) throw new Error('Failed to send message');
+      if (!res.ok) throw new Error('Failed to send message');
 
-    setStatus('success');
+      setStatus('success');
       reset();
       setTimeout(() => setStatus('idle'), 3000);
-  } catch (err) {
-    console.error(err);
-    setStatus('error');
-  }
-};
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    }
+  };
 
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       className="relative py-28 bg-gradient-to-br from-gray-900 via-purple-900 w-full to-violet-800 overflow-hidden"
     >
-       <AnimatePresence>
+      <AnimatePresence>
         {status === 'success' && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -103,7 +103,7 @@ const Contact = () => {
               </motion.h2>
 
               <div className="space-y-6">
-                <motion.div 
+                <motion.div
                   initial={{ x: -50 }}
                   whileInView={{ x: 0 }}
                   className="flex items-start gap-4"
@@ -118,46 +118,46 @@ const Contact = () => {
                     <p className="text-white/80">+91 9054896753</p>
                   </div>
                 </motion.div>
-                 <motion.div 
-      initial={{ x: 50 }}
-      whileInView={{ x: 0 }}
-      className="flex items-start gap-4"
-    >
-      <div className="p-2 bg-purple-500/20 rounded-lg">
-        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold text-pink-300 mb-1">Email</h3>
-        <a 
-          href="mailto:hernansutala@gmail.com" 
-          className="text-white/80 hover:text-purple-300 transition-colors"
-        >
-          thakorrajta859@gmail.com
-        </a>
-      </div>
-    </motion.div>
-    <motion.div 
-      initial={{ x: -50 }}
-      whileInView={{ x: 0 }}
-      className="flex items-start gap-4"
-    >
-      <div className="p-2 bg-purple-500/20 rounded-lg">
-        <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold text-pink-300 mb-1">Location</h3>
-        <p className="text-white/80">Ahmedabad, Gujarat</p>
-        <p className="text-white/60 text-sm mt-1">India</p>
-      </div>
-    </motion.div>
+                <motion.div
+                  initial={{ x: 50 }}
+                  whileInView={{ x: 0 }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="p-2 bg-purple-500/20 rounded-lg">
+                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-pink-300 mb-1">Email</h3>
+                    <a
+                      href="mailto:hernansutala@gmail.com"
+                      className="text-white/80 hover:text-purple-300 transition-colors"
+                    >
+                      thakorrajta859@gmail.com
+                    </a>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ x: -50 }}
+                  whileInView={{ x: 0 }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="p-2 bg-purple-500/20 rounded-lg">
+                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-pink-300 mb-1">Location</h3>
+                    <p className="text-white/80">Ahmedabad, Gujarat</p>
+                    <p className="text-white/60 text-sm mt-1">India</p>
+                  </div>
+                </motion.div>
 
                 {/* Repeat similar blocks for Email and Location */}
-                
+
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -189,20 +189,20 @@ const Contact = () => {
                       className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
                     />
                   </motion.div>
-                  
+
                   {/* Repeat for Email */}
-  <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
-    <label className="block text-white/80 mb-2">Email</label>
-    <input
-      {...register('email', {
-        required: true,
-        pattern: /^\S+@\S+$/i,
-      })}
-      className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
-      type="email"
-      placeholder="you@example.com"
-    />
-  </motion.div>
+                  <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
+                    <label className="block text-white/80 mb-2">Email</label>
+                    <input
+                      {...register('email', {
+                        required: true,
+                        pattern: /^\S+@\S+$/i,
+                      })}
+                      className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
+                      type="email"
+                      placeholder="you@example.com"
+                    />
+                  </motion.div>
                 </div>
 
                 <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
@@ -225,11 +225,51 @@ const Contact = () => {
                 <motion.div whileHover={{ scale: 1.05 }} className="flex justify-end">
                   <button
                     type="submit"
-                    className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg font-medium text-white hover:shadow-purple-500/20 transition-all"
+                    disabled={status === 'sending'}
+                    className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg font-medium text-white hover:shadow-purple-500/20 transition-all relative flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {status === 'sending' ? (
+                      <div className="flex items-center gap-2">
+                        <svg
+                          className="w-5 h-5 animate-spin"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Sending...
+                      </div>
+                    ) : (
+                      'Send Message'
+                    )}
                   </button>
                 </motion.div>
+
+                {/* Error Message */}
+                <AnimatePresence>
+                  {status === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="text-red-400 text-sm text-right pt-2"
+                    >
+                      Failed to send message. Please try again.
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </form>
             </div>
           </div>
