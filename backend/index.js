@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 
+
 // MongoDB connection
 const connectDB = async () => {
   try {
@@ -41,6 +42,9 @@ connectDB();
 app.use('/api/messages', mailmessage);
 
 
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+})
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
