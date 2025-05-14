@@ -9,7 +9,7 @@ const Contact = () => {
  const onSubmit = async (data) => {
   setStatus('sending');
   try {
-    const res = await fetch('https://portfolio-backend-five-flax.vercel.app/api/messages/sendmail', {
+    const res = await fetch('https://portfolio-backend-ten-pi.vercel.app/api/messages/sendmail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

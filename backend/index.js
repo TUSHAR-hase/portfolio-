@@ -12,6 +12,8 @@ mongoose.set("strictQuery", false);
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+app.options('*', cors());
+
 // MongoDB connection
 const connectDB = async () => {
   try {
