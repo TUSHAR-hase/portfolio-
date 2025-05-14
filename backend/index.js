@@ -1,56 +1,43 @@
-// index.js
+import dotenv from 'dotenv'
+dotenv.config();
 
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
+import mongoose from "mongoose"
+import mailmessage from "./src/routes/messages.js"
+import cors from 'cors';
+import express from 'express';
+
+
+import cookieParser from 'cookie-parser';
+
+
 
 const app = express();
-app.use(cors());                         // allow all origins (for dev)
-app.use(express.json());                 // parse JSON bodies
+const port = process.env.PORT || 3000;
 
-// Health check
-app.get('/', (req, res) => res.send('Contact API is running'));
+mongoose.set("strictQuery", false);
 
-// Contact endpoint
-app.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body;
-  if (!name || !email || !message) {
-    return res.status(400).json({ ok: false, error: 'Missing fields.' });
-  }
-
+// MongoDB connection
+const connectDB = async () => {
   try {
-    // 1. Create transporter
-     const transporter = nodemailer.createTransport({
-              service: "gmail", // You can also use SMTP server details directly
-              auth: {
-                user: process.env.SMTP_USER, // your email address
-                pass: process.env.SMTP_PASSWORD, // your email password (use app-specific password for Gmail)
-              },
-            });
-        
-    // 2. Send mail
-    await transporter.sendMail({
-      from: `"Website Contact" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL,
-      subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-      html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <hr/>
-        <p>${message}</p>
-      `,
+    await mongoose.connect(process.env.MONGODB_URL, { 
+      useNewUrlParser: true,
+      useUnifiedTopology: true 
     });
-
-    // 3. Respond success
-    res.json({ ok: true });
-  } catch (err) {
-    console.error('Mail error:', err);
-    res.status(500).json({ ok: false, error: 'Failed to send email.' });
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error);
   }
+};
+
+
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+
+app.use("/api/messages",mailmessage);
+app.listen(port, () => {
+  connectDB();
+  console.log(`Server is running on port ${port}`);
 });
 
-// Start server
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+

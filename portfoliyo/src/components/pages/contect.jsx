@@ -6,14 +6,27 @@ const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
   const [status, setStatus] = useState('idle');
 
-  const onSubmit = async (data) => {
-    setStatus('sending');
-    try {
-      // Submit logic here
-    } catch (err) {
-      // Error handling
-    }
-  };
+ const onSubmit = async (data) => {
+  setStatus('sending');
+  try {
+    const res = await fetch('http://localhost:4000/api/messages/sendmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) throw new Error('Failed to send message');
+
+    setStatus('success');
+    reset();
+  } catch (err) {
+    console.error(err);
+    setStatus('error');
+  }
+};
+
 
   return (
     <section 
@@ -95,6 +108,18 @@ const Contact = () => {
                   </motion.div>
                   
                   {/* Repeat for Email */}
+  <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
+    <label className="block text-white/80 mb-2">Email</label>
+    <input
+      {...register('email', {
+        required: true,
+        pattern: /^\S+@\S+$/i,
+      })}
+      className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
+      type="email"
+      placeholder="you@example.com"
+    />
+  </motion.div>
                 </div>
 
                 <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>

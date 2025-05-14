@@ -1,7 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-
-
+import hospital from '../../assets/images/hospital.jpg';
+import bluecolorapp from '../../assets/images/blue2.jpg';
+import resturent from '../../assets/images/resturent.png';
+import cabbooking from '../../assets/images/cab.png';
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -13,7 +15,7 @@ const Portfolio = () => {
   type: "web",
   description: "A web application to manage restaurant operations, including menu management, order tracking, and user authentication, inspired by Zomato.",
   tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
-  image: "/images/restaurant.png",  // Make sure this image is in /public/images/
+  image: resturent,  // Make sure this image is in /public/images/
   details: {
     features: [
       "Admin Dashboard for Managing Menu & Orders",
@@ -36,7 +38,7 @@ const Portfolio = () => {
   title: "Hospital Management",
   type: "web",
   description: "A web-based system to efficiently manage hospital workflows including doctors, patients, and appointments.",
-  image: '../../assets/images/hospital.jpg', 
+  image: hospital,
   tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
   details: {
     features: [
@@ -59,7 +61,7 @@ const Portfolio = () => {
   type: "app",
   description: "A mobile app designed to connect skill-based individuals with society, empowering them to participate in community-driven projects and initiatives.",
   tech: ["Flutter", "Dart", "Firebase"],
-  image: "/images/bluecolorapp.png",  // Add the image path for the app here
+  image: bluecolorapp, // Add the image path for the app here
   details: {
     features: [
       "Connects skill-based individuals with community projects",
@@ -73,6 +75,31 @@ const Portfolio = () => {
     links: {
       github: "https://github.com/TUSHAR-hase/blue-color-app.git", // Replace with your actual repo link
       live: "https://your-live-demo-link.com"  // Replace with your live demo link if available
+    }
+  }
+}
+,{
+  id: 4,
+  title: "Cab Booking System",
+  type: "web",
+  description: "A full-stack web application for long-distance cab booking. Users can book cabs, riders can manage vehicles and accept/reject rides. OTP verification ensures secure ride completion.",
+  tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
+  image: cabbooking,  // Make sure this image is in /public/images/
+  details: {
+    features: [
+      "User Authentication (Login/Signup)",
+      "Cab Booking for Long-Distance Travel",
+      "Live Ride Status Tracking",
+      "Rider Can Accept or Reject Bookings",
+      "OTP-Based Ride Completion (Rider cannot complete the ride without correct OTP from customer)",
+      "Riders Can Add, Update, and Delete Their Own Vehicles",
+      "Admin Panel for Monitoring Bookings and Users"
+    ],
+    duration: "12 Days",
+    role: "Full Stack Developer",
+    links: {
+      github: "https://github.com/naikJagrav/bookinHub.git", // Replace if new repo created
+      live: "https://github.com/naikJagrav/bookinHub.git" // Replace with actual deployed link if available
     }
   }
 }
