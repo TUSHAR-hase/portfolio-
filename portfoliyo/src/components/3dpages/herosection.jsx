@@ -112,7 +112,7 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-2xl md:text-4xl text-white/90 mb-6"
           >
-            Crafting Jakas Digital Experiences
+            Empowering Projects with Practical Code
           </motion.h2>
 
           {/* Introduction Paragraph */}
@@ -124,7 +124,7 @@ const Hero = () => {
           >
             Passionate about creating <span className="text-pink-300 font-semibold">responsive</span> and{' '}
             <span className="text-pink-300 font-semibold">scalable</span> web and mobile applications. I
-            specialize in React, Tailwind, and modern JavaScript to build intuitive and impactful
+            specialize in React and modern JavaScript to build intuitive and impactful
             solutions. Let’s create something extraordinary!
           </motion.p>
 
