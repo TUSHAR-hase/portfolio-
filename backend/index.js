@@ -40,5 +40,3 @@ connectDB();
 // Routes
 app.use('/api/messages', mailmessage);
 
-// Export the app for Vercel (no app.listen needed)
-export default app;
