@@ -9,27 +9,9 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 mongoose.set("strictQuery", false);
-const allowedOrigins = [
-  'https://portfolio-gapvgq3at-tushar-hases-projects.vercel.app',
-  'https://portfolio-7s19q57yu-tushar-hases-projects.vercel.app',
-  "https://portfolio-tushar-hases-projects.vercel.app"
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-     console.log('Incoming Origin:', origin); 
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', ],
-  credentials: true,
-};
 
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(cookieParser());
 app.use(express.json());

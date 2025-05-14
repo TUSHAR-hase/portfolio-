@@ -1,0 +1,1 @@
+export const BASE_URL="https://https://portfolio-tushar-hases-projects.vercel.app"

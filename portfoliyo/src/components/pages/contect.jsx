@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { BASE_URL } from '../../../config';
 
 const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -9,7 +10,7 @@ const Contact = () => {
  const onSubmit = async (data) => {
   setStatus('sending');
   try {
-    const res = await fetch('https://portfolio-backend-ten-pi.vercel.app/api/messages/sendmail', {
+    const res = await fetch(`${BASE_URL}/api/messages/sendmail`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
