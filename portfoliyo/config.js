@@ -1,1 +1,1 @@
-export const BASE_URL="https://https://portfolio-tushar-hases-projects.vercel.app"
+export const BASE_URL="https://portfolio-backend-ten-pi.vercel.app"
