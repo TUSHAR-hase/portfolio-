@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import yourImage from '../../assets/images/tushrphoto.jpg'; // Update with your image path
-
+import resume from '../../assets/images/resum.pdf'; // Update with your resume file path
 const Resume = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -111,7 +111,7 @@ const Resume = () => {
           className="text-center"
         >
           <motion.a
-            href="../assets/resum.pdf"
+            href={resume}
             download
             whileHover={{ y: -2 }}
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl font-semibold text-white hover:shadow-xl transition-all"

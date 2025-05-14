@@ -164,7 +164,7 @@ const Contact = () => {
                 >
                   <h3 className="text-lg font-semibold text-purple-400 mb-4">Availability</h3>
                   <p className="text-white/80 mb-2">I'm currently available for freelance work and full-time positions</p>
-                  <p className="text-white/60 text-sm">Working hours: Mon - Fri, 9:00 AM - 5:00 PM </p>
+                  <p className="text-white/60 text-sm">Working hours: Mon - Fri, 9:00 AM - 5:00 PM EST</p>
                 </motion.div>
               </div>
             </div>
