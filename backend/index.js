@@ -23,13 +23,13 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'OPTIONS'],
+  methods: ['GET', 'POST', ],
   credentials: true,
 };
 
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+
 app.use(cookieParser());
 app.use(express.json());
 
