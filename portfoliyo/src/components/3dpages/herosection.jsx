@@ -73,32 +73,37 @@ const Hero = () => {
           </motion.span>
 
           {/* Developer Title with Typewriter Effect */}
-          <motion.h1
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
-          >
-            <span className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
-              I am a{' '}
-            </span>
-            <span className="inline-block min-w-[200px]">
-              <AnimatePresence>
-                {displayText.split('').map((char, index) => (
-                  <motion.span
-                    key={`${char}-${index}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.1 }}
-                    className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent"
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </AnimatePresence>
-            </span>
-          </motion.h1>
+         {/* Developer Title with Typewriter Effect */}
+<motion.h1
+  initial={{ y: 50, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ delay: 0.3, duration: 0.8 }}
+  className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
+>
+  <span className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
+    I am a{' '}
+  </span>
+  <span className="inline-block min-w-[280px] md:min-w-[340px] whitespace-nowrap">
+    <AnimatePresence>
+      {displayText.split('').map((char, index) => (
+        <motion.span
+          key={`${char}-${index}`}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.1 }}
+          className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent"
+        >
+          {char}
+        </motion.span>
+      ))}
+      {/* Invisible text to maintain width */}
+      <span className="opacity-0 pointer-events-none">
+        {roles.reduce((a, b) => a.length > b.length ? a : b)}
+      </span>
+    </AnimatePresence>
+  </span>
+</motion.h1>
 
           {/* Tagline */}
           <motion.h2
