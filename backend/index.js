@@ -9,10 +9,17 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 mongoose.set("strictQuery", false);
-app.use(cors());
+const corsOptions = {
+  origin: 'https://portfolio-7s19q57yu-tushar-hases-projects.vercel.app', // your frontend domain
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true, // if using cookies or auth headers
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
-app.options('*', cors());
+
 
 // MongoDB connection
 const connectDB = async () => {
