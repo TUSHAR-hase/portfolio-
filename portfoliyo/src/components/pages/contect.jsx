@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 
 const Contact = () => {
@@ -9,7 +9,7 @@ const Contact = () => {
  const onSubmit = async (data) => {
   setStatus('sending');
   try {
-    const res = await fetch('http://localhost:4000/api/messages/sendmail', {
+    const res = await fetch('https://portfolio-backend-five-flax.vercel.app/api/messages/sendmail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +20,8 @@ const Contact = () => {
     if (!res.ok) throw new Error('Failed to send message');
 
     setStatus('success');
-    reset();
+      reset();
+      setTimeout(() => setStatus('idle'), 3000);
   } catch (err) {
     console.error(err);
     setStatus('error');
@@ -33,6 +34,50 @@ const Contact = () => {
       id="contact" 
       className="relative py-28 bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden"
     >
+       <AnimatePresence>
+        {status === 'success' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              className="bg-gradient-to-br from-gray-900 to-purple-900 p-8 rounded-2xl text-center max-w-md border border-white/10"
+            >
+              <div className="mb-4">
+                <svg
+                  className="w-16 h-16 text-green-400 mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Message Sent!
+              </h3>
+              <p className="text-white/80 mb-6">
+                Thank you for reaching out. I'll respond to you shortly.
+              </p>
+              <button
+                onClick={() => setStatus('idle')}
+                className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg text-white hover:shadow-lg transition-all"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute w-96 h-96 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 left-1/3 animate-pulse" />

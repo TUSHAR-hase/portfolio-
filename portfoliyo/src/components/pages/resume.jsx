@@ -43,8 +43,8 @@ const Resume = () => {
           <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
             <h3 className="text-sm font-semibold text-purple-400 mb-3">Skills</h3>
             <div className="space-y-1">
-              <p className="text-white/80">React, Node.js</p>
-              <p className="text-white/80">UI/UX</p>
+              <p className="text-white/80">React, Node.js etc..</p>
+              <p className="text-white/80">Full Stack Development & App Development</p>
             </div>
           </div>
 
@@ -65,8 +65,8 @@ const Resume = () => {
 
         {/* File Details */}
         <div className="text-sm text-white/60 space-y-1">
-          <p>Last updated: March 2025 | PDF format | 1.2 MB</p>
-          <p>37C FNG 0443 PM</p>
+          <p>Last updated: Dec 2024 | PDF format | 148 KB</p>
+          <p>© Thakor Tushar</p>
         </div>
       </motion.div>
     </section>
