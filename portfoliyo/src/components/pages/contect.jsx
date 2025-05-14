@@ -10,15 +10,15 @@ const Contact = () => {
  const onSubmit = async (data) => {
   setStatus('sending');
   try {
-    // const res = await fetch(`${BASE_URL}/api/messages/sendmail`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // });
+    const res = await fetch(`${BASE_URL}/api/messages/sendmail`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-    // if (!res.ok) throw new Error('Failed to send message');
+    if (!res.ok) throw new Error('Failed to send message');
 
     setStatus('success');
       reset();
