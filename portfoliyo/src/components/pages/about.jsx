@@ -37,14 +37,15 @@ const About = () => {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.1 }}
-          transition={{ duration: 15, repeat: Infinity, repeatType: 'reverse' }}
-          className="absolute w-[800px] h-[800px] bg-radial-gradient(from-60% at 50% 50%, rgba(192,132,252,0.2) 0%, rgba(192,132,252,0) 60%)"
-        />
-        <div className="absolute w-96 h-96 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 -left-32 animate-pulse" />
-        <div className="absolute w-96 h-96 bg-gradient-to-r from-pink-400/20 to-purple-600/20 blur-3xl -bottom-32 -right-32 rotate-180" />
+     <motion.div
+  initial={{ scale: 0.8, opacity: 0 }}
+  animate={{ scale: 1, opacity: 0.1 }}
+  transition={{ duration: 15, repeat: Infinity, repeatType: 'reverse' }}
+  className="absolute w-[100vw] h-[100vw] max-w-[800px] max-h-[800px] bg-radial-gradient(from-60% at 50% 50%, rgba(192,132,252,0.2) 0%, rgba(192,132,252,0) 60%)"
+/>
+
+        <div className="absolute w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 left-0 sm:-left-16 animate-pulse" />
+        <div className="absolute w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-r from-pink-400/20 to-purple-600/20 blur-3xl -bottom-32 right-0 sm:-right-16 rotate-180" />
       </div>
 
       <div className="container mx-auto px-4 z-10 max-w-7xl">

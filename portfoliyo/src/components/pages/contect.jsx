@@ -33,7 +33,7 @@ const Contact = () => {
   return (
     <section 
       id="contact" 
-      className="relative py-28 bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden"
+      className="relative py-28 bg-gradient-to-br from-gray-900 via-purple-900 w-full to-violet-800 overflow-hidden"
     >
        <AnimatePresence>
         {status === 'success' && (

@@ -9,7 +9,7 @@ import Skills from "./skills";
 
 const Home = () => {
   return (
-    <div>
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden">
       <Hero />
       <About />
       <Resume></Resume>

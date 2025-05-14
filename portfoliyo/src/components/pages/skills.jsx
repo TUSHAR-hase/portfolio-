@@ -31,7 +31,7 @@ const Skills = () => {
   const skills = ['React', 'Firebase', 'Flutter', 'Node.js', 'Next.js', 'MongoDB','Rest APIs','c++','javascript','MySQL','Machine Learning'];
 
   return (
-    <section id="skills" className="relative py-28 bg-gradient-to-b from-dark-primary to-purple-900/30">
+    <section id="skills" className="relative py-28 bg-gradient-to-b from-dark-primary w-full to-purple-900/30">
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}

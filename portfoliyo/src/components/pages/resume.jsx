@@ -21,11 +21,11 @@ const Resume = () => {
   return (
     <section
       id="resume"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden"
+      className="relative min-h-screen flex items-center w-full justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute w-96 h-96 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 left-1/3 animate-pulse" />
+        <div className="absolute w-10 h-50 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 left-1/3 animate-pulse" />
         <div className="absolute w-96 h-96 bg-gradient-to-r from-pink-400/20 to-purple-600/20 blur-3xl -bottom-32 right-1/3 rotate-180" />
       </div>
 

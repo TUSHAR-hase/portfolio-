@@ -34,7 +34,7 @@ const ProjectDetails = () => {
   }
 
   return (
-    <section className="py-20 max-w-7xl mx-auto px-4">
+    <section className="pt-0 pb-20 w-full mx-auto px-4">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}

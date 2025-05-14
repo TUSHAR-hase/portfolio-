@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 border-t border-white/10">
+    <footer className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 border-t w-full border-white/10">
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute w-96 h-10 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl  left-1/3 animate-pulse" />

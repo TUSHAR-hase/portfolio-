@@ -21,7 +21,7 @@ const Navbar = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-xl z-50 border-b border-white/10 shadow-2xl shadow-purple-900/20"
     >
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className=" px-4 py-3 flex justify-between items-center">
         {/* Logo with Gradient Border */}
         <motion.div
           whileHover={{ scale: 1.05 }}
