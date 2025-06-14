@@ -266,7 +266,7 @@ const Contact = () => {
                       exit={{ opacity: 0, y: -10 }}
                       className="text-red-400 text-sm text-right pt-2"
                     >
-                      Failed to send message. Please try again.
+                      Failed to send message. Please Enter valid Detail.
                     </motion.div>
                   )}
                 </AnimatePresence>
