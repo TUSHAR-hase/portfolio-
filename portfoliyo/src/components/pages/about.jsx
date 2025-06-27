@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SkillsSection from './skill';
 
 const About = () => {
   const containerVariants = {
@@ -173,6 +174,7 @@ const About = () => {
         ))}
       </div>
     </section>
+    
   );
 };
 

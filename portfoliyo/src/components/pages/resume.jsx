@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import yourImage from '../../assets/images/tushrphoto.jpg'; // Update with your image path
 import resume from '../../assets/images/resum.pdf'; // Update with your resume file path
+import SkillsSection from './skill'; // Import the SkillsSection component
+
 const Resume = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -21,7 +23,7 @@ const Resume = () => {
   return (
     <section
       id="resume"
-      className="relative min-h-screen flex items-center w-full justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center w-full justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 overflow-hidden"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10">
@@ -34,7 +36,7 @@ const Resume = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="max-w-6xl mx-auto px-4 py-12 z-10"
+        className="max-w-6xl mx-auto px-4 py-12 z-10 w-full"
       >
         {/* Profile Section */}
         <motion.div 
@@ -60,7 +62,7 @@ const Resume = () => {
         {/* Stats Grid */}
         <motion.div 
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 justify-center items-center"
         >
           {[
             {
@@ -69,12 +71,12 @@ const Resume = () => {
               icon: "💡",
               color: "from-pink-500/20 to-purple-600/20"
             },
-            {
-              title: "Skills",
-              content: ["React/Next.js", "Node.js", "Flutter", "MERN Stack"],
-              icon: "👨💻",
-              color: "from-purple-500/20 to-pink-600/20"
-            },
+            // {
+            //   title: "Skills",
+            //   content: ["React/Next.js", "Node.js", "Flutter", "MERN Stack"],
+            //   icon: "👨💻",
+            //   color: "from-purple-500/20 to-pink-600/20"
+            // },
             {
               title: "Achievements",
               content: "3+ Successful Projects",
@@ -108,7 +110,7 @@ const Resume = () => {
         {/* Download Section */}
         <motion.div
           variants={itemVariants}
-          className="text-center"
+          className="text-center mb-20"
         >
           <motion.a
             href={resume}
@@ -132,6 +134,12 @@ const Resume = () => {
             </p>
           </div>
         </motion.div>
+
+        {/* ========================================== */}
+        {/* SKILLS SECTION INTEGRATION POINT */}
+        {/* ========================================== */}
+        <SkillsSection />
+        
       </motion.div>
     </section>
   );

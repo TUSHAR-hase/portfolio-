@@ -14,12 +14,12 @@ const Footer = () => {
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent mb-4"
+          className="text-4xl md:text-3xl font-bold bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent mb-4"
         >
-          Thakor Tushar
+         Let's Create Something Amazing Together
         </motion.h2>
-        <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-          Creating beautiful digital experiences with passion and precision.
+        <p className="text-lg text-white/80 mb-8 max-w-3xl mx-auto">
+         Whether you have a project in mind or just want to chat about design and development, I'd love to hear from you. Reach out and let's start a conversation!
         </p>
 
         {/* Navigation Links */}

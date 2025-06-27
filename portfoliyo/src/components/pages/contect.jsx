@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { BASE_URL } from '../../../config';
+import { FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa'; 
 
 const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -155,7 +156,45 @@ const Contact = () => {
                     <p className="text-white/60 text-sm mt-1">India</p>
                   </div>
                 </motion.div>
-
+ <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  className="pt-6 border-t border-white/10"
+                >
+                  <h3 className="text-lg font-semibold text-purple-400 mb-4">Follow Me</h3>
+                  <div className="flex gap-4">
+                    <motion.a
+                      href="https://www.linkedin.com/in/thakor-tushar-a34ab3288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -5, scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 rounded-full hover:shadow-lg hover:shadow-blue-500/30 transition-all"
+                    >
+                      <FaLinkedinIn className="text-white text-xl" />
+                    </motion.a>
+                    <motion.a
+                      href="https://github.com/TUSHAR-hase"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -5, scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black rounded-full hover:shadow-lg hover:shadow-gray-700/30 transition-all"
+                    >
+                      <FaGithub className="text-white text-xl" />
+                    </motion.a>
+                    <motion.a
+                      href="https://www.instagram.com/tushar_vaghela1507?igsh=amI3dGtzNXZlMTdh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -5, scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-700 rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all"
+                    >
+                      <FaInstagram className="text-white text-xl" />
+                    </motion.a>
+                  </div>
+                </motion.div>
                 {/* Repeat similar blocks for Email and Location */}
 
                 <motion.div
@@ -177,7 +216,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1 }}
                 className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent"
               >
-                Send Me A Message
+                GET IN TOUCH
               </motion.h2>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

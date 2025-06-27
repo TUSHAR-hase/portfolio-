@@ -125,7 +125,7 @@ const Portfolio = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent mb-4">
-            MY CREATIVE PORTFOLIO
+            MY Projects
           </h1>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
             Explore my curated collection of design and development projects, crafted with precision and passion.
