@@ -9,7 +9,7 @@ export const metadata = {
    description:
     " Tushar Thakor a passionate Computer Science student IITRAM, hackathon winner, and full-stack developer. Experienced in React, Node.js, Flutter, MongoDB, and C++. Creator of innovative projects in women safety, work tracking, cab booking, and kids animation using AI.",
   icons: {
-    icon: "/tusharphoto.jpg", // Make sure favicon.ico exists in the public folder
+    icon: "/tushrphoto.jpg", // Make sure favicon.ico exists in the public folder
   },
 };
 
