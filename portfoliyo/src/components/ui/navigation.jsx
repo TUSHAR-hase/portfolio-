@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
@@ -33,7 +34,7 @@ const Navbar = () => {
             smooth
             className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent relative"
           >
-            {'StackCraft'}
+            {'Tushar Thakor'}
           </Link>
         </motion.div>
 

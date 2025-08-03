@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+'use client'
+
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
     FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaDocker, FaAws,
-    FaFigma, FaPalette, FaPencilRuler, FaUsers, FaTools, FaGraduationCap, FaBrain, FaBookOpen,FaJsSquare
+    FaFigma, FaPalette, FaPencilRuler, FaUsers, FaTools, FaGraduationCap, FaBrain, FaBookOpen, FaJsSquare
 } from 'react-icons/fa';
 import {
     SiNextdotjs, SiTailwindcss, SiExpress, SiMongodb, SiMysql,
     SiCircleci, SiTypescript, SiJavascript, SiGraphql, SiRedux,
     SiPython, SiDjango, SiPostgresql, SiRedis, SiKubernetes, SiJenkins,
-    SiAdobephotoshop, SiAdobeillustrator, SiWebpack,SiFirebase,SiDart
+    SiAdobephotoshop, SiAdobeillustrator, SiWebpack, SiFirebase, SiDart
 } from 'react-icons/si';
 
 const skillCategories = {
@@ -163,7 +165,16 @@ const CircularProgress = ({ value, size = 100, strokeWidth = 8, icon, category }
 
 const SkillsSection = () => {
     const [selectedCategory, setSelectedCategory] = useState('Frontend');
+    const [particlePositions, setParticlePositions] = useState([]);
 
+    useEffect(() => {
+        const randomParticles = Array.from({ length: 20 }, () => ({
+            x: `${Math.random() * 100 - 50}%`,
+            y: `${Math.random() * 100 - 50}%`,
+            duration: 2 + Math.random() * 4,
+        }));
+        setParticlePositions(randomParticles);
+    }, []);
     return (
         <section
             id="skills"
@@ -193,9 +204,9 @@ const SkillsSection = () => {
                         Technical Expertise
                     </h2>
                     <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-                       With over 2+ years of experience in web development, I specialize in creating performant, accessible, and visually stunning applications.
+                        With over 2+ years of experience in web development, I specialize in creating performant, accessible, and visually stunning applications.
 
-I focus on modern JavaScript frameworks, responsive design, and creating intuitive user experiences.
+                        I focus on modern JavaScript frameworks, responsive design, and creating intuitive user experiences.
                     </p>
                 </motion.div>
 
@@ -212,8 +223,8 @@ I focus on modern JavaScript frameworks, responsive design, and creating intuiti
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
                             className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border ${selectedCategory === cat
-                                    ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white border-transparent shadow-lg shadow-purple-500/30'
-                                    : 'bg-gray-800/50 backdrop-blur-sm border-gray-700 text-gray-300 hover:bg-gray-700/50'
+                                ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white border-transparent shadow-lg shadow-purple-500/30'
+                                : 'bg-gray-800/50 backdrop-blur-sm border-gray-700 text-gray-300 hover:bg-gray-700/50'
                                 }`}
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
@@ -405,27 +416,28 @@ I focus on modern JavaScript frameworks, responsive design, and creating intuiti
 
                 {/* Floating Particles */}
                 <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-                    {[...Array(15)].map((_, i) => (
+                    {particlePositions.map((pos, i) => (
                         <motion.div
                             key={i}
                             className="absolute w-1 h-1 bg-white rounded-full"
                             initial={{
                                 scale: 0,
                                 opacity: 0,
-                                x: Math.random() * 100 - 50 + '%',
-                                y: Math.random() * 100 - 50 + '%'
+                                x: pos.x,
+                                y: pos.y
                             }}
                             animate={{
                                 scale: [0, 1, 0],
                                 opacity: [0, 0.6, 0],
                             }}
                             transition={{
-                                duration: 2 + Math.random() * 4,
+                                duration: pos.duration,
                                 repeat: Infinity,
                                 ease: 'easeInOut'
                             }}
                         />
                     ))}
+
                 </div>
             </div>
         </section>

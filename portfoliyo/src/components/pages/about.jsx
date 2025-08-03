@@ -1,7 +1,19 @@
+'use client'
 import { motion } from 'framer-motion';
 import SkillsSection from './skill';
+import { useEffect, useState } from 'react';
 
 const About = () => {
+   const [particlePositions, setParticlePositions] = useState([]);
+
+  useEffect(() => {
+    const randomParticles = Array.from({ length: 20 }, () => ({
+      x: `${Math.random() * 100 - 50}%`,
+      y: `${Math.random() * 100 - 50}%`,
+      duration: 2 + Math.random() * 4,
+    }));
+    setParticlePositions(randomParticles);
+  }, []);
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -113,17 +125,17 @@ const About = () => {
           >
             {[
               {
-                icon: '👨💻',
+               
                 title: 'Full-Stack Development',
                 content: 'MERN stack specialist building scalable applications with strong foundations in both frontend and backend architecture.'
               },
               {
-                icon: '📱',
+               
                 title: 'Mobile Development',
                 content: 'Flutter expert creating practical mobile solutions including POS systems and AI-powered applications.'
               },
               {
-                icon: '🚀',
+                
                 title: 'Tech Innovation',
                 content: 'Passionate about AI integration, cloud solutions, and cutting-edge system development.'
               }
@@ -134,9 +146,9 @@ const About = () => {
                 className="group relative bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-pink-400/30 transition-all duration-300"
               >
                 <div className="flex items-start space-x-5">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-2xl">
+                  {/* <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-2xl">
                     {item.icon}
-                  </div>
+                  </div> */}
                   <div>
                     <h3 className="text-xl font-semibold text-gray-100 mb-2">{item.title}</h3>
                     <p className="text-gray-300 leading-relaxed">{item.content}</p>
@@ -150,29 +162,28 @@ const About = () => {
       </div>
 
       {/* Floating Particles */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
-            initial={{
-              scale: 0,
-              opacity: 0,
-              x: Math.random() * 100 - 50 + '%',
-              y: Math.random() * 100 - 50 + '%'
-            }}
-            animate={{
-              scale: [0, 1, 0],
-              opacity: [0, 0.6, 0],
-            }}
-            transition={{
-              duration: 2 + Math.random() * 4,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          />
-        ))}
-      </div>
+     {particlePositions.map((pos, i) => (
+  <motion.div
+    key={i}
+    className="absolute w-1 h-1 bg-white rounded-full"
+    initial={{
+      scale: 0,
+      opacity: 0,
+      x: pos.x,
+      y: pos.y
+    }}
+    animate={{
+      scale: [0, 1, 0],
+      opacity: [0, 0.6, 0],
+    }}
+    transition={{
+      duration: pos.duration,
+      repeat: Infinity,
+      ease: 'easeInOut'
+    }}
+  />
+))}
+
     </section>
     
   );

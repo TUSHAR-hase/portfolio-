@@ -1,6 +1,8 @@
+'use client'
+
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
+import Image from 'next/image';
 const projects = [
   {
     id: 1,
@@ -41,7 +43,7 @@ const ProjectDetails = () => {
         transition={{ duration: 0.8 }}
       >
         <h2 className="text-4xl font-bold mb-8">{project.title}</h2>
-        <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-md mb-6" />
+        <Image src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-md mb-6" />
         <p className="text-lg mb-6">{project.desc}</p>
         <p className="text-gray-300 mb-6">{project.details}</p>
         <Link
