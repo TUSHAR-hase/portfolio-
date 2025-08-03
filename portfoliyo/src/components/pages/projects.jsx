@@ -1,10 +1,11 @@
+'use client'
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import hospital from '../../assets/images/hospital.jpg';
 import bluecolorapp from '../../assets/images/blue2.jpg';
 import resturent from '../../assets/images/resturent.png';
 import cabbooking from '../../assets/images/cab.png';
-
+import Image from 'next/image';
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -160,7 +161,7 @@ const Portfolio = () => {
               onClick={() => setSelectedProject(project)}
             >
               <div className="h-48 bg-gray-800/50 rounded-lg mb-4 overflow-hidden">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"

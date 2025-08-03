@@ -1,6 +1,7 @@
+'use client'
 import { motion } from 'framer-motion';
 import yourImage from '../../assets/images/tushrphoto.jpg'; // Update with your image path
-import resume from '../../assets/images/resum.pdf'; // Update with your resume file path
+import Image from 'next/image';
 import SkillsSection from './skill'; // Import the SkillsSection component
 
 const Resume = () => {
@@ -45,7 +46,7 @@ const Resume = () => {
         >
           <div className="relative w-32 h-32 rounded-full group mb-6">
             <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
-            <img
+            <Image
               src={yourImage}
               alt="Profile"
               className="w-full h-full rounded-full object-cover border-4 border-white/20 group-hover:border-white/30 transition-all"
@@ -68,7 +69,7 @@ const Resume = () => {
             {
               title: "Focus Areas",
               content: "Innovation & Problem-Solving",
-              icon: "💡",
+             
               color: "from-pink-500/20 to-purple-600/20"
             },
             // {
@@ -80,7 +81,7 @@ const Resume = () => {
             {
               title: "Achievements",
               content: "3+ Successful Projects",
-              icon: "🚀",
+             
               color: "from-violet-500/20 to-pink-600/20"
             }
           ].map((item, index) => (
@@ -90,7 +91,7 @@ const Resume = () => {
               className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:border-purple-400/30 transition-all"
             >
               <div className={`absolute inset-0 bg-gradient-to-r ${item.color} rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity`} />
-              <div className="text-4xl mb-4">{item.icon}</div>
+              {/* <div className="text-4xl mb-4">{item.icon}</div> */}
               <h3 className="text-lg font-semibold text-pink-300 mb-3">{item.title}</h3>
               {Array.isArray(item.content) ? (
                 <div className="flex flex-wrap gap-2">
@@ -113,7 +114,7 @@ const Resume = () => {
           className="text-center mb-20"
         >
           <motion.a
-            href={resume}
+            href='/resum.pdf'
             download
             whileHover={{ y: -2 }}
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl font-semibold text-white hover:shadow-xl transition-all"

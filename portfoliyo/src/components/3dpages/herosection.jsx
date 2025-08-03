@@ -1,7 +1,9 @@
+'use client'
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import yourImage from '../../assets/images/tushrphoto.jpg';
-
+import Image from 'next/image';
 const Hero = () => {
   const roles = ['Web Developer', 'App Developer'];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -150,7 +152,7 @@ const Hero = () => {
           className="flex items-center justify-center"
         >
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/20 group hover:border-white/30 transition-all duration-300">
-            <img
+            <Image
               src={yourImage}
               alt="Your Name"
               className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-500"

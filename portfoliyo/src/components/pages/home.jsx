@@ -1,3 +1,4 @@
+'úse client'
 import Hero from "../3dpages/herosection";
 import Footer from "../ui/footer";
 import About from "./about";
