@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion';
-import SkillsSection from './skill';
+// import SkillsSection from './skill';
 import { useEffect, useState } from 'react';
 
 const About = () => {

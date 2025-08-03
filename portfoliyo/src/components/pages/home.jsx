@@ -5,7 +5,7 @@ import About from "./about";
 import Contact from "./contect";
 import Projects from "./projects";
 import Resume from "./resume";
-import Skills from "./skills";
+
 
 
 const Home = () => {
