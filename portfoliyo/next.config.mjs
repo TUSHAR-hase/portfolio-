@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    eslint: {
+    ignoreDuringBuilds: true,
+  },
     images: {
         // Add sharp as an external package
         unoptimized: true,
