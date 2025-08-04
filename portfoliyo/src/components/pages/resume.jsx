@@ -127,7 +127,7 @@ const Resume = () => (
         className="text-center mb-20"
       >
         <motion.a
-          href='/resum.pdf'
+          href='/TUSHAR_THAKOR_RESUME.pdf'
           download
           whileHover={{ y: -2, scale: 1.065, boxShadow: '0 4px 32px #db277733' }}
           className="inline-flex items-center px-9 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl font-semibold text-white hover:shadow-2xl transition-all text-lg relative group"
