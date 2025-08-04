@@ -15,8 +15,9 @@ const TIMELINE = [
   { year: 2022, text: 'Started B.Tech in Computer Science at IITRAM; explored React and Python.' },
   { year: 2023, text: 'Built multiple MERN stack apps and women safety system; won national hackathon (3rd place).' },
   { year: 2024, text: 'Focused on mastering DSA through GATE and placement preparation; built CS fundamentals.' },
-  { year: 2025, text: 'Created remote work tracker, POS system, and started preparing for SBI/IBPS IT Officer exams.' }
+  { year: 2025, text: 'Currently refining full-stack skills with projects like a remote work tracker and POS system; actively exploring system design, deployment, and real-world freelancing.' }
 ];
+
 
 
 const VALUES = [
