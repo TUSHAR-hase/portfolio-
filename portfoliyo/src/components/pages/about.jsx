@@ -4,46 +4,48 @@ import { useEffect, useState } from 'react';
 
 // Hero quick stats (edit these to your real stats)
 const STATS = [
-  { label: 'Experience', value: '7+ Years', description: 'End-to-end digital solutions' },
-  { label: 'Clients', value: '30+', description: 'Startups, scaleups, global brands' },
-  { label: 'Awards', value: '4', description: 'Innovation & UX Design' },
-  { label: 'Users Impacted', value: '200K+', description: 'Across multiple platforms' }
+  { label: 'Hackathons Won', value: '3+', description: 'National-level coding challenges' },
+  { label: 'Projects Completed', value: '25+', description: 'From AI apps to full-stack platforms' },
+  { label: 'Technologies Used', value: '50+', description: 'Covering web, mobile, AI, cloud, and more' },
+  { label: 'Users Impacted', value: '100K+', description: 'Across freelance and open-source work' }
 ];
 
 // Timeline: Professional Journey
 const TIMELINE = [
-  { year: 2018, text: 'Built my first SaaS MVP for an edtech startup, recognized for rapid prototyping.' },
-  { year: 2020, text: 'Launched 10+ mobile apps, and contributed to two open-source React libraries.' },
-  { year: 2022, text: 'Led a team to deliver scalable cloud services for 100K+ users.' },
-  { year: 2024, text: 'Specialized in AI integration & next-gen architecture for industry leaders.' },
+  { year: 2022, text: 'Started B.Tech in Computer Science at IITRAM; explored React and Python.' },
+  { year: 2023, text: 'Built multiple MERN stack apps and women safety system; won national hackathon (3rd place).' },
+  { year: 2024, text: 'Focused on mastering DSA through GATE and placement preparation; built CS fundamentals.' },
+  { year: 2025, text: 'Created remote work tracker, POS system, and started preparing for SBI/IBPS IT Officer exams.' }
 ];
 
+
 const VALUES = [
-  { title: 'Reliable Partner', detail: 'Commitment to transparency, deadlines, and proactive communication.' },
-  { title: 'Continuous Learner', detail: 'Staying ahead of tech trends—AI, automation, UX best practices.' },
-  { title: 'Impact-Driven', detail: 'Focused on business impact: every pixel and line of code has a purpose.' }
+  { title: 'Curious Creator', detail: 'Always building something new—apps, experiments, or YouTube stories.' },
+  { title: 'Team Player & Leader', detail: 'From solo developer to hackathon team lead—adapting to every role.' },
+  { title: 'Future-Focused', detail: 'Learning AI, DevOps, and CS fundamentals with a clear government job goal.' }
 ];
+
 
 const SKILLS = [
   {
     icon: '💻',
-    title: 'Full-Stack Leadership',
-    content: 'Expertise in scalable, maintainable MERN stack solutions, microservices, DevOps, and real-world API design.'
+    title: 'Full-Stack Projects',
+    content: 'Proficient in React.js, Node.js, Express, MongoDB, Tailwind CSS, and building scalable web apps.'
   },
   {
     icon: '📱',
-    title: 'Mobile Excellence',
-    content: 'Flutter, React Native, cross-platform deployment, clean UI/UX, fast iteration, and end-to-end testing.'
+    title: 'App Development',
+    content: 'Worked on Flutter and React Native apps with real-time APIs and Firebase/Stripe integration.'
   },
   {
     icon: '🤖',
-    title: 'AI & Automation',
-    content: 'Applied AI/ML, LLMs (OpenAI, Gemini), workflow automation, NLP, chatbot & recommendation systems.'
+    title: 'AI Integrations',
+    content: 'Built apps using OpenAI, ML Kit, real-time face detection, voice translation, and animated video scripts.'
   },
   {
     icon: '☁️',
-    title: 'Cloud & Product Ops',
-    content: 'AWS, GCP, scalable systems, CI/CD, security, SRE best practices.'
+    title: 'Cloud & DevOps',
+    content: 'Deployed apps on Vercel, used GitHub Actions, CI/CD, and integrated systems with REST APIs securely.'
   }
 ];
 
