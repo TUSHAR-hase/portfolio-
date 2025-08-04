@@ -4,30 +4,68 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// export const metadata = {
+//   title: "Tushar Thakor - IITRAM Computer Science Student & Developer",
+//    description:
+//     " Tushar Thakor a passionate Computer Science student At IITRAM(Institute of Infrastructure, Technology, Research And Management), hackathon winner, and full-stack developer. Experienced in React, Node.js, Flutter, MongoDB, and C++. Creator of innovative projects in women safety, work tracking, cab booking, and kids animation using AI.",
+//    keywords: [
+//     "Tushar Thakor",
+//     "IITRAM",
+//     "tushar thakor iitram",
+//     "Institute of Infrastructure, Technology, Research And Management",
+//     "Computer Science Student",
+//     "Full-stack Developer",
+//     "React Developer",
+//     "Node.js Developer",
+//     "Flutter Developer",
+//     "MongoDB",
+//     "C++",
+//     "Hackathon Winner",
+//     "Women Safety Projects",
+//     "AI Animation",
+//     "Work Tracking App",
+//     "Cab Booking App"
+//   ].join(", "),
+//   icons: {
+//     icon: "/latter.png",
+//   },
+// };
+
 export const metadata = {
   title: "Tushar Thakor - IITRAM Computer Science Student & Developer",
-   description:
-    " Tushar Thakor a passionate Computer Science student At IITRAM(Institute of Infrastructure, Technology, Research And Management), hackathon winner, and full-stack developer. Experienced in React, Node.js, Flutter, MongoDB, and C++. Creator of innovative projects in women safety, work tracking, cab booking, and kids animation using AI.",
-   keywords: [
+  description:
+    "Tushar Thakor, a Computer Science student at IITRAM (Institute of Infrastructure, Technology, Research And Management), hackathon winner, and full-stack developer skilled in React, Node.js, Flutter, MongoDB, and C++. Creator of innovative projects in women safety, freelance work tracking, cab booking, and AI-based kids animation.",
+  keywords: [
     "Tushar Thakor",
+    "Thakor Tushar",
     "IITRAM",
-    "tushar thakor iitram",
-    "Institute of Infrastructure, Technology, Research And Management",
-    "Computer Science Student",
-    "Full-stack Developer",
-    "React Developer",
-    "Node.js Developer",
-    "Flutter Developer",
+    "Thakor Tushar IITRAM",
+    "IITRAM Computer Science",
+    "Full Stack Developer",
+    "React",
+    "Node.js",
+    "Flutter",
     "MongoDB",
     "C++",
-    "Hackathon Winner",
-    "Women Safety Projects",
-    "AI Animation",
-    "Work Tracking App",
-    "Cab Booking App"
+    "Hackathon Projects",
+    "AI Kids Animation",
+    "Freelance Work Tracker",
+    "Cab Booking System"
   ].join(", "),
-  icons: {
-    icon: "/latter.png",
+  openGraph: {
+    title: "Tushar Thakor - IITRAM CS Student & Developer",
+    description: "Portfolio of Tushar Thakor from IITRAM, Full-Stack Developer and Hackathon Winner",
+    url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app", // replace with your actual domain
+    siteName: "Tushar Thakor Portfolio",
+    images: [
+      {
+        url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app/_next/static/media/tushrphoto.5808b86a.jpg", // optional preview image
+        width: 1200,
+        height: 630,
+        alt: "Tushar Thakor Portfolio",
+      },
+    ],
+    type: "website",
   },
 };
 
