@@ -1,46 +1,90 @@
 'use client'
 import { motion } from 'framer-motion';
-// import SkillsSection from './skill';
 import { useEffect, useState } from 'react';
 
+// Hero quick stats (edit these to your real stats)
+const STATS = [
+  { label: 'Experience', value: '7+ Years', description: 'End-to-end digital solutions' },
+  { label: 'Clients', value: '30+', description: 'Startups, scaleups, global brands' },
+  { label: 'Awards', value: '4', description: 'Innovation & UX Design' },
+  { label: 'Users Impacted', value: '200K+', description: 'Across multiple platforms' }
+];
+
+// Timeline: Professional Journey
+const TIMELINE = [
+  { year: 2018, text: 'Built my first SaaS MVP for an edtech startup, recognized for rapid prototyping.' },
+  { year: 2020, text: 'Launched 10+ mobile apps, and contributed to two open-source React libraries.' },
+  { year: 2022, text: 'Led a team to deliver scalable cloud services for 100K+ users.' },
+  { year: 2024, text: 'Specialized in AI integration & next-gen architecture for industry leaders.' },
+];
+
+const VALUES = [
+  { title: 'Reliable Partner', detail: 'Commitment to transparency, deadlines, and proactive communication.' },
+  { title: 'Continuous Learner', detail: 'Staying ahead of tech trends—AI, automation, UX best practices.' },
+  { title: 'Impact-Driven', detail: 'Focused on business impact: every pixel and line of code has a purpose.' }
+];
+
+const SKILLS = [
+  {
+    icon: '💻',
+    title: 'Full-Stack Leadership',
+    content: 'Expertise in scalable, maintainable MERN stack solutions, microservices, DevOps, and real-world API design.'
+  },
+  {
+    icon: '📱',
+    title: 'Mobile Excellence',
+    content: 'Flutter, React Native, cross-platform deployment, clean UI/UX, fast iteration, and end-to-end testing.'
+  },
+  {
+    icon: '🤖',
+    title: 'AI & Automation',
+    content: 'Applied AI/ML, LLMs (OpenAI, Gemini), workflow automation, NLP, chatbot & recommendation systems.'
+  },
+  {
+    icon: '☁️',
+    title: 'Cloud & Product Ops',
+    content: 'AWS, GCP, scalable systems, CI/CD, security, SRE best practices.'
+  }
+];
+
 const About = () => {
-   const [particlePositions, setParticlePositions] = useState([]);
+  const [particles, setParticles] = useState([]);
 
   useEffect(() => {
-    const randomParticles = Array.from({ length: 20 }, () => ({
-      x: `${Math.random() * 100 - 50}%`,
-      y: `${Math.random() * 100 - 50}%`,
-      duration: 2 + Math.random() * 4,
+    const randomParticles = Array.from({ length: 34 }, () => ({
+      x: `${Math.random() * 120 - 60}%`,
+      y: `${Math.random() * 120 - 60}%`,
+      size: 1 + Math.random() * 4,
+      color: `rgba(${200 + Math.floor(Math.random()*55)}, ${70 + Math.floor(Math.random()*40)}, ${160 + Math.floor(Math.random()*80)},${0.17 + Math.random() * 0.22})`,
+      blur: 1 + Math.random() * 2.5,
+      duration: 2 + Math.random() * 5,
+      delay: Math.random() * 3,
     }));
-    setParticlePositions(randomParticles);
+    setParticles(randomParticles);
   }, []);
+
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] },
-    },
+      transition: { duration: 0.7, ease: [0.65, 0.01, 0.35, 1] }
+    }
   };
-
   const staggerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
+      transition: { staggerChildren: 0.18, delayChildren: 0.15 }
+    }
   };
-
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] },
-    },
+      transition: { duration: 0.55, ease: [0.6, 0, 0.15, 1] }
+    }
   };
 
   return (
@@ -48,144 +92,150 @@ const About = () => {
       id="about"
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 py-24 relative overflow-hidden"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 z-0">
-     <motion.div
-  initial={{ scale: 0.8, opacity: 0 }}
-  animate={{ scale: 1, opacity: 0.1 }}
-  transition={{ duration: 15, repeat: Infinity, repeatType: 'reverse' }}
-  className="absolute w-[100vw] h-[100vw] max-w-[800px] max-h-[800px] bg-radial-gradient(from-60% at 50% 50%, rgba(192,132,252,0.2) 0%, rgba(192,132,252,0) 60%)"
-/>
-
-        <div className="absolute w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 left-0 sm:-left-16 animate-pulse" />
-        <div className="absolute w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-r from-pink-400/20 to-purple-600/20 blur-3xl -bottom-32 right-0 sm:-right-16 rotate-180" />
+      {/* Animated Creative Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <motion.div
+          initial={{ scale: 0.7, opacity: 0 }}
+          animate={{ scale: 1.08, opacity: 0.1 }}
+          transition={{ duration: 13, repeat: Infinity, repeatType: 'reverse' }}
+          className="absolute w-full h-full max-w-[1100px] max-h-[1100px] bg-gradient-radial from-purple-500/20 via-transparent to-transparent"
+        />
+        <div className="absolute w-[26rem] h-[22rem] bg-gradient-to-r from-violet-800/30 to-pink-500/30 blur-3xl -top-44 left-0 animate-pulse" />
+        <div className="absolute w-[28rem] h-[20rem] bg-gradient-to-r from-pink-400/35 to-purple-800/25 blur-3xl -bottom-32 right-0 rotate-180" />
       </div>
 
       <div className="container mx-auto px-4 z-10 max-w-7xl">
-        {/* About Me Header */}
+
+        {/* Header Vision */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="text-center mb-20 relative"
+          viewport={{ once: true, amount: 0.42 }}
+          className="text-center mb-16 relative"
         >
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full blur-3xl opacity-30" />
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-36 h-36 bg-gradient-to-tr from-pink-500 to-purple-600 rounded-full blur-3xl opacity-25" />
           <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 mb-6">
             About Me
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            I'm a passionate UI Designer and Web Developer with a mission to create beautiful, functional digital experiences.
+          <p className="text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-semibold">
+            I shape technology <span className="text-pink-400 font-bold">into elegant products</span>—combining <span className="text-purple-300 font-bold">creative technology, user empathy,</span> and <span className="text-violet-300 font-bold">business insight</span>.<br/>
+            Let's build what's next!
           </p>
         </motion.div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* My Story Section */}
-          <motion.div
-            variants={staggerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="relative space-y-8"
-          >
-            <motion.div variants={itemVariants} className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-pink-400/30 transition-all duration-300">
-                <h2 className="text-4xl font-bold text-gray-100 mb-6">
-                  My Journey
-                  <div className="w-16 h-1 bg-gradient-to-r from-pink-400 to-purple-500 mt-4 rounded-full" />
-                </h2>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  Turning ideas into real-world systems that serve society through innovative technology solutions and user-centric design.
-                </p>
+        {/* Stats Section */}
+        <motion.div
+          variants={staggerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="flex flex-wrap justify-center gap-7 mb-14"
+        >
+          {STATS.map((stat, idx) => (
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              className="bg-gray-900/85 rounded-xl px-8 py-6 border border-violet-700/25 shadow-xl flex flex-col items-center hover:-translate-y-2 group transition-transform duration-300"
+            >
+              <span className="text-3xl font-extrabold text-pink-400 mb-1 group-hover:scale-110 transition-transform">{stat.value}</span>
+              <span className="font-bold text-gray-100">{stat.label}</span>
+              <span className="text-gray-400 text-xs mt-1">{stat.description}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Timeline Section */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.23 }}
+          className="mb-14"
+        >
+          <h2 className="text-xl text-gray-300 font-bold mb-5 text-center tracking-wide">
+            Professional Journey Timeline
+          </h2>
+          <div className="flex flex-col md:flex-row md:space-x-5 space-y-4 md:space-y-0 justify-center items-center max-w-4xl mx-auto">
+            {TIMELINE.map((item, idx) => (
+              <div key={idx} className="bg-gray-800/80 border border-pink-400/10 rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[200px]">
+                <span className="text-pink-400 font-extrabold text-lg mb-1">{item.year}</span>
+                <span className="text-gray-200 text-sm font-medium">{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Values & Strengths */}
+        <motion.div
+          variants={staggerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.18 }}
+          className="grid md:grid-cols-3 gap-6 mb-12"
+        >
+          {VALUES.map((v, idx) => (
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              className="bg-gray-900/75 border border-violet-600/10 px-5 py-6 rounded-2xl shadow flex flex-col items-center text-center"
+            >
+              <span className="text-purple-400 font-bold mb-2 text-lg">{v.title}</span>
+              <span className="text-gray-300 text-[1rem]">{v.detail}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Skills (with icons) */}
+        <motion.div
+          variants={staggerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid md:grid-cols-2 gap-9"
+        >
+          {SKILLS.map((item, idx) => (
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              className="group relative bg-gray-800/70 backdrop-blur-md rounded-xl p-7 border border-gray-700/40 hover:border-pink-400/20 transition-all duration-300 flex"
+            >
+              <span className="text-2xl md:text-3xl mr-4">{item.icon}</span>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-100 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed">{item.content}</p>
               </div>
             </motion.div>
-
-            {/* <motion.div variants={itemVariants} className="flex items-center space-x-6">
-              <div className="flex-shrink-0 relative">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-white">5+</span>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-100 mb-2">Years Experience</h3>
-                <p className="text-gray-400">Building digital products and solutions</p>
-              </div>
-            </motion.div> */}
-          </motion.div>
-
-          {/* Skills Section */}
-          <motion.div
-            variants={staggerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="grid gap-6"
-          >
-            {[
-              {
-               
-                title: 'Full-Stack Development',
-                content: 'MERN stack specialist building scalable applications with strong foundations in both frontend and backend architecture.'
-              },
-              {
-               
-                title: 'Mobile Development',
-                content: 'Flutter expert creating practical mobile solutions including POS systems and AI-powered applications.'
-              },
-              {
-                
-                title: 'Tech Innovation',
-                content: 'Passionate about AI integration, cloud solutions, and cutting-edge system development.'
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="group relative bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-pink-400/30 transition-all duration-300"
-              >
-                <div className="flex items-start space-x-5">
-                  {/* <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-2xl">
-                    {item.icon}
-                  </div> */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-100 mb-2">{item.title}</h3>
-                    <p className="text-gray-300 leading-relaxed">{item.content}</p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-pink-400/10 transition-all duration-300 pointer-events-none" />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Floating Particles */}
-     {particlePositions.map((pos, i) => (
-  <motion.div
-    key={i}
-    className="absolute w-1 h-1 bg-white rounded-full"
-    initial={{
-      scale: 0,
-      opacity: 0,
-      x: pos.x,
-      y: pos.y
-    }}
-    animate={{
-      scale: [0, 1, 0],
-      opacity: [0, 0.6, 0],
-    }}
-    transition={{
-      duration: pos.duration,
-      repeat: Infinity,
-      ease: 'easeInOut'
-    }}
-  />
-))}
-
+      {/* Enhanced Creative Floating Particles */}
+      {particles.map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: `${pos.size * 7}px`,
+            height: `${pos.size * 7}px`,
+            background: pos.color,
+            left: `calc(50% + ${pos.x})`,
+            top: `calc(50% + ${pos.y})`,
+            filter: `blur(${pos.blur}px) drop-shadow(0px 0px 4px ${pos.color})`
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: [0, 1.07, 0.5, 0], opacity: [0, 0.8, 0.32, 0] }}
+          transition={{
+            duration: pos.duration,
+            delay: pos.delay,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        />
+      ))}
     </section>
-    
   );
 };
 
