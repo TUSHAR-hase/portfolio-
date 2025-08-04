@@ -78,23 +78,33 @@ const Resume = () => (
             title: "Strengths",
             content: (
               <>
-                Finding simple, scalable solutions
-                <br/>
-                Leading cross-functional teams
-                <br/>
-                UX-first, pixel-perfect delivery
+                 Rapid prototyping & scalable solutions<br />
+        Team leadership & full-stack ownership<br />
+        UI/UX with focus on user empathy & real impact
               </>
             ),
             color: "from-pink-500/20 to-purple-600/20"
           },
           {
             title: "Achievements",
-            content: "Launched 5+ products | Trusted by 10+ clients",
+            content: (
+      <>
+        National Hackathon (3rd Place, 2023)<br />
+        Built 10+ real-world projects<br />
+        Trusted by startups & academic teams
+      </>
+    ),
             color: "from-purple-500/20 to-pink-600/20"
           },
           {
             title: "Philosophy",
-            content: "Continuous learning, empathy, and building for **real impact**.",
+            content: (
+      <>
+        Build with purpose, learn constantly<br />
+        Marry design with code<br />
+        Technology that empowers and connects
+      </>
+    ),
             color: "from-violet-500/20 to-fuchsia-600/20"
           }
         ].map((item, idx) => (
