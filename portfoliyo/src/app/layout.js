@@ -11,6 +11,7 @@ export const metadata = {
    keywords: [
     "Tushar Thakor",
     "IITRAM",
+    "tushar thakor iitram",
     "Institute of Infrastructure, Technology, Research And Management",
     "Computer Science Student",
     "Full-stack Developer",
