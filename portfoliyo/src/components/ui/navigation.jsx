@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
 
+const resumeLink = "/TUSHAR_THAKOR_RESUME.pdf"; // Put your actual resume file here
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('home');
@@ -11,7 +13,6 @@ const Navbar = () => {
     { name: 'Home', id: 'home' },
     { name: 'About', id: 'about' },
     { name: 'Projects', id: 'portfolio' },
-   
     { name: 'Contact', id: 'contact' },
   ];
 
@@ -22,12 +23,10 @@ const Navbar = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-xl z-50 border-b border-white/10 shadow-2xl shadow-purple-900/20"
     >
-      <div className=" px-4 py-3 flex justify-between items-center">
-        {/* Logo with Gradient Border */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="relative group"
-        >
+      <div className="px-4 py-3 flex justify-between items-center">
+
+        {/* Logo */}
+        <motion.div whileHover={{ scale: 1.05 }} className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
           <Link
             to="home"
@@ -38,37 +37,52 @@ const Navbar = () => {
           </Link>
         </motion.div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
-          {links.map((link) => (
-            <motion.li
-              key={link.id}
-              className="relative"
-              whileHover={{ y: -2 }}
-            >
-              <Link
-                to={link.id}
-                smooth
-                spy
-                onSetActive={() => setActiveLink(link.id)}
-                className={`px-4 py-2.5 cursor-pointer text-sm font-medium ${
-                  activeLink === link.id 
-                    ? 'text-purple-400' 
-                    : 'text-gray-300 hover:text-pink-300'
-                } transition-all duration-300`}
+        {/* Desktop Menu & Resume */}
+        <div className="hidden md:flex items-center space-x-6">
+          <ul className="flex space-x-6">
+            {links.map((link) => (
+              <motion.li
+                key={link.id}
+                className="relative"
+                whileHover={{ y: -2 }}
               >
-                {link.name}
-                {activeLink === link.id && (
-                  <motion.div 
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-pink-400 to-purple-400"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            </motion.li>
-          ))}
-        </ul>
+                <Link
+                  to={link.id}
+                  smooth
+                  spy
+                  onSetActive={() => setActiveLink(link.id)}
+                  className={`px-4 py-2.5 cursor-pointer text-sm font-medium ${
+                    activeLink === link.id 
+                      ? 'text-purple-400' 
+                      : 'text-gray-300 hover:text-pink-300'
+                  } transition-all duration-300`}
+                >
+                  {link.name}
+                  {activeLink === link.id && (
+                    <motion.div 
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-pink-400 to-purple-400"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
+          {/* Resume Button (Desktop) */}
+          <motion.a
+            href={resumeLink}
+            download
+            whileHover={{ scale: 1.07, boxShadow: "0px 2px 14px 2px #a855f7" }}
+            whileTap={{ scale: 0.93 }}
+            className="ml-4 px-5 py-2 font-semibold rounded-lg shadow-lg border border-pink-400/60 bg-gradient-to-tr from-purple-700 via-purple-600 to-pink-500 hover:from-pink-600 hover:to-purple-800 text-white transition-all duration-400 flex items-center gap-2"
+          >
+            <svg viewBox="0 0 20 20" fill="none" width={20} height={20} className="inline">
+              <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 15a2 2 0 002 2h8a2 2 0 002-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Resume
+          </motion.a>
+        </div>
 
         {/* Mobile Menu Button */}
         <motion.button
@@ -115,6 +129,21 @@ const Navbar = () => {
                   </Link>
                 </motion.li>
               ))}
+              {/* Resume Button (Mobile) */}
+              <li className="mt-2">
+                <motion.a
+                  href={resumeLink}
+                  download
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full flex items-center gap-2 justify-center px-4 py-3 rounded-lg bg-gradient-to-tr from-purple-700 via-purple-600 to-pink-500 text-white font-semibold shadow-lg border border-pink-400/30 transition-all"
+                >
+                  <svg viewBox="0 0 20 20" fill="none" width={20} height={20} className="inline">
+                    <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 15a2 2 0 002 2h8a2 2 0 002-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Download Resume
+                </motion.a>
+              </li>
             </ul>
           </motion.div>
         )}
