@@ -7,7 +7,7 @@ import hospital from '../../assets/images/hospital.jpg';
 import bluecolorapp from '../../assets/images/blue2.jpg';
 import resturent from '../../assets/images/resturent.png';
 import cabbooking from '../../assets/images/cab.png';
-
+import railmadad from '../../assets/images/railmadad.jpeg'
 // Map project types to nice icons/colors
 const typeMeta = {
   web: { icon: <FaUtensils className="text-pink-400" />, color: "bg-pink-600/20 text-pink-400" },
@@ -105,10 +105,49 @@ const projects = [
       role: "Full Stack Developer",
       links: {
         github: "https://github.com/naikJagrav/bookinHub.git",
-        live: "https://github.com/naikJagrav/bookinHub.git"
+        live: "https://cab-booking-one-jade.vercel.app/"
       }
     }
+  },
+  {
+  id: 5,
+  title: "Rail Madad Complaint Management System",
+  type: "web + ivr + ml",
+  description: "A railway complaint management system inspired by Rail Madad that allows users to register complaints via web and IVR calls. The system uses a trained machine learning model to automatically identify and categorize complaints for faster resolution.",
+  tech: [
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "React",
+    "Next.js",
+    "Python",
+    "Scikit-learn",
+    "Twilio IVR",
+    "JWT Authentication"
+  ],
+  image: railmadad,
+  details: {
+    features: [
+      "IVR Call-Based Complaint Registration",
+      "Speech-to-Text Processing for IVR Calls",
+      "Machine Learning Model for Complaint Classification",
+      "Automatic Complaint Category Identification",
+      "Web-Based Complaint Submission",
+      "Complaint Status Tracking (Pending / In Progress / Resolved)",
+      "Admin Dashboard for Complaint Management",
+      "Role-Based Access (User / Admin)",
+      "Automated Complaint ID Generation",
+      "Call Logs and Complaint History Management"
+    ],
+    duration: "18 Days",
+    role: "Full Stack Developer",
+    links: {
+      github: "https://github.com/TUSHAR-hase/Rail_Madad_backend",
+      live: "https://rail-madad-demo.vercel.app"
+    }
   }
+}
+
 ];
 
 const Portfolio = () => {
