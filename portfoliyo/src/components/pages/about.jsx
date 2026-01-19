@@ -29,22 +29,22 @@ const VALUES = [
 
 const SKILLS = [
   {
-    icon: '💻',
+    icon: '',
     title: 'Full-Stack Projects',
     content: 'Proficient in React.js, Node.js, Express, MongoDB, Tailwind CSS, and building scalable web apps.'
   },
   {
-    icon: '📱',
+    icon: '',
     title: 'App Development',
     content: 'Worked on Flutter and React Native apps with real-time APIs and Firebase/Stripe integration.'
   },
   {
-    icon: '🤖',
+    icon: '',
     title: 'AI Integrations',
     content: 'Built apps using OpenAI, ML Kit, real-time face detection, voice translation, and animated video scripts.'
   },
   {
-    icon: '☁️',
+    icon: '',
     title: 'Cloud & DevOps',
     content: 'Deployed apps on Vercel, used GitHub Actions, CI/CD, and integrated systems with REST APIs securely.'
   }
