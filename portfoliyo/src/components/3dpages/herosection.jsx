@@ -276,23 +276,18 @@ const Hero = () => {
               </div>
             </div>
 
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
+           
+
+            
+          </div>
+           {/* <motion.div
+              animate={{ y: [5, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-5 left-4 rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
+              className="absolute -bottom-15 left-4 rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Latest focus</p>
               <p className="mt-1 text-sm font-medium text-white">Responsive product UI, ML-backed workflows, and IoT problem solving</p>
-            </motion.div>
-
-            {/* <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 0.45 }}
-              className="absolute -right-3 top-20 rounded-2xl border border-sky-400/16 bg-sky-400/10 px-4 py-3 text-sm font-semibold text-sky-200 shadow-xl backdrop-blur-xl"
-            >
-              Smooth UI
             </motion.div> */}
-          </div>
         </motion.div>
       </div>
 
