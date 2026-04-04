@@ -3,8 +3,9 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { FiArrowUpRight, FiGithub, FiLayers, FiSmartphone, FiX } from "react-icons/fi";
+import { FiArrowUpRight, FiCpu, FiGithub, FiLayers, FiSmartphone, FiX } from "react-icons/fi";
 
+import blueone from "../../assets/images/blue1.jpg";
 import bluecolorapp from "../../assets/images/blue2.jpg";
 import cabbooking from "../../assets/images/cab.png";
 import hospital from "../../assets/images/hospital.jpg";
@@ -15,7 +16,8 @@ const filterMeta = [
   { id: "all", label: "All" },
   { id: "web", label: "Web" },
   { id: "app", label: "App" },
-  { id: "systems", label: "Systems" },
+  { id: "ai", label: "AI / ML" },
+  { id: "systems", label: "IoT / Systems" },
 ];
 
 const categoryMeta = {
@@ -29,10 +31,15 @@ const categoryMeta = {
     style: "bg-violet-400/10 text-violet-300 border-violet-400/20",
     label: "Mobile app",
   },
+  ai: {
+    icon: FiCpu,
+    style: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20",
+    label: "AI / ML",
+  },
   systems: {
     icon: FiLayers,
     style: "bg-orange-400/10 text-orange-300 border-orange-400/20",
-    label: "System",
+    label: "IoT / System",
   },
 };
 
@@ -43,7 +50,7 @@ const projects = [
     category: "web",
     image: resturent,
     description:
-      "A restaurant operations platform with ordering, menu management, customer experience flows, and admin-side controls.",
+      "A restaurant operations platform covering ordering, menu management, customer experience flows, and admin-side controls in one structured product.",
     tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
     spotlight: "Dashboard UX + ordering flows",
     details: {
@@ -64,11 +71,11 @@ const projects = [
   },
   {
     id: 2,
-    title: "Hospital Management",
+    title: "Hospital Management System",
     category: "systems",
     image: hospital,
     description:
-      "A workflow-driven healthcare system for handling patients, doctors, appointments, and medical records efficiently.",
+      "A workflow-driven healthcare system for handling patients, doctors, appointments, and records with better operational clarity.",
     tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
     spotlight: "Business system architecture",
     details: {
@@ -92,7 +99,7 @@ const projects = [
     category: "app",
     image: bluecolorapp,
     description:
-      "A mobile app that connects skill-based individuals with community opportunities, events, and collaboration spaces.",
+      "A mobile-first community app that connects skill-based individuals with opportunities, events, volunteering, and collaboration spaces.",
     tech: ["Flutter", "Dart", "Firebase"],
     spotlight: "Mobile-first community product",
     details: {
@@ -107,7 +114,6 @@ const projects = [
       role: "Mobile App Developer",
       links: {
         github: "https://github.com/TUSHAR-hase/blue-color-app.git",
-        live: "https://your-live-demo-link.com",
       },
     },
   },
@@ -117,7 +123,7 @@ const projects = [
     category: "web",
     image: cabbooking,
     description:
-      "A long-distance booking platform with user flows, rider controls, OTP verification, ride tracking, and admin visibility.",
+      "A booking platform focused on long-distance travel with user flows, rider controls, OTP verification, ride tracking, and admin visibility.",
     tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
     spotlight: "Booking UX + operations management",
     details: {
@@ -139,11 +145,11 @@ const projects = [
   },
   {
     id: 5,
-    title: "Rail Madad Complaint Management System",
-    category: "systems",
+    title: "Rail Madad Complaint Management",
+    category: "ai",
     image: railmadad,
     description:
-      "A railway complaint platform combining web workflows, IVR call intake, and machine learning-based complaint categorization.",
+      "A railway complaint platform combining web workflows, IVR call intake, and machine learning-assisted complaint categorization.",
     tech: ["Node.js", "Express.js", "MongoDB", "React", "Next.js", "Python", "Scikit-learn"],
     spotlight: "Full-stack + ML-assisted triage",
     details: {
@@ -161,6 +167,116 @@ const projects = [
         github: "https://github.com/TUSHAR-hase/Rail_Madad_backend",
         live: "https://rail-madad-demo.vercel.app",
       },
+    },
+  },
+  {
+    id: 6,
+    title: "AI Kids Animation",
+    category: "ai",
+    image: blueone,
+    description:
+      "An AI-assisted concept focused on turning creative ideas into kid-friendly animation experiences and interactive storytelling workflows.",
+    tech: ["Python", "Machine Learning", "Automation", "Creative AI", "React"],
+    spotlight: "Creative AI workflow",
+    details: {
+      features: [
+        "Idea-driven animation exploration",
+        "Experimentation with AI-assisted content workflows",
+        "Child-friendly storytelling oriented concept design",
+        "Focus on usability, engagement, and creative output",
+        "Prototype-first approach for validating the product idea",
+      ],
+      duration: "Prototype",
+      role: "AI/ML Project Builder",
+      links: {},
+    },
+  },
+  {
+    id: 7,
+    title: "Women Safety App",
+    category: "app",
+    image: "/project-covers/women-safety-app.svg",
+    description:
+      "A women safety mobile concept focused on fast SOS support, live location sharing, and trusted-contact communication during emergencies.",
+    tech: ["Flutter", "Firebase", "Location Sharing", "Emergency Alerts", "Authentication"],
+    spotlight: "Emergency-first mobile experience",
+    details: {
+      features: [
+        "One-tap SOS support flow",
+        "Trusted contact alerting",
+        "Live location sharing during emergencies",
+        "Fast-access interface for high-stress situations",
+        "Safety-first product thinking with practical usability",
+      ],
+      duration: "Prototype",
+      role: "Mobile App Developer",
+      links: {},
+    },
+  },
+  {
+    id: 8,
+    title: "Farmer Marketplace",
+    category: "web",
+    image: "/project-covers/farmer-marketplace.svg",
+    description:
+      "A marketplace platform designed to connect farmers directly with buyers through transparent product listings, pricing visibility, and simpler order coordination.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    spotlight: "Direct farmer-to-buyer commerce",
+    details: {
+      features: [
+        "Farmer-side product listing and management",
+        "Buyer browsing with category and price visibility",
+        "Order inquiry and purchase coordination flow",
+        "Authentication for farmers and buyers",
+        "Marketplace structure focused on reducing middleman friction",
+      ],
+      duration: "10 days",
+      role: "Full Stack Developer",
+      links: {},
+    },
+  },
+  {
+    id: 9,
+    title: "Line Follower Robot",
+    category: "systems",
+    image: "/project-covers/line-follower-robot.svg",
+    description:
+      "A robotics project centered on sensor-guided path tracking, motor control, and embedded decision making for reliable autonomous movement.",
+    tech: ["Arduino", "IR Sensors", "Embedded C", "Motor Driver", "Robotics"],
+    spotlight: "Sensor-based autonomous control",
+    details: {
+      features: [
+        "IR sensor-based line detection",
+        "Motor control with movement correction logic",
+        "Autonomous path-following behavior",
+        "Hardware-software tuning for stability",
+        "Prototype testing focused on response accuracy",
+      ],
+      duration: "Prototype",
+      role: "Embedded Systems Builder",
+      links: {},
+    },
+  },
+  {
+    id: 10,
+    title: "Garbage Detection YOLO Model",
+    category: "ai",
+    image: "/project-covers/garbage-detection-yolo.svg",
+    description:
+      "A computer vision project using a YOLO-based model to detect garbage in images or video frames for smarter cleanliness monitoring workflows.",
+    tech: ["Python", "YOLO", "OpenCV", "Computer Vision", "Deep Learning"],
+    spotlight: "Real-time object detection",
+    details: {
+      features: [
+        "Garbage detection on images and frames",
+        "YOLO-based object localization experiments",
+        "Bounding-box output for visual analysis",
+        "Real-world cleanliness monitoring use case",
+        "Model evaluation and performance tuning",
+      ],
+      duration: "Prototype",
+      role: "Computer Vision Developer",
+      links: {},
     },
   },
 ];
@@ -188,10 +304,10 @@ const Portfolio = () => {
         >
           <div className="max-w-3xl">
             <span className="section-kicker">Projects</span>
-            <h2 className="section-title mt-6 text-balance">Selected work that reflects both product thinking and implementation depth.</h2>
+            <h2 className="section-title mt-6 text-balance">Selected work that reflects frontend polish, full-stack execution, and wider technical curiosity.</h2>
             <p className="section-copy mt-6">
-              Each project combines interface decisions, technical execution, and practical problem solving. The goal
-              here is not just variety, but evidence of how I approach building real applications.
+              The goal here is not just variety. It&apos;s to show that I can work across web apps, mobile concepts,
+              AI/ML-oriented ideas, and system-focused problem solving while keeping the experience professional.
             </p>
           </div>
 
@@ -353,28 +469,32 @@ const Portfolio = () => {
                   </div>
 
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <motion.a
-                      href={selectedProject.details.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="button-secondary"
-                    >
-                      <FiGithub />
-                      GitHub
-                    </motion.a>
-                    <motion.a
-                      href={selectedProject.details.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="button-primary"
-                    >
-                      Live Demo
-                      <FiArrowUpRight />
-                    </motion.a>
+                    {selectedProject.details.links.github && (
+                      <motion.a
+                        href={selectedProject.details.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="button-secondary"
+                      >
+                        <FiGithub />
+                        GitHub
+                      </motion.a>
+                    )}
+                    {selectedProject.details.links.live && (
+                      <motion.a
+                        href={selectedProject.details.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="button-primary"
+                      >
+                        Live Demo
+                        <FiArrowUpRight />
+                      </motion.a>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,0 +1,33 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#052E16"/>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1280" cy="210" r="210" fill="#FACC15" fill-opacity="0.15"/>
+  <circle cx="250" cy="820" r="260" fill="#4ADE80" fill-opacity="0.14"/>
+  <rect x="120" y="120" width="1360" height="760" rx="44" fill="#052E16" fill-opacity="0.76" stroke="#14532D" stroke-width="3"/>
+  <rect x="190" y="220" width="1240" height="180" rx="34" fill="#0F3D20" stroke="#166534" stroke-width="3"/>
+  <rect x="240" y="270" width="280" height="26" rx="13" fill="#F8FAFC"/>
+  <rect x="240" y="318" width="420" height="18" rx="9" fill="#BBF7D0"/>
+  <rect x="1120" y="265" width="200" height="64" rx="22" fill="#FACC15"/>
+  <text x="1168" y="307" fill="#14532D" font-family="Arial, sans-serif" font-size="28" font-weight="700">Buy Fresh</text>
+  <rect x="190" y="450" width="360" height="250" rx="34" fill="#14532D" stroke="#22C55E" stroke-width="3"/>
+  <rect x="620" y="450" width="360" height="250" rx="34" fill="#14532D" stroke="#22C55E" stroke-width="3"/>
+  <rect x="1050" y="450" width="360" height="250" rx="34" fill="#14532D" stroke="#22C55E" stroke-width="3"/>
+  <circle cx="370" cy="535" r="48" fill="#F59E0B"/>
+  <rect x="270" y="620" width="200" height="18" rx="9" fill="#F8FAFC"/>
+  <rect x="270" y="655" width="150" height="16" rx="8" fill="#BBF7D0"/>
+  <circle cx="800" cy="535" r="48" fill="#F97316"/>
+  <rect x="700" y="620" width="200" height="18" rx="9" fill="#F8FAFC"/>
+  <rect x="700" y="655" width="150" height="16" rx="8" fill="#BBF7D0"/>
+  <circle cx="1230" cy="535" r="48" fill="#EAB308"/>
+  <rect x="1130" y="620" width="200" height="18" rx="9" fill="#F8FAFC"/>
+  <rect x="1130" y="655" width="150" height="16" rx="8" fill="#BBF7D0"/>
+  <text x="190" y="170" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="64" font-weight="700">Farmer Marketplace</text>
+  <text x="190" y="785" fill="#DCFCE7" font-family="Arial, sans-serif" font-size="30">Direct listings, fair pricing, simpler buyer-seller coordination</text>
+  <defs>
+    <linearGradient id="bg" x1="100" y1="100" x2="1490" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#052E16"/>
+      <stop offset="0.55" stop-color="#14532D"/>
+      <stop offset="1" stop-color="#365314"/>
+    </linearGradient>
+  </defs>
+</svg>

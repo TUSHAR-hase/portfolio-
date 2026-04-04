@@ -1,0 +1,35 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#0F172A"/>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1240" cy="180" r="220" fill="#FB7185" fill-opacity="0.16"/>
+  <circle cx="300" cy="830" r="250" fill="#F59E0B" fill-opacity="0.14"/>
+  <rect x="120" y="120" width="1360" height="760" rx="44" fill="#0B1120" fill-opacity="0.7" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <rect x="190" y="220" width="360" height="560" rx="38" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <rect x="230" y="280" width="280" height="54" rx="18" fill="#1E293B"/>
+  <rect x="230" y="370" width="280" height="170" rx="28" fill="#BE123C"/>
+  <circle cx="370" cy="455" r="58" fill="#FFE4E6"/>
+  <path d="M370 416C382.15 416 392 425.85 392 438C392 450.15 382.15 460 370 460C357.85 460 348 450.15 348 438C348 425.85 357.85 416 370 416ZM370 468C396.51 468 418 489.49 418 516V524H322V516C322 489.49 343.49 468 370 468Z" fill="#BE123C"/>
+  <rect x="230" y="574" width="124" height="32" rx="12" fill="#FB7185"/>
+  <rect x="230" y="628" width="220" height="20" rx="10" fill="#334155"/>
+  <rect x="230" y="666" width="188" height="20" rx="10" fill="#334155"/>
+  <rect x="700" y="260" width="540" height="94" rx="28" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <rect x="730" y="292" width="200" height="18" rx="9" fill="#F8FAFC" fill-opacity="0.9"/>
+  <rect x="730" y="322" width="320" height="14" rx="7" fill="#94A3B8"/>
+  <rect x="700" y="392" width="620" height="178" rx="34" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <rect x="740" y="438" width="230" height="24" rx="12" fill="#FB7185"/>
+  <rect x="740" y="484" width="510" height="18" rx="9" fill="#475569"/>
+  <rect x="740" y="520" width="446" height="18" rx="9" fill="#475569"/>
+  <rect x="700" y="610" width="460" height="116" rx="30" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <circle cx="776" cy="668" r="26" fill="#F59E0B"/>
+  <rect x="822" y="642" width="278" height="18" rx="9" fill="#F8FAFC"/>
+  <rect x="822" y="678" width="220" height="16" rx="8" fill="#94A3B8"/>
+  <text x="700" y="170" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="64" font-weight="700">Women Safety App</text>
+  <text x="700" y="770" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="30">SOS flow, trusted contacts, live location support</text>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1460" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.55" stop-color="#1E1B4B"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+</svg>

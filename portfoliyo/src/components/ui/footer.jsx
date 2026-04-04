@@ -45,8 +45,8 @@ const Footer = () => {
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Portfolio</p>
               <h2 className="mt-3 text-3xl font-semibold text-white">Tushar Thakor</h2>
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                Frontend-focused full-stack developer building polished digital experiences for placements,
-                collaborations, and real product teams.
+                Frontend-focused full-stack developer building polished web experiences while growing across AI/ML,
+                mobile, and IoT-driven projects.
               </p>
             </div>
 
@@ -81,7 +81,7 @@ const Footer = () => {
         </motion.div>
 
         <div className="flex flex-col gap-3 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <p>© 2026 Tushar Thakor. All rights reserved.</p>
+          <p>(c) 2026 Tushar Thakor. All rights reserved.</p>
           <p>Crafted with React, Tailwind CSS, and Framer Motion.</p>
         </div>
       </div>

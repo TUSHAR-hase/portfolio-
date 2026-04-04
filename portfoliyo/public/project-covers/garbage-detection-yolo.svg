@@ -1,0 +1,27 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#022C22"/>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1240" cy="190" r="230" fill="#34D399" fill-opacity="0.14"/>
+  <circle cx="280" cy="820" r="250" fill="#38BDF8" fill-opacity="0.14"/>
+  <rect x="120" y="120" width="1360" height="760" rx="44" fill="#041B17" fill-opacity="0.74" stroke="#134E4A" stroke-width="3"/>
+  <rect x="190" y="210" width="1220" height="580" rx="38" fill="#0F172A" stroke="#1F2937" stroke-width="3"/>
+  <rect x="260" y="280" width="980" height="390" rx="28" fill="#111827"/>
+  <rect x="340" y="360" width="240" height="210" rx="16" stroke="#22C55E" stroke-width="8"/>
+  <rect x="730" y="320" width="290" height="250" rx="16" stroke="#38BDF8" stroke-width="8"/>
+  <rect x="1080" y="390" width="90" height="160" rx="10" fill="#16A34A"/>
+  <rect x="1100" y="350" width="50" height="46" rx="8" fill="#22C55E"/>
+  <path d="M420 540L450 500L480 470L515 440" stroke="#22C55E" stroke-width="8" stroke-linecap="round"/>
+  <path d="M800 525L860 500L910 450L970 400" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
+  <rect x="310" y="705" width="220" height="18" rx="9" fill="#A7F3D0"/>
+  <rect x="690" y="705" width="280" height="18" rx="9" fill="#BAE6FD"/>
+  <rect x="1080" y="705" width="130" height="18" rx="9" fill="#86EFAC"/>
+  <text x="190" y="180" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="64" font-weight="700">Garbage Detection YOLO Model</text>
+  <text x="190" y="845" fill="#CCFBF1" font-family="Arial, sans-serif" font-size="30">Computer vision for cleanliness monitoring and waste detection</text>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="100" x2="1490" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#022C22"/>
+      <stop offset="0.55" stop-color="#0F3D3E"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

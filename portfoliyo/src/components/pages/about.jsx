@@ -4,25 +4,25 @@ import { motion } from "framer-motion";
 import { FiBriefcase, FiCpu, FiTarget, FiZap } from "react-icons/fi";
 
 const stats = [
-  { value: "3+", label: "Hackathons won", copy: "Competitive problem solving and rapid product execution." },
-  { value: "10+", label: "Real projects", copy: "Web, mobile, dashboards, and system-focused products." },
-  { value: "15+", label: "Tools used", copy: "Frontend, backend, cloud, and design workflows." },
+  { value: "10+", label: "Projects built", copy: "Web apps, mobile work, AI/ML concepts, and system-driven builds." },
+  { value: "3+", label: "Hackathons", copy: "Fast execution, teamwork, and pressure-tested problem solving." },
+  { value: "4", label: "Key domains", copy: "Frontend, full-stack, AI/ML, and IoT-oriented problem solving." },
 ];
 
 const highlights = [
   {
-    title: "Product mindset",
-    copy: "I care about how the interface feels, how the code scales, and how the product solves the actual problem.",
+    title: "Product-first mindset",
+    copy: "I focus on how the product feels to use, how the codebase stays maintainable, and how the solution serves the real problem.",
     icon: FiTarget,
   },
   {
-    title: "Modern engineering",
-    copy: "React, Next.js, Node.js, MongoDB, Tailwind CSS, and mobile stacks for polished end-to-end delivery.",
+    title: "Cross-domain execution",
+    copy: "My work spans responsive frontend systems, backend integration, AI/ML experimentation, and practical IoT thinking.",
     icon: FiCpu,
   },
   {
-    title: "Strong communication",
-    copy: "Hackathons, team work, and freelance-style collaboration taught me how to build clearly and move fast.",
+    title: "Reliable collaboration",
+    copy: "Hackathons, academic projects, and team builds taught me how to communicate clearly, take ownership, and move fast.",
     icon: FiBriefcase,
   },
 ];
@@ -31,22 +31,22 @@ const journey = [
   {
     year: "2022",
     title: "Built the foundation",
-    copy: "Started B.Tech in Computer Science at IITRAM and began exploring React, JavaScript, and backend workflows.",
+    copy: "Started B.Tech in Computer Science at IITRAM and built a base in programming, frontend development, and web fundamentals.",
   },
   {
     year: "2023",
-    title: "Shipped under pressure",
-    copy: "Built real MERN projects, participated in hackathons, and earned strong practical confidence in product building.",
+    title: "Shipped real products",
+    copy: "Worked on full-stack projects, mobile app ideas, and hackathon builds that improved both speed and practical confidence.",
   },
   {
     year: "2024",
-    title: "Focused on depth",
-    copy: "Strengthened DSA, CS fundamentals, system thinking, and frontend quality for placements and interview readiness.",
+    title: "Expanded into new domains",
+    copy: "Explored AI/ML-oriented workflows, sharper frontend execution, and system-led ideas including connected-device thinking.",
   },
   {
     year: "2025+",
-    title: "Refining the edge",
-    copy: "Continuing to ship cleaner UX, stronger full-stack systems, and portfolio work that reflects real-world quality.",
+    title: "Refining for opportunities",
+    copy: "Continuing to strengthen DSA, full-stack delivery, responsive UI quality, and portfolio work aimed at placements and internships.",
   },
 ];
 
@@ -63,12 +63,12 @@ const About = () => {
         >
           <span className="section-kicker">About</span>
           <h2 className="section-title mt-6 text-balance">
-            A developer who blends clean engineering with a strong visual sense.
+            A developer focused on practical products, clean execution, and steady growth.
           </h2>
           <p className="section-copy mt-6">
-            I enjoy turning ideas into responsive, reliable, and attractive digital products. My work sits at the
-            intersection of frontend polish, backend practicality, and thoughtful user experience, which makes this
-            portfolio a reflection of how I like to build in real projects too.
+            I enjoy turning ideas into reliable, responsive, and professional digital experiences. My work brings
+            together frontend polish, full-stack implementation, and curiosity for AI/ML and IoT, so this portfolio
+            reflects the kind of products I want to keep building in real teams.
           </p>
         </motion.div>
 
@@ -83,23 +83,24 @@ const About = () => {
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div className="max-w-2xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Who I am</p>
-                <h3 className="mt-3 text-3xl font-semibold text-white">Building for placements, products, and people.</h3>
+                <h3 className="mt-3 text-3xl font-semibold text-white">Turning technical skills into interview-ready, real-world projects.</h3>
                 <p className="mt-5 text-base leading-8 text-slate-300">
-                  I&apos;m a Computer Science student at IITRAM who enjoys building full-stack products with a premium
-                  frontend feel. I&apos;m especially interested in developer portfolios, dashboards, business systems,
-                  and user-facing apps that feel intentional instead of generic.
+                  I&apos;m a Computer Science student at IITRAM who enjoys building products that look polished and work
+                  reliably. My strongest interest is in frontend-led product development, but I also work comfortably
+                  across backend flows, mobile app concepts, AI/ML-based features, and system-oriented ideas that solve
+                  practical problems.
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5 sm:max-w-sm">
                 <p className="flex items-center gap-2 text-sm font-semibold text-orange-300">
                   <FiZap />
                   Current focus
                 </p>
                 <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-                  <li>Premium frontend execution for interview-ready projects</li>
-                  <li>Stronger DSA and CS depth for placements</li>
-                  <li>Clean full-stack shipping with modern UI systems</li>
+                  <li>Responsive frontend execution that feels professional on every screen</li>
+                  <li>Full-stack projects with cleaner APIs, structure, and deployment readiness</li>
+                  <li>Sharper DSA, AI/ML exploration, and IoT-oriented product thinking</li>
                 </ul>
               </div>
             </div>

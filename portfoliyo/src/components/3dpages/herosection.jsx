@@ -16,18 +16,22 @@ import {
 
 import yourImage from "../../assets/images/tushrphoto.jpg";
 
-const roles = ["Full Stack Developer", "Frontend Engineer", "Problem Solver"];
+const roles = [
+  "Frontend-Focused Full Stack Developer",
+  "AI/ML Project Builder",
+  "IoT Solution Explorer",
+];
 
 const quickStats = [
-  { label: "Projects shipped", value: "10+" },
-  { label: "Hackathon wins", value: "3+" },
-  { label: "Stacks explored", value: "15+" },
+  { label: "Projects built", value: "10+" },
+  { label: "Hackathons", value: "3+" },
+  { label: "Core domains", value: "4" },
 ];
 
 const badges = [
   { icon: FiMonitor, label: "Responsive UI" },
-  { icon: FiCode, label: "Production-ready code" },
-  { icon: FiLayers, label: "Scalable systems" },
+  { icon: FiCode, label: "Full-stack delivery" },
+  { icon: FiLayers, label: "AI/ML & IoT" },
 ];
 
 const socials = [
@@ -99,11 +103,11 @@ const Hero = () => {
               transition={{ delay: 0.15, duration: 0.6 }}
               className="text-balance text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:text-7xl"
             >
-              Designing polished interfaces and building{" "}
+              Building polished digital products across{" "}
               <span className="bg-gradient-to-r from-sky-300 via-violet-300 to-orange-300 bg-clip-text text-transparent">
-                full-stack products
+                web, AI/ML, and connected systems
               </span>{" "}
-              that feel premium.
+              with a premium feel.
             </motion.h1>
 
             <motion.div
@@ -131,9 +135,9 @@ const Hero = () => {
               transition={{ delay: 0.28, duration: 0.6 }}
               className="section-copy mt-8 max-w-2xl"
             >
-              I build responsive web and mobile experiences with a strong focus on clean interaction design,
-              smooth performance, and practical product thinking. My goal is to create work that stands out in
-              interviews, placements, and real-world use.
+              I build responsive interfaces, full-stack applications, AI/ML-driven concepts, and practical IoT
+              solutions with strong attention to interaction quality, performance, and real-world usability. My aim
+              is to ship work that feels professional in interviews, hackathons, and product teams.
             </motion.p>
           </div>
 
@@ -233,7 +237,8 @@ const Hero = () => {
                     <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
                       <p className="text-sm font-semibold text-slate-300">Focus</p>
                       <p className="mt-2 text-sm leading-7 text-slate-400">
-                        Frontend craftsmanship, backend integration, AI & ML, and responsive product experiences.
+                        Frontend craftsmanship, backend integration, AI/ML experimentation, and connected
+                        system-oriented product thinking.
                       </p>
                     </div>
                     <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
@@ -242,7 +247,8 @@ const Hero = () => {
                         Ahmedabad, India
                       </p>
                       <p className="mt-2 text-sm leading-7 text-slate-400">
-                        Interested in placements, internships, freelance work, and product-focused frontend roles.
+                        Open to placements, internships, and product teams where frontend quality, ownership, and
+                        strong execution matter.
                       </p>
                     </div>
                   </div>
@@ -276,7 +282,7 @@ const Hero = () => {
               className="absolute -bottom-5 left-4 rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Latest focus</p>
-              <p className="mt-1 text-sm font-medium text-white">Portfolio UX, MERN apps, and interview prep, AI & ML</p>
+              <p className="mt-1 text-sm font-medium text-white">Responsive product UI, ML-backed workflows, and IoT problem solving</p>
             </motion.div>
 
             {/* <motion.div
