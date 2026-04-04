@@ -1,35 +1,16 @@
-import { Inter } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
 
-// export const metadata = {
-//   title: "Tushar Thakor - IITRAM Computer Science Student & Developer",
-//    description:
-//     " Tushar Thakor a passionate Computer Science student At IITRAM(Institute of Infrastructure, Technology, Research And Management), hackathon winner, and full-stack developer. Experienced in React, Node.js, Flutter, MongoDB, and C++. Creator of innovative projects in women safety, work tracking, cab booking, and kids animation using AI.",
-//    keywords: [
-//     "Tushar Thakor",
-//     "IITRAM",
-//     "tushar thakor iitram",
-//     "Institute of Infrastructure, Technology, Research And Management",
-//     "Computer Science Student",
-//     "Full-stack Developer",
-//     "React Developer",
-//     "Node.js Developer",
-//     "Flutter Developer",
-//     "MongoDB",
-//     "C++",
-//     "Hackathon Winner",
-//     "Women Safety Projects",
-//     "AI Animation",
-//     "Work Tracking App",
-//     "Cab Booking App"
-//   ].join(", "),
-//   icons: {
-//     icon: "/latter.png",
-//   },
-// };
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 export const metadata = {
   title: "Tushar Thakor - IITRAM Computer Science Student & Developer",
@@ -38,21 +19,21 @@ export const metadata = {
   keywords: [
     "Tushar Thakor",
     "Thakor Tushar",
-     "Tushar Thakor IITRAM",
-  "Thakor Tushar IITRAM Computer Science",
-  "Tushar Thakor portfolio",
-  "Tushar Thakor full stack developer",
-  "Tushar Thakor React Node developer",
-  "Tushar Thakor hackathon winner",
-  "IITRAM Computer Science student Tushar Thakor",
-  "Tushar Thakor freelance projects",
-  "Tushar Thakor MERN stack developer",
-  "Tushar Thakor AI animation projects",
-  "Tushar Thakor work tracker app",
-  "Tushar Thakor POS system developer",
-  "Tushar Thakor women safety project",
-  "Tushar Thakor cab booking system",
-  "IITRAM developer portfolio",
+    "Tushar Thakor IITRAM",
+    "Thakor Tushar IITRAM Computer Science",
+    "Tushar Thakor portfolio",
+    "Tushar Thakor full stack developer",
+    "Tushar Thakor React Node developer",
+    "Tushar Thakor hackathon winner",
+    "IITRAM Computer Science student Tushar Thakor",
+    "Tushar Thakor freelance projects",
+    "Tushar Thakor MERN stack developer",
+    "Tushar Thakor AI animation projects",
+    "Tushar Thakor work tracker app",
+    "Tushar Thakor POS system developer",
+    "Tushar Thakor women safety project",
+    "Tushar Thakor cab booking system",
+    "IITRAM developer portfolio",
     "IITRAM",
     "Thakor Tushar IITRAM",
     "IITRAM Computer Science",
@@ -65,16 +46,16 @@ export const metadata = {
     "Hackathon Projects",
     "AI Kids Animation",
     "Freelance Work Tracker",
-    "Cab Booking System"
+    "Cab Booking System",
   ].join(", "),
   openGraph: {
     title: "Tushar Thakor - IITRAM CS Student & Developer",
     description: "Portfolio of Tushar Thakor from IITRAM, Full-Stack Developer and Hackathon Winner",
-    url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app", // replace with your actual domain
+    url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app",
     siteName: "Tushar Thakor Portfolio",
     images: [
       {
-        url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app/_next/static/media/tushrphoto.5808b86a.jpg", // optional preview image
+        url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app/_next/static/media/tushrphoto.5808b86a.jpg",
         width: 1200,
         height: 630,
         alt: "Tushar Thakor Portfolio",
@@ -87,8 +68,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-       {children}</body>
+      <body className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}>{children}</body>
     </html>
   );
 }

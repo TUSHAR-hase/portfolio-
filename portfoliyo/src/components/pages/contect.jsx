@@ -1,319 +1,270 @@
 'use client'
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { BASE_URL } from '../../../config';
-import { FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa'; 
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { FiClock, FiGithub, FiInstagram, FiLinkedin, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+
+import { BASE_URL } from "../../../config";
+
+const contactCards = [
+  {
+    title: "Email",
+    value: "thakorrajta859@gmail.com",
+    href: "mailto:thakorrajta859@gmail.com",
+    icon: FiMail,
+  },
+  {
+    title: "Phone",
+    value: "+91 9054896753",
+    href: "tel:+919054896753",
+    icon: FiPhone,
+  },
+  {
+    title: "Location",
+    value: "Ahmedabad, Gujarat, India",
+    href: "#contact",
+    icon: FiMapPin,
+  },
+];
+
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/thakor-tushar-a34ab3288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    icon: FiLinkedin,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/TUSHAR-hase",
+    icon: FiGithub,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/tushar_vaghela1507?igsh=amI3dGtzNXZlMTdh",
+    icon: FiInstagram,
+  },
+];
 
 const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState("idle");
 
   const onSubmit = async (data) => {
-    setStatus('sending');
+    setStatus("sending");
+
     try {
       const res = await fetch(`${BASE_URL}/api/messages/sendmail`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error('Failed to send message');
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
 
-      setStatus('success');
+      setStatus("success");
       reset();
-      setTimeout(() => setStatus('idle'), 3000);
-    } catch (err) {
-      console.error(err);
-      setStatus('error');
+      setTimeout(() => setStatus("idle"), 3200);
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
     }
   };
 
-
   return (
-    <section
-      id="contact"
-      className="relative py-28 bg-gradient-to-br from-gray-900 via-purple-900 w-full to-violet-800 overflow-hidden"
-    >
+    <section id="contact" className="section-shell py-24 sm:py-28">
       <AnimatePresence>
-        {status === 'success' && (
+        {status === "success" && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            className="fixed bottom-6 right-6 z-[80] max-w-sm rounded-[1.5rem] border border-emerald-400/20 bg-slate-950/92 p-5 shadow-[0_24px_80px_rgba(2,6,23,0.55)] backdrop-blur-2xl"
           >
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              className="bg-gradient-to-br from-gray-900 to-purple-900 p-8 rounded-2xl text-center max-w-md border border-white/10"
-            >
-              <div className="mb-4">
-                <svg
-                  className="w-16 h-16 text-green-400 mx-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Message Sent!
-              </h3>
-              <p className="text-white/80 mb-6">
-                Thank you for reaching out. I'll respond to you shortly.
-              </p>
-              <button
-                onClick={() => setStatus('idle')}
-                className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg text-white hover:shadow-lg transition-all"
-              >
-                Close
-              </button>
-            </motion.div>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">Message sent</p>
+            <p className="mt-2 text-sm leading-7 text-slate-300">
+              Thanks for reaching out. Your message has been submitted successfully.
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Background Effects */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute w-96 h-96 bg-gradient-to-r from-violet-600/30 to-pink-500/30 blur-3xl -top-32 left-1/3 animate-pulse" />
-        <div className="absolute w-96 h-96 bg-gradient-to-r from-pink-400/20 to-purple-600/20 blur-3xl -bottom-32 right-1/3 rotate-180" />
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-8 shadow-2xl shadow-purple-900/20"
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left Side - Contact Info */}
-            <div className="space-y-8">
-              <motion.h2
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent"
-              >
-                Contact Information
-              </motion.h2>
-
-              <div className="space-y-6">
-                <motion.div
-                  initial={{ x: -50 }}
-                  whileInView={{ x: 0 }}
-                  className="flex items-start gap-4"
-                >
-                  <div className="p-2 bg-purple-500/20 rounded-lg">
-                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-pink-300 mb-1">Phone</h3>
-                    <p className="text-white/80">+91 9054896753</p>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ x: 50 }}
-                  whileInView={{ x: 0 }}
-                  className="flex items-start gap-4"
-                >
-                  <div className="p-2 bg-purple-500/20 rounded-lg">
-                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-pink-300 mb-1">Email</h3>
-                    <a
-                      href="mailto:hernansutala@gmail.com"
-                      className="text-white/80 hover:text-purple-300 transition-colors"
-                    >
-                      thakorrajta859@gmail.com
-                    </a>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ x: -50 }}
-                  whileInView={{ x: 0 }}
-                  className="flex items-start gap-4"
-                >
-                  <div className="p-2 bg-purple-500/20 rounded-lg">
-                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-pink-300 mb-1">Location</h3>
-                    <p className="text-white/80">Ahmedabad, Gujarat</p>
-                    <p className="text-white/60 text-sm mt-1">India</p>
-                  </div>
-                </motion.div>
- <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  className="pt-6 border-t border-white/10"
-                >
-                  <h3 className="text-lg font-semibold text-purple-400 mb-4">Follow Me</h3>
-                  <div className="flex gap-4">
-                    <motion.a
-                      href="https://www.linkedin.com/in/thakor-tushar-a34ab3288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -5, scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 rounded-full hover:shadow-lg hover:shadow-blue-500/30 transition-all"
-                    >
-                      <FaLinkedinIn className="text-white text-xl" />
-                    </motion.a>
-                    <motion.a
-                      href="https://github.com/TUSHAR-hase"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -5, scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black rounded-full hover:shadow-lg hover:shadow-gray-700/30 transition-all"
-                    >
-                      <FaGithub className="text-white text-xl" />
-                    </motion.a>
-                    <motion.a
-                      href="https://www.instagram.com/tushar_vaghela1507?igsh=amI3dGtzNXZlMTdh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -5, scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-700 rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all"
-                    >
-                      <FaInstagram className="text-white text-xl" />
-                    </motion.a>
-                  </div>
-                </motion.div>
-                {/* Repeat similar blocks for Email and Location */}
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  className="pt-8 border-t border-white/10"
-                >
-                  <h3 className="text-lg font-semibold text-purple-400 mb-4">Availability</h3>
-                  <p className="text-white/80 mb-2">I'm currently available for freelance work and full-time positions</p>
-                  <p className="text-white/60 text-sm">Working hours: Mon - Fri, 9:00 AM - 5:00 PM EST</p>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Right Side - Contact Form */}
-            <div className="space-y-8">
-              <motion.h2
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent"
-              >
-                GET IN TOUCH
-              </motion.h2>
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
-                    <label className="block text-white/80 mb-2">Full Name</label>
-                    <input
-                      {...register('name')}
-                      className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
-                    />
-                  </motion.div>
-
-                  {/* Repeat for Email */}
-                  <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
-                    <label className="block text-white/80 mb-2">Email</label>
-                    <input
-                      {...register('email', {
-                        required: true,
-                        pattern: /^\S+@\S+$/i,
-                      })}
-                      className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
-                      type="email"
-                      placeholder="you@example.com"
-                    />
-                  </motion.div>
-                </div>
-
-                <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
-                  <label className="block text-white/80 mb-2">Subject</label>
-                  <input
-                    {...register('subject')}
-                    className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
-                  />
-                </motion.div>
-
-                <motion.div initial={{ y: 30 }} whileInView={{ y: 0 }}>
-                  <label className="block text-white/80 mb-2">Your Message</label>
-                  <textarea
-                    {...register('message')}
-                    rows="5"
-                    className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-purple-400/50 transition-all"
-                  />
-                </motion.div>
-
-                <motion.div whileHover={{ scale: 1.05 }} className="flex justify-end">
-                  <button
-                    type="submit"
-                    disabled={status === 'sending'}
-                    className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg font-medium text-white hover:shadow-purple-500/20 transition-all relative flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {status === 'sending' ? (
-                      <div className="flex items-center gap-2">
-                        <svg
-                          className="w-5 h-5 animate-spin"
-                          viewBox="0 0 24 24"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                            fill="none"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          />
-                        </svg>
-                        Sending...
-                      </div>
-                    ) : (
-                      'Send Message'
-                    )}
-                  </button>
-                </motion.div>
-
-                {/* Error Message */}
-                <AnimatePresence>
-                  {status === 'error' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="text-red-400 text-sm text-right pt-2"
-                    >
-                      Failed to send message. Please Enter valid Detail.
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </form>
-            </div>
+          <div className="max-w-3xl">
+            <span className="section-kicker">Contact</span>
+            <h2 className="section-title mt-6 text-balance">Let&apos;s talk about opportunities, projects, or the next thing to build.</h2>
+            <p className="section-copy mt-6">
+              If you&apos;re hiring, collaborating, or just want to discuss an idea, feel free to reach out. The
+              existing backend submission flow stays exactly the same, and the UI is now designed to feel clearer and
+              more professional.
+            </p>
           </div>
         </motion.div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="glass-panel rounded-[2rem] p-6 sm:p-8"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Contact details</p>
+
+            <div className="mt-6 space-y-4">
+              {contactCards.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.title}
+                    href={item.href}
+                    className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4 hover:bg-white/[0.05]"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400/18 to-violet-400/18 text-sky-300">
+                      <Icon className="text-xl" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">{item.title}</p>
+                      <p className="mt-1 text-sm leading-7 text-slate-400">{item.value}</p>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+
+            <div className="mt-6 rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+              <p className="flex items-center gap-2 text-sm font-semibold text-white">
+                <FiClock className="text-sky-300" />
+                Availability
+              </p>
+              <p className="mt-3 text-sm leading-7 text-slate-400">
+                Open to placements, internships, freelance opportunities, and product-focused frontend work.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Social links</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <motion.a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.96 }}
+                      className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-200"
+                    >
+                      <Icon className="text-sky-300" />
+                      {link.label}
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="glass-panel rounded-[2rem] p-6 sm:p-8"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Send a message</p>
+                <h3 className="mt-3 text-3xl font-semibold text-white">Start the conversation</h3>
+              </div>
+              <span className="hidden rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300 sm:block">
+                Fast response preferred
+              </span>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-300">Full Name</label>
+                  <input
+                    {...register("name")}
+                    className="input-shell"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-300">Email</label>
+                  <input
+                    {...register("email", {
+                      required: true,
+                      pattern: /^\S+@\S+$/i,
+                    })}
+                    type="email"
+                    className="input-shell"
+                    placeholder="you@example.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-300">Subject</label>
+                <input
+                  {...register("subject")}
+                  className="input-shell"
+                  placeholder="Project, role, or message subject"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-300">Message</label>
+                <textarea
+                  {...register("message")}
+                  rows="6"
+                  className="input-shell resize-none"
+                  placeholder="Tell me a little about the opportunity or project."
+                />
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <AnimatePresence>
+                  {status === "error" && (
+                    <motion.p
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      className="text-sm text-rose-300"
+                    >
+                      Failed to send message. Please enter valid details and try again.
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+
+                <motion.button
+                  type="submit"
+                  disabled={status === "sending"}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="button-primary disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {status === "sending" ? "Sending..." : "Send Message"}
+                </motion.button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

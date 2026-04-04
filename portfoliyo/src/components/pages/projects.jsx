@@ -1,346 +1,380 @@
 'use client'
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { FaGithub, FaPlay, FaUtensils, FaMobileAlt } from 'react-icons/fa';
-import Image from 'next/image';
-import hospital from '../../assets/images/hospital.jpg';
-import bluecolorapp from '../../assets/images/blue2.jpg';
-import resturent from '../../assets/images/resturent.png';
-import cabbooking from '../../assets/images/cab.png';
-import railmadad from '../../assets/images/railmadad.jpeg'
-// Map project types to nice icons/colors
-const typeMeta = {
-  web: { icon: <FaUtensils className="text-pink-400" />, color: "bg-pink-600/20 text-pink-400" },
-  app: { icon: <FaMobileAlt className="text-violet-400" />, color: "bg-violet-600/20 text-violet-400" }
-}
+
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { FiArrowUpRight, FiGithub, FiLayers, FiSmartphone, FiX } from "react-icons/fi";
+
+import bluecolorapp from "../../assets/images/blue2.jpg";
+import cabbooking from "../../assets/images/cab.png";
+import hospital from "../../assets/images/hospital.jpg";
+import railmadad from "../../assets/images/railmadad.jpeg";
+import resturent from "../../assets/images/resturent.png";
+
+const filterMeta = [
+  { id: "all", label: "All" },
+  { id: "web", label: "Web" },
+  { id: "app", label: "App" },
+  { id: "systems", label: "Systems" },
+];
+
+const categoryMeta = {
+  web: {
+    icon: FiLayers,
+    style: "bg-sky-400/10 text-sky-300 border-sky-400/20",
+    label: "Web app",
+  },
+  app: {
+    icon: FiSmartphone,
+    style: "bg-violet-400/10 text-violet-300 border-violet-400/20",
+    label: "Mobile app",
+  },
+  systems: {
+    icon: FiLayers,
+    style: "bg-orange-400/10 text-orange-300 border-orange-400/20",
+    label: "System",
+  },
+};
 
 const projects = [
   {
     id: 1,
     title: "Restaurant Management System",
-    type: "web",
-    description: "A web application to manage restaurant operations, including menu management, order tracking, and user authentication, inspired by Zomato.",
-    tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
+    category: "web",
     image: resturent,
+    description:
+      "A restaurant operations platform with ordering, menu management, customer experience flows, and admin-side controls.",
+    tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
+    spotlight: "Dashboard UX + ordering flows",
     details: {
       features: [
-        "Admin Dashboard for Managing Menu & Orders",
-        "Add to Cart Functionality",
-        "User Authentication (Login/Signup)",
-        "Menu Management by Admin",
-        "Live Order Tracking",
-        "Customer Reviews and Ratings"
+        "Admin dashboard for menu and order management",
+        "Cart flow with customer-friendly ordering",
+        "Authentication for protected user journeys",
+        "Live order tracking",
+        "Ratings and review support",
       ],
-      duration: "12 Days",
+      duration: "12 days",
       role: "Full Stack Developer",
       links: {
         github: "https://github.com/TUSHAR-hase/resto.git",
-        live: "https://github.com/TUSHAR-hase/resto.git"
-      }
-    }
+        live: "https://github.com/TUSHAR-hase/resto.git",
+      },
+    },
   },
   {
     id: 2,
     title: "Hospital Management",
-    type: "web",
-    description: "A web-based system to efficiently manage hospital workflows including doctors, patients, and appointments.",
+    category: "systems",
     image: hospital,
+    description:
+      "A workflow-driven healthcare system for handling patients, doctors, appointments, and medical records efficiently.",
     tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
+    spotlight: "Business system architecture",
     details: {
       features: [
-        "Doctor Dashboard with Patient Details",
-        "Patient Registration and Management",
-        "Appointment Booking and Scheduling",
-        "Medical Record Maintenance"
+        "Doctor dashboard and patient records",
+        "Patient registration and management",
+        "Appointment scheduling",
+        "Medical record maintenance",
       ],
-      duration: "15 Days",
-      role: "Backend Developer & Frontend Developer",
+      duration: "15 days",
+      role: "Frontend & Backend Developer",
       links: {
         github: "https://github.com/TUSHAR-hase/hospital-management.git",
-        live: "https://hospital-management-puce.vercel.app"
-      }
-    }
+        live: "https://hospital-management-puce.vercel.app",
+      },
+    },
   },
   {
     id: 3,
     title: "Blue Color App",
-    type: "app",
-    description: "A mobile app designed to connect skill-based individuals with society, empowering them to participate in community-driven projects and initiatives.",
-    tech: ["Flutter", "Dart", "Firebase"],
+    category: "app",
     image: bluecolorapp,
+    description:
+      "A mobile app that connects skill-based individuals with community opportunities, events, and collaboration spaces.",
+    tech: ["Flutter", "Dart", "Firebase"],
+    spotlight: "Mobile-first community product",
     details: {
       features: [
-        "Connects skill-based individuals with community projects",
-        "Find local opportunities to contribute based on skills",
-        "Create and join events for skill-based volunteering",
-        "User profiles with skills, achievements, and interests",
-        "Real-time notifications about available projects and events"
+        "Community-based project discovery",
+        "Skill-based participation matching",
+        "Events and volunteering support",
+        "Profile and achievement system",
+        "Real-time notifications",
       ],
-      duration: "8 Days",
+      duration: "8 days",
       role: "Mobile App Developer",
       links: {
         github: "https://github.com/TUSHAR-hase/blue-color-app.git",
-        live: "https://your-live-demo-link.com"
-      }
-    }
+        live: "https://your-live-demo-link.com",
+      },
+    },
   },
   {
     id: 4,
     title: "Cab Booking System",
-    type: "web",
-    description: "A full-stack web application for long-distance cab booking. Users can book cabs, riders can manage vehicles and accept/reject rides. OTP verification ensures secure ride completion.",
-    tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
+    category: "web",
     image: cabbooking,
+    description:
+      "A long-distance booking platform with user flows, rider controls, OTP verification, ride tracking, and admin visibility.",
+    tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
+    spotlight: "Booking UX + operations management",
     details: {
       features: [
-        "User Authentication (Login/Signup)",
-        "Cab Booking for Long-Distance Travel",
-        "Live Ride Status Tracking",
-        "Rider Can Accept or Reject Bookings",
-        "OTP-Based Ride Completion",
-        "Riders Can Manage Vehicles",
-        "Admin Panel for Monitoring"
+        "Login and signup flows",
+        "Ride booking for long-distance travel",
+        "Live ride status tracking",
+        "Rider-side booking control",
+        "OTP-based trip completion",
+        "Vehicle management and admin monitoring",
       ],
-      duration: "12 Days",
+      duration: "12 days",
       role: "Full Stack Developer",
       links: {
         github: "https://github.com/naikJagrav/bookinHub.git",
-        live: "https://cab-booking-one-jade.vercel.app/"
-      }
-    }
+        live: "https://cab-booking-one-jade.vercel.app/",
+      },
+    },
   },
   {
-  id: 5,
-  title: "Rail Madad Complaint Management System",
-  type: "web + ivr + ml",
-  description: "A railway complaint management system inspired by Rail Madad that allows users to register complaints via web and IVR calls. The system uses a trained machine learning model to automatically identify and categorize complaints for faster resolution.",
-  tech: [
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-    "React",
-    "Next.js",
-    "Python",
-    "Scikit-learn",
-    "Twilio IVR",
-    "JWT Authentication"
-  ],
-  image: railmadad,
-  details: {
-    features: [
-      "IVR Call-Based Complaint Registration",
-      "Speech-to-Text Processing for IVR Calls",
-      "Machine Learning Model for Complaint Classification",
-      "Automatic Complaint Category Identification",
-      "Web-Based Complaint Submission",
-      "Complaint Status Tracking (Pending / In Progress / Resolved)",
-      "Admin Dashboard for Complaint Management",
-      "Role-Based Access (User / Admin)",
-      "Automated Complaint ID Generation",
-      "Call Logs and Complaint History Management"
-    ],
-    duration: "18 Days",
-    role: "Full Stack Developer",
-    links: {
-      github: "https://github.com/TUSHAR-hase/Rail_Madad_backend",
-      live: "https://rail-madad-demo.vercel.app"
-    }
-  }
-}
-
+    id: 5,
+    title: "Rail Madad Complaint Management System",
+    category: "systems",
+    image: railmadad,
+    description:
+      "A railway complaint platform combining web workflows, IVR call intake, and machine learning-based complaint categorization.",
+    tech: ["Node.js", "Express.js", "MongoDB", "React", "Next.js", "Python", "Scikit-learn"],
+    spotlight: "Full-stack + ML-assisted triage",
+    details: {
+      features: [
+        "Complaint registration through web and IVR",
+        "Speech-to-text processing for calls",
+        "Machine learning classification",
+        "Complaint status tracking",
+        "Admin dashboard and role-based access",
+        "Complaint history and call logs",
+      ],
+      duration: "18 days",
+      role: "Full Stack Developer",
+      links: {
+        github: "https://github.com/TUSHAR-hase/Rail_Madad_backend",
+        live: "https://rail-madad-demo.vercel.app",
+      },
+    },
+  },
 ];
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
 
-  // Responsive filtered projects
-  const filtered = activeFilter === 'all'
-    ? projects
-    : projects.filter(p => p.type === activeFilter);
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "all") {
+      return projects;
+    }
+    return projects.filter((project) => project.category === activeFilter);
+  }, [activeFilter]);
 
   return (
-    <section
-      id="portfolio"
-      className="relative w-full min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 py-20 px-6 selection:bg-pink-100 selection:text-pink-700"
-    >
-      {/* Background Effects */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+    <section id="portfolio" className="section-shell py-24 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ scale: 0.7, opacity: 0.11 }}
-          animate={{ scale: 1, opacity: 0.13 }}
-          transition={{ duration: 17, repeat: Infinity, repeatType: 'reverse' }}
-          className="absolute w-full h-full bg-gradient-radial from-violet-700/20 via-transparent to-transparent"
-        />
-        <div className="absolute w-[24rem] h-[22rem] bg-gradient-to-r from-violet-800/35 to-pink-500/50 blur-3xl -top-44 left-1/4 animate-pulse" />
-        <div className="absolute w-[26rem] h-[20rem] bg-gradient-to-r from-pink-400/35 to-purple-900/25 blur-3xl -bottom-32 right-1/3 rotate-180" />
-      </div>
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        >
+          <div className="max-w-3xl">
+            <span className="section-kicker">Projects</span>
+            <h2 className="section-title mt-6 text-balance">Selected work that reflects both product thinking and implementation depth.</h2>
+            <p className="section-copy mt-6">
+              Each project combines interface decisions, technical execution, and practical problem solving. The goal
+              here is not just variety, but evidence of how I approach building real applications.
+            </p>
+          </div>
 
-      {/* Header with Bracket Accents */}
-      <div className="text-center mb-14 w-full relative">
-        <div className="flex justify-center items-center mb-2">
-          <div className="h-1 w-9 bg-gradient-to-r from-pink-400 to-purple-700 rounded-full mr-2 animate-pulse" />
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-pink-400 via-fuchsia-500 to-purple-500 bg-clip-text text-transparent shadow-lg">
-            My Projects
-          </h1>
-          <div className="h-1 w-9 bg-gradient-to-r from-purple-700 to-pink-400 rounded-full ml-2 animate-pulse" />
-        </div>
-        <p className="text-lg md:text-xl text-white/80 mx-auto max-w-2xl font-medium">
-          A curated showcase of real-world work: web apps, dashboards and mobile solutions built for modern businesses and people.
-        </p>
-      </div>
-
-      {/* Filters - Animated Chips */}
-      <motion.div className="flex flex-wrap justify-center gap-4 mb-12" initial="hidden" animate="visible" variants={{
-        visible: { transition: { staggerChildren: 0.1 } }
-      }}>
-        {['all', 'web', 'app'].map((filter) => (
-          <motion.button
-            key={filter}
-            onClick={() => setActiveFilter(filter)}
-            className={`flex items-center gap-2 px-7 py-3 rounded-full font-bold uppercase tracking-wide transition bg-white/10 text-white/80 shadow 
-                hover:shadow-xl hover:bg-gradient-to-r from-pink-600 to-purple-700
-                ${activeFilter === filter ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white scale-110' : ''}
-              `}
-            whileHover={{ scale: 1.09 }}
-          >
-            {filter !== 'all' && typeMeta[filter]?.icon}
-            {filter}
-          </motion.button>
-        ))}
-      </motion.div>
-
-      {/* Projects grid with creative UI */}
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          visible: { transition: { staggerChildren: 0.15 } }
-        }}
-      >
-        {filtered.map((project, idx) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30 }}
-            whileHover={{ y: -10, scale: 1.04, boxShadow: '0 10px 30px 5px #a21caf23' }}
-            transition={{ duration: .34, type: "spring" }}
-            className="group relative rounded-3xl bg-gradient-to-br from-white/5 via-fuchsia-800/15 to-violet-700/5 border border-white/10 hover:border-pink-400/40 shadow-lg hover:shadow-2xl p-6 transition-all cursor-pointer overflow-hidden"
-            onClick={() => setSelectedProject(project)}
-            style={{ minHeight: '370px' }}
-          >
-            {/* Featured badge */}
-            {idx === 0 && (
-              <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-pink-500/80 to-purple-600/80 text-white rounded-full text-xs font-bold shadow-lg animate-bounce z-10">
-                Featured
-              </div>
-            )}
-
-            {/* Card image with animated overlay */}
-            <div className="h-48 w-full bg-gray-900/30 rounded-xl mb-5 overflow-hidden transition-all relative">
-              <Image src={project.image} alt={project.title} className="object-cover object-center w-full h-full rounded-xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/30 to-transparent group-hover:opacity-60 transition-opacity rounded-xl" />
-            </div>
-            <div className="relative z-10">
-              <div className="flex items-center gap-2 mb-2">
-                <span className={`px-3 py-1 text-xs rounded-full ${typeMeta[project.type]?.color} font-semibold uppercase flex items-center gap-1`}>
-                  {typeMeta[project.type]?.icon} {project.type}
-                </span>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
-              <div className="flex flex-wrap gap-2 mb-3 mt-2">
-                {project.tech.slice(0, 3).map(tech => (
-                  <span key={tech} className="rounded-lg bg-white/10 py-1 px-2 font-semibold text-sm flex items-center gap-1">
-                    {/* Add icons if you want, else text */}
-                    <span className="text-pink-200">{tech}</span>
-                  </span>
-                ))}
-              </div>
-              <p className="text-white/85 line-clamp-3 min-h-[54px]">{project.description}</p>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            key="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-[2px] z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.85 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              layoutId={`projCard-${selectedProject.id}`}
-              className="bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900/80 rounded-2xl p-7 md:p-10 w-full md:max-w-3xl border border-white/20 relative flex flex-col animate-pop"
-              onClick={e => e.stopPropagation()}
-              style={{ maxHeight: "92vh", overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}
-            >
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="sticky top-0 right-0 self-end z-20 bg-violet-800/60 rounded-full p-2 text-white/70 hover:text-white mb-3 transition-all backdrop-blur shadow"
-                style={{ marginTop: '-8px', marginBottom: '8px' }}
-                aria-label="Close"
+          <div className="flex flex-wrap gap-3">
+            {filterMeta.map((filter) => (
+              <motion.button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveFilter(filter.id)}
+                whileTap={{ scale: 0.96 }}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold ${
+                  activeFilter === filter.id
+                    ? "border-sky-400/30 bg-sky-400/12 text-white"
+                    : "border-white/10 bg-white/[0.03] text-slate-300 hover:bg-white/[0.06] hover:text-white"
+                }`}
               >
-                ✕
-              </button>
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="flex-shrink-0 w-full md:w-[260px] flex items-center justify-center">
-                  <Image src={selectedProject.image} alt={selectedProject.title} className="w-full rounded-xl shadow-xl" />
+                {filter.label}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {filteredProjects.map((project, index) => {
+            const category = categoryMeta[project.category];
+            const CategoryIcon = category.icon;
+
+            return (
+              <motion.button
+                key={project.id}
+                type="button"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.18 }}
+                transition={{ duration: 0.5, delay: index * 0.06 }}
+                whileHover={{ y: -6 }}
+                onClick={() => setSelectedProject(project)}
+                className="glass-panel group flex h-full flex-col overflow-hidden rounded-[2rem] text-left"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                  <div className="absolute left-4 top-4">
+                    <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${category.style}`}>
+                      <CategoryIcon />
+                      {category.label}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    {selectedProject.title}
-                  </h2>
-                  <p className="text-base text-white/85 mb-5">{selectedProject.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {selectedProject.tech.map(tech => (
-                      <span key={tech} className="inline-flex bg-gradient-to-r from-purple-500/40 to-pink-500/40 text-pink-100 px-3 rounded-full py-1 text-xs uppercase font-bold">
+
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                      <p className="mt-2 text-sm font-medium text-sky-300">{project.spotlight}</p>
+                    </div>
+                  </div>
+
+                  <p className="mt-4 text-sm leading-7 text-slate-400" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                    {project.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.tech.slice(0, 4).map((tech) => (
+                      <span key={tech} className="tag text-xs">
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="mt-4">
-                    <h4 className="text-lg font-bold text-pink-400 mb-2">Key Features</h4>
-                    <ul className="text-white/80 list-disc list-inside mb-4">
-                      {selectedProject.details.features.map(feature => (
-                        <li key={feature}>{feature}</li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-col md:flex-row md:gap-8 text-white/80 md:items-center">
-                      <div>
-                        <span className="font-semibold">Duration: </span>{selectedProject.details.duration}
-                      </div>
-                      <div>
-                        <span className="font-semibold">Role: </span>{selectedProject.details.role}
-                      </div>
+
+                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-200">
+                    View details
+                    <FiArrowUpRight className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </div>
+              </motion.button>
+            );
+          })}
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/82 p-4 backdrop-blur-md"
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.28 }}
+              onClick={(event) => event.stopPropagation()}
+              className="glass-panel relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-[2rem] p-5 sm:p-8"
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedProject(null)}
+                className="sticky left-full top-0 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white"
+                aria-label="Close project details"
+              >
+                <FiX className="text-xl" />
+              </button>
+
+              <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+                <div className="relative aspect-[16/12] overflow-hidden rounded-[1.75rem] border border-white/8">
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Project overview</p>
+                  <h3 className="mt-3 text-3xl font-semibold text-white">{selectedProject.title}</h3>
+                  <p className="mt-5 text-sm leading-7 text-slate-300">{selectedProject.description}</p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {selectedProject.tech.map((tech) => (
+                      <span key={tech} className="tag text-xs">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Duration</p>
+                      <p className="mt-2 text-sm font-semibold text-white">{selectedProject.details.duration}</p>
+                    </div>
+                    <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Role</p>
+                      <p className="mt-2 text-sm font-semibold text-white">{selectedProject.details.role}</p>
                     </div>
                   </div>
-                  <div className="flex gap-4 mt-8 mb-2">
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg px-5 py-2 text-white font-semibold flex items-center gap-2 hover:shadow-xl transition-all text-sm"
+
+                  <div className="mt-8">
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Key features</p>
+                    <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+                      {selectedProject.details.features.map((feature) => (
+                        <li key={feature} className="flex gap-3">
+                          <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-sky-400 to-violet-400" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <motion.a
                       href={selectedProject.details.links.github}
-                    >
-                      <FaGithub /> GitHub Repo
-                    </a>
-                    <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="border border-white/25 rounded-lg px-5 py-2 text-white hover:bg-white/10 font-semibold flex items-center gap-2 transition-all text-sm"
-                      href={selectedProject.details.links.live}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="button-secondary"
                     >
-                      <FaPlay /> See Live
-                    </a>
+                      <FiGithub />
+                      GitHub
+                    </motion.a>
+                    <motion.a
+                      href={selectedProject.details.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="button-primary"
+                    >
+                      Live Demo
+                      <FiArrowUpRight />
+                    </motion.a>
                   </div>
                 </div>
               </div>
@@ -351,7 +385,5 @@ const Portfolio = () => {
     </section>
   );
 };
-
-
 
 export default Portfolio;

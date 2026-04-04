@@ -1,154 +1,170 @@
 'use client'
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-scroll';
 
-const resumeLink = "/TUSHAR_THAKOR_RESUME.pdf"; // Put your actual resume file here
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { HiArrowDownTray, HiBars3BottomRight, HiMiniXMark } from "react-icons/hi2";
+
+const resumeLink = "/TUSHAR_THAKOR_RESUME.pdf";
+
+const links = [
+  { label: "Home", href: "#home", id: "home" },
+  { label: "About", href: "#about", id: "about" },
+  { label: "Skills", href: "#resume", id: "resume" },
+  { label: "Projects", href: "#portfolio", id: "portfolio" },
+  { label: "Contact", href: "#contact", id: "contact" },
+];
 
 const Navbar = () => {
+  const [activeLink, setActiveLink] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const links = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Projects', id: 'portfolio' },
-    { name: 'Contact', id: 'contact' },
-  ];
+  const sectionIds = useMemo(() => links.map((item) => item.id), []);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+
+    if (!sections.length) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: 0.15,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [sectionIds]);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-xl z-50 border-b border-white/10 shadow-2xl shadow-purple-900/20"
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6"
     >
-      <div className="px-4 py-3 flex justify-between items-center">
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between rounded-full border px-4 py-3 transition-all duration-300 sm:px-6 ${
+          isScrolled
+            ? "border-white/12 bg-slate-950/78 shadow-[0_18px_50px_rgba(2,6,23,0.42)] backdrop-blur-2xl"
+            : "border-white/8 bg-slate-950/52 backdrop-blur-xl"
+        }`}
+      >
+        <a
+          href="#home"
+          className="flex items-center gap-3 text-sm font-semibold tracking-[0.24em] text-slate-100 uppercase"
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-violet-500 text-sm font-bold text-slate-950">
+            TT
+          </span>
+          <span className="hidden sm:block">Tushar Thakor</span>
+        </a>
 
-        {/* Logo */}
-        <motion.div whileHover={{ scale: 1.05 }} className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-          <Link
-            to="home"
-            smooth
-            className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent relative"
-          >
-            {'Tushar Thakor'}
-          </Link>
-        </motion.div>
+        <nav className="hidden items-center gap-2 lg:flex">
+          {links.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              className={`relative rounded-full px-4 py-2 text-sm font-semibold ${
+                activeLink === link.id ? "text-white" : "text-slate-300 hover:text-white"
+              }`}
+            >
+              {activeLink === link.id && (
+                <motion.span
+                  layoutId="active-nav-pill"
+                  className="absolute inset-0 rounded-full bg-white/8"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{link.label}</span>
+            </a>
+          ))}
+        </nav>
 
-        {/* Desktop Menu & Resume */}
-        <div className="hidden md:flex items-center space-x-6">
-          <ul className="flex space-x-6">
-            {links.map((link) => (
-              <motion.li
-                key={link.id}
-                className="relative"
-                whileHover={{ y: -2 }}
-              >
-                <Link
-                  to={link.id}
-                  smooth
-                  spy
-                  onSetActive={() => setActiveLink(link.id)}
-                  className={`px-4 py-2.5 cursor-pointer text-sm font-medium ${
-                    activeLink === link.id 
-                      ? 'text-purple-400' 
-                      : 'text-gray-300 hover:text-pink-300'
-                  } transition-all duration-300`}
-                >
-                  {link.name}
-                  {activeLink === link.id && (
-                    <motion.div 
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-pink-400 to-purple-400"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </Link>
-              </motion.li>
-            ))}
-          </ul>
-          {/* Resume Button (Desktop) */}
+        <div className="hidden items-center gap-3 lg:flex">
+          <a href="#contact" className="button-secondary text-sm">
+            Let&apos;s talk
+          </a>
           <motion.a
             href={resumeLink}
             download
-            whileHover={{ scale: 1.07, boxShadow: "0px 2px 14px 2px #a855f7" }}
-            whileTap={{ scale: 0.93 }}
-            className="ml-4 px-5 py-2 font-semibold rounded-lg shadow-lg border border-pink-400/60 bg-gradient-to-tr from-purple-700 via-purple-600 to-pink-500 hover:from-pink-600 hover:to-purple-800 text-white transition-all duration-400 flex items-center gap-2"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            className="button-primary text-sm"
           >
-            <svg viewBox="0 0 20 20" fill="none" width={20} height={20} className="inline">
-              <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 15a2 2 0 002 2h8a2 2 0 002-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <HiArrowDownTray className="text-lg" />
             Resume
           </motion.a>
         </div>
 
-        {/* Mobile Menu Button */}
         <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          whileTap={{ scale: 0.9 }}
-          className="md:hidden p-2 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:border-purple-400/30 transition-all"
+          type="button"
+          whileTap={{ scale: 0.94 }}
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
+          aria-label="Toggle navigation menu"
         >
-          <span className="text-white text-xl">{isOpen ? '✕' : '☰'}</span>
+          {isOpen ? <HiMiniXMark className="text-2xl" /> : <HiBars3BottomRight className="text-2xl" />}
         </motion.button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -18 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute w-full bg-gray-900/95 backdrop-blur-2xl border-b border-white/10"
+            exit={{ opacity: 0, y: -18 }}
+            transition={{ duration: 0.22 }}
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/92 p-4 shadow-[0_24px_80px_rgba(2,6,23,0.5)] backdrop-blur-2xl lg:hidden"
           >
-            <ul className="px-4 py-3">
+            <div className="space-y-2">
               {links.map((link) => (
-                <motion.li
+                <a
                   key={link.id}
-                  initial={{ x: 50 }}
-                  animate={{ x: 0 }}
-                  className="border-t border-white/5 first:border-0"
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold ${
+                    activeLink === link.id
+                      ? "bg-white/10 text-white"
+                      : "bg-white/[0.03] text-slate-300 hover:bg-white/[0.06] hover:text-white"
+                  }`}
                 >
-                  <Link
-                    to={link.id}
-                    smooth
-                    spy
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 rounded-lg text-sm font-medium ${
-                      activeLink === link.id 
-                        ? 'bg-purple-900/20 text-purple-400' 
-                        : 'text-gray-300 hover:bg-white/5'
-                    } transition-all`}
-                  >
-                    {link.name}
-                    {activeLink === link.id && (
-                      <div className="w-2 h-[2px] bg-purple-400 mt-1 rounded-full"/>
-                    )}
-                  </Link>
-                </motion.li>
+                  <span>{link.label}</span>
+                  {activeLink === link.id && <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />}
+                </a>
               ))}
-              {/* Resume Button (Mobile) */}
-              <li className="mt-2">
-                <motion.a
-                  href={resumeLink}
-                  download
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full flex items-center gap-2 justify-center px-4 py-3 rounded-lg bg-gradient-to-tr from-purple-700 via-purple-600 to-pink-500 text-white font-semibold shadow-lg border border-pink-400/30 transition-all"
-                >
-                  <svg viewBox="0 0 20 20" fill="none" width={20} height={20} className="inline">
-                    <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 15a2 2 0 002 2h8a2 2 0 002-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  Download Resume
-                </motion.a>
-              </li>
-            </ul>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <a href="#contact" onClick={() => setIsOpen(false)} className="button-secondary text-sm">
+                Let&apos;s talk
+              </a>
+              <a href={resumeLink} download className="button-primary text-sm">
+                <HiArrowDownTray className="text-lg" />
+                Download resume
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   );
 };
 

@@ -1,243 +1,167 @@
 'use client'
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
-// Hero quick stats (edit these to your real stats)
-const STATS = [
-  { label: 'Hackathons Won', value: '3+', description: 'National-level coding challenges' },
-  { label: 'Projects Completed', value: '25+', description: 'From AI apps to full-stack platforms' },
-  { label: 'Technologies Used', value: '50+', description: 'Covering web, mobile, AI, cloud, and more' },
-  { label: 'Users Impacted', value: '100K+', description: 'Across freelance and open-source work' }
+import { motion } from "framer-motion";
+import { FiBriefcase, FiCpu, FiTarget, FiZap } from "react-icons/fi";
+
+const stats = [
+  { value: "3+", label: "Hackathons won", copy: "Competitive problem solving and rapid product execution." },
+  { value: "10+", label: "Real projects", copy: "Web, mobile, dashboards, and system-focused products." },
+  { value: "15+", label: "Tools used", copy: "Frontend, backend, cloud, and design workflows." },
 ];
 
-// Timeline: Professional Journey
-const TIMELINE = [
-  { year: 2022, text: 'Started B.Tech in Computer Science at IITRAM; explored React and Python.' },
-  { year: 2023, text: 'Built multiple MERN stack apps and women safety system; won national hackathon (3rd place).' },
-  { year: 2024, text: 'Focused on mastering DSA through GATE and placement preparation; built CS fundamentals.' },
-  { year: 2025, text: 'Currently refining full-stack skills with projects like a remote work tracker and POS system; actively exploring system design, deployment, and real-world freelancing.' }
+const highlights = [
+  {
+    title: "Product mindset",
+    copy: "I care about how the interface feels, how the code scales, and how the product solves the actual problem.",
+    icon: FiTarget,
+  },
+  {
+    title: "Modern engineering",
+    copy: "React, Next.js, Node.js, MongoDB, Tailwind CSS, and mobile stacks for polished end-to-end delivery.",
+    icon: FiCpu,
+  },
+  {
+    title: "Strong communication",
+    copy: "Hackathons, team work, and freelance-style collaboration taught me how to build clearly and move fast.",
+    icon: FiBriefcase,
+  },
 ];
 
-
-
-const VALUES = [
-  { title: 'Curious Creator', detail: 'Always building something new—apps, experiments, or YouTube stories.' },
-  { title: 'Team Player & Leader', detail: 'From solo developer to hackathon team lead—adapting to every role.' },
-  { title: 'Future-Focused', detail: 'Learning AI, DevOps, and CS fundamentals with a clear government job goal.' }
-];
-
-
-const SKILLS = [
+const journey = [
   {
-    icon: '',
-    title: 'Full-Stack Projects',
-    content: 'Proficient in React.js, Node.js, Express, MongoDB, Tailwind CSS, and building scalable web apps.'
+    year: "2022",
+    title: "Built the foundation",
+    copy: "Started B.Tech in Computer Science at IITRAM and began exploring React, JavaScript, and backend workflows.",
   },
   {
-    icon: '',
-    title: 'App Development',
-    content: 'Worked on Flutter and React Native apps with real-time APIs and Firebase/Stripe integration.'
+    year: "2023",
+    title: "Shipped under pressure",
+    copy: "Built real MERN projects, participated in hackathons, and earned strong practical confidence in product building.",
   },
   {
-    icon: '',
-    title: 'AI Integrations',
-    content: 'Built apps using OpenAI, ML Kit, real-time face detection, voice translation, and animated video scripts.'
+    year: "2024",
+    title: "Focused on depth",
+    copy: "Strengthened DSA, CS fundamentals, system thinking, and frontend quality for placements and interview readiness.",
   },
   {
-    icon: '',
-    title: 'Cloud & DevOps',
-    content: 'Deployed apps on Vercel, used GitHub Actions, CI/CD, and integrated systems with REST APIs securely.'
-  }
+    year: "2025+",
+    title: "Refining the edge",
+    copy: "Continuing to ship cleaner UX, stronger full-stack systems, and portfolio work that reflects real-world quality.",
+  },
 ];
 
 const About = () => {
-  const [particles, setParticles] = useState([]);
-
-  useEffect(() => {
-    const randomParticles = Array.from({ length: 34 }, () => ({
-      x: `${Math.random() * 120 - 60}%`,
-      y: `${Math.random() * 120 - 60}%`,
-      size: 1 + Math.random() * 4,
-      color: `rgba(${200 + Math.floor(Math.random()*55)}, ${70 + Math.floor(Math.random()*40)}, ${160 + Math.floor(Math.random()*80)},${0.17 + Math.random() * 0.22})`,
-      blur: 1 + Math.random() * 2.5,
-      duration: 2 + Math.random() * 5,
-      delay: Math.random() * 3,
-    }));
-    setParticles(randomParticles);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: [0.65, 0.01, 0.35, 1] }
-    }
-  };
-  const staggerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.18, delayChildren: 0.15 }
-    }
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease: [0.6, 0, 0.15, 1] }
-    }
-  };
-
   return (
-    <section
-      id="about"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 py-24 relative overflow-hidden"
-    >
-      {/* Animated Creative Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section id="about" className="section-shell py-24 sm:py-28">
+      <div className="mx-auto flex max-w-7xl flex-col gap-14 px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ scale: 0.7, opacity: 0 }}
-          animate={{ scale: 1.08, opacity: 0.1 }}
-          transition={{ duration: 13, repeat: Infinity, repeatType: 'reverse' }}
-          className="absolute w-full h-full max-w-[1100px] max-h-[1100px] bg-gradient-radial from-purple-500/20 via-transparent to-transparent"
-        />
-        <div className="absolute w-[26rem] h-[22rem] bg-gradient-to-r from-violet-800/30 to-pink-500/30 blur-3xl -top-44 left-0 animate-pulse" />
-        <div className="absolute w-[28rem] h-[20rem] bg-gradient-to-r from-pink-400/35 to-purple-800/25 blur-3xl -bottom-32 right-0 rotate-180" />
-      </div>
-
-      <div className="container mx-auto px-4 z-10 max-w-7xl">
-
-        {/* Header Vision */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.42 }}
-          className="text-center mb-16 relative"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
         >
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-36 h-36 bg-gradient-to-tr from-pink-500 to-purple-600 rounded-full blur-3xl opacity-25" />
-          <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 mb-6">
-            About Me
-          </h1>
-          <p className="text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-semibold">
-            I shape technology <span className="text-pink-400 font-bold">into elegant products</span>—combining <span className="text-purple-300 font-bold">creative technology, user empathy,</span> and <span className="text-violet-300 font-bold">business insight</span>.<br/>
-            Let's build what's next!
+          <span className="section-kicker">About</span>
+          <h2 className="section-title mt-6 text-balance">
+            A developer who blends clean engineering with a strong visual sense.
+          </h2>
+          <p className="section-copy mt-6">
+            I enjoy turning ideas into responsive, reliable, and attractive digital products. My work sits at the
+            intersection of frontend polish, backend practicality, and thoughtful user experience, which makes this
+            portfolio a reflection of how I like to build in real projects too.
           </p>
         </motion.div>
 
-        {/* Stats Section */}
-        <motion.div
-          variants={staggerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="flex flex-wrap justify-center gap-7 mb-14"
-        >
-          {STATS.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              className="bg-gray-900/85 rounded-xl px-8 py-6 border border-violet-700/25 shadow-xl flex flex-col items-center hover:-translate-y-2 group transition-transform duration-300"
-            >
-              <span className="text-3xl font-extrabold text-pink-400 mb-1 group-hover:scale-110 transition-transform">{stat.value}</span>
-              <span className="font-bold text-gray-100">{stat.label}</span>
-              <span className="text-gray-400 text-xs mt-1">{stat.description}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Timeline Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.23 }}
-          className="mb-14"
-        >
-          <h2 className="text-xl text-gray-300 font-bold mb-5 text-center tracking-wide">
-            Professional Journey Timeline
-          </h2>
-          <div className="flex flex-col md:flex-row md:space-x-5 space-y-4 md:space-y-0 justify-center items-center max-w-4xl mx-auto">
-            {TIMELINE.map((item, idx) => (
-              <div key={idx} className="bg-gray-800/80 border border-pink-400/10 rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[200px]">
-                <span className="text-pink-400 font-extrabold text-lg mb-1">{item.year}</span>
-                <span className="text-gray-200 text-sm font-medium">{item.text}</span>
+        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="glass-panel rounded-[2rem] p-6 sm:p-8"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-6">
+              <div className="max-w-2xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Who I am</p>
+                <h3 className="mt-3 text-3xl font-semibold text-white">Building for placements, products, and people.</h3>
+                <p className="mt-5 text-base leading-8 text-slate-300">
+                  I&apos;m a Computer Science student at IITRAM who enjoys building full-stack products with a premium
+                  frontend feel. I&apos;m especially interested in developer portfolios, dashboards, business systems,
+                  and user-facing apps that feel intentional instead of generic.
+                </p>
               </div>
-            ))}
-          </div>
-        </motion.div>
 
-        {/* Values & Strengths */}
-        <motion.div
-          variants={staggerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.18 }}
-          className="grid md:grid-cols-3 gap-6 mb-12"
-        >
-          {VALUES.map((v, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              className="bg-gray-900/75 border border-violet-600/10 px-5 py-6 rounded-2xl shadow flex flex-col items-center text-center"
-            >
-              <span className="text-purple-400 font-bold mb-2 text-lg">{v.title}</span>
-              <span className="text-gray-300 text-[1rem]">{v.detail}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Skills (with icons) */}
-        <motion.div
-          variants={staggerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid md:grid-cols-2 gap-9"
-        >
-          {SKILLS.map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              className="group relative bg-gray-800/70 backdrop-blur-md rounded-xl p-7 border border-gray-700/40 hover:border-pink-400/20 transition-all duration-300 flex"
-            >
-              <span className="text-2xl md:text-3xl mr-4">{item.icon}</span>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-100 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed">{item.content}</p>
+              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                <p className="flex items-center gap-2 text-sm font-semibold text-orange-300">
+                  <FiZap />
+                  Current focus
+                </p>
+                <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+                  <li>Premium frontend execution for interview-ready projects</li>
+                  <li>Stronger DSA and CS depth for placements</li>
+                  <li>Clean full-stack shipping with modern UI systems</li>
+                </ul>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {stats.map((stat) => (
+                <div key={stat.label} className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                  <p className="text-3xl font-semibold text-white">{stat.value}</p>
+                  <p className="mt-2 text-sm font-semibold text-slate-200">{stat.label}</p>
+                  <p className="mt-3 text-sm leading-7 text-slate-400">{stat.copy}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            className="glass-panel rounded-[2rem] p-6 sm:p-8"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Journey</p>
+            <div className="mt-6 space-y-5">
+              {journey.map((item) => (
+                <div key={item.year} className="relative rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5 pl-7">
+                  <span className="absolute left-3 top-6 h-2.5 w-2.5 rounded-full bg-gradient-to-r from-sky-400 to-violet-400" />
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                    <span className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
+                      {item.year}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-slate-400">{item.copy}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {highlights.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                className="glass-panel rounded-[1.75rem] p-6"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400/20 to-violet-400/20 text-sky-300">
+                  <Icon className="text-xl" />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-400">{item.copy}</p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
-
-      {/* Enhanced Creative Floating Particles */}
-      {particles.map((pos, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: `${pos.size * 7}px`,
-            height: `${pos.size * 7}px`,
-            background: pos.color,
-            left: `calc(50% + ${pos.x})`,
-            top: `calc(50% + ${pos.y})`,
-            filter: `blur(${pos.blur}px) drop-shadow(0px 0px 4px ${pos.color})`
-          }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [0, 1.07, 0.5, 0], opacity: [0, 0.8, 0.32, 0] }}
-          transition={{
-            duration: pos.duration,
-            delay: pos.delay,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        />
-      ))}
     </section>
   );
 };
