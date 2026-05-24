@@ -45,8 +45,8 @@ const Footer = () => {
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Portfolio</p>
               <h2 className="mt-3 text-3xl font-semibold text-white">Tushar Thakor</h2>
               <p className="mt-4 text-sm leading-7 text-slate-400">
-                Frontend-focused full-stack developer building polished web experiences while growing across AI/ML,
-                mobile, and IoT-driven projects.
+                Frontend-focused full-stack developer building polished products across web, AI/ML, mobile, and
+                systems work.
               </p>
             </div>
 

@@ -76,14 +76,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-shell py-24 sm:py-28">
+    <section id="contact" className="section-shell py-20 sm:py-24">
       <AnimatePresence>
         {status === "success" && (
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
-            className="fixed bottom-6 right-6 z-[80] max-w-sm rounded-[1.5rem] border border-emerald-400/20 bg-slate-950/92 p-5 shadow-[0_24px_80px_rgba(2,6,23,0.55)] backdrop-blur-2xl"
+            className="fixed inset-x-4 bottom-4 z-[80] rounded-[1.5rem] border border-emerald-400/20 bg-slate-950/92 p-5 shadow-[0_24px_80px_rgba(2,6,23,0.55)] backdrop-blur-2xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:max-w-sm"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">Message sent</p>
             <p className="mt-2 text-sm leading-7 text-slate-300">
@@ -105,9 +105,7 @@ const Contact = () => {
             <span className="section-kicker">Contact</span>
             <h2 className="section-title mt-6 text-balance">Let&apos;s talk about opportunities, projects, or the next thing to build.</h2>
             <p className="section-copy mt-6">
-              If you&apos;re hiring, collaborating, or just want to discuss an idea, feel free to reach out. The
-              existing backend submission flow stays exactly the same, and the UI is now designed to feel clearer and
-              more professional.
+              If you&apos;re hiring, collaborating, or discussing an idea, feel free to reach out.
             </p>
           </div>
         </motion.div>
@@ -148,8 +146,8 @@ const Contact = () => {
                 <FiClock className="text-sky-300" />
                 Availability
               </p>
-              <p className="mt-3 text-sm leading-7 text-slate-400">
-                Open to placements, internships, freelance opportunities, and product-focused frontend work.
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                Open to internships, freelance opportunities, and junior product-focused frontend work.
               </p>
             </div>
 

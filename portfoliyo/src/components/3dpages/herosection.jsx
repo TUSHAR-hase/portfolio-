@@ -17,20 +17,20 @@ import {
 import yourImage from "../../assets/images/tushrphoto.jpg";
 
 const roles = [
-  "Frontend-Focused Full Stack Developer",
-  "AI/ML Project Builder",
-  "IoT Solution Explorer",
+  "Frontend-Focused Full-Stack Developer",
+  "AI/ML Product Builder",
+  "IoT Systems Explorer",
 ];
 
 const quickStats = [
   { label: "Projects built", value: "10+" },
   { label: "Hackathons", value: "3+" },
-  { label: "Core domains", value: "4" },
+  { label: "Core focus areas", value: "4" },
 ];
 
 const badges = [
   { icon: FiMonitor, label: "Responsive UI" },
-  { icon: FiCode, label: "Full-stack delivery" },
+  { icon: FiCode, label: "Full-stack builds" },
   { icon: FiLayers, label: "AI/ML & IoT" },
 ];
 
@@ -77,22 +77,22 @@ const Hero = () => {
   }, [currentRoleIndex, displayText, isDeleting]);
 
   return (
-    <section id="home" className="relative flex min-h-screen items-center pt-28 sm:pt-32">
-      <div className="mx-auto grid w-full max-w-7xl gap-16 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-24">
+    <section id="home" className="relative flex min-h-screen items-center pt-24 sm:pt-28">
+      <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 pb-12 pt-6 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          <span className="section-kicker">Available for placements & freelance roles</span>
+          <span className="section-kicker">Available for internships and freelance work</span>
 
           <div className="mt-8 max-w-3xl">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.55 }}
-              className="mb-5 text-sm font-semibold uppercase tracking-[0.28em] text-slate-400"
+              className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-slate-400"
             >
               Ahmedabad, Gujarat
             </motion.p>
@@ -101,23 +101,23 @@ const Hero = () => {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.6 }}
-              className="text-balance text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:text-7xl"
+              className="text-balance text-4xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl"
             >
               Building polished digital products across{" "}
               <span className="bg-gradient-to-r from-sky-300 via-violet-300 to-orange-300 bg-clip-text text-transparent">
                 web, AI/ML, and connected systems
               </span>{" "}
-              with a premium feel.
+              with clear product thinking.
             </motion.h1>
 
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="mt-6 flex flex-wrap items-center gap-3 text-lg text-slate-200 sm:text-2xl"
+              className="mt-6 flex flex-col items-start gap-3 text-lg text-slate-200 sm:flex-row sm:flex-wrap sm:items-center sm:text-2xl"
             >
               <span>I&apos;m Tushar Thakor,</span>
-              <span className="inline-flex min-h-10 min-w-[210px] items-center rounded-full border border-white/10 bg-white/[0.04] px-4 text-sky-300 sm:min-w-[290px]">
+              <span className="inline-flex min-h-10 w-full min-w-0 items-center rounded-full border border-white/10 bg-white/[0.04] px-4 text-sky-300 sm:w-auto sm:min-w-[290px]">
                 {displayText}
                 <motion.span
                   animate={{ opacity: [1, 0, 1] }}
@@ -133,11 +133,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.28, duration: 0.6 }}
-              className="section-copy mt-8 max-w-2xl"
+              className="section-copy mt-6 max-w-2xl"
             >
-              I build responsive interfaces, full-stack applications, AI/ML-driven concepts, and practical IoT
-              solutions with strong attention to interaction quality, performance, and real-world usability. My aim
-              is to ship work that feels professional in interviews, hackathons, and product teams.
+              I build responsive interfaces, full-stack products, and practical experiments in AI/ML and IoT. My goal
+              is to contribute to internship opportunities with clear, reliable, and well-executed work.
             </motion.p>
           </div>
 
@@ -145,7 +144,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.36, duration: 0.6 }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-8 flex flex-wrap gap-3"
           >
             <motion.a href="#portfolio" whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="button-primary">
               View Projects
@@ -159,7 +158,7 @@ const Hero = () => {
               download
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
-              className="button-secondary"
+              className="inline-flex items-center gap-2 px-2 py-3 text-sm font-semibold text-sky-300 hover:text-sky-200"
             >
               <FiDownload className="text-lg" />
               Download Resume
@@ -170,7 +169,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.46, duration: 0.6 }}
-            className="mt-10 flex flex-wrap gap-3"
+            className="mt-8 flex flex-wrap gap-3"
           >
             {badges.map((badge) => {
               const Icon = badge.icon;
@@ -187,12 +186,12 @@ const Hero = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.54, duration: 0.6 }}
-            className="mt-12 grid gap-4 sm:grid-cols-3"
+            className="mt-8 grid gap-3 sm:grid-cols-3"
           >
             {quickStats.map((stat) => (
-              <div key={stat.label} className="glass-panel rounded-[1.75rem] p-5">
-                <p className="text-3xl font-semibold text-white">{stat.value}</p>
-                <p className="mt-2 text-sm font-medium text-slate-400">{stat.label}</p>
+              <div key={stat.label} className="rounded-[1.5rem] border border-white/8 bg-white/[0.04] p-4">
+                <p className="text-2xl font-semibold text-white">{stat.value}</p>
+                <p className="mt-1 text-sm font-medium text-slate-400">{stat.label}</p>
               </div>
             ))}
           </motion.div>
@@ -206,10 +205,10 @@ const Hero = () => {
         >
           <div className="absolute inset-x-12 top-6 h-48 rounded-full bg-sky-400/15 blur-3xl" />
 
-          <div className="glass-panel relative w-full max-w-[31rem] overflow-hidden rounded-[2rem] p-5 sm:p-6">
-            <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-r from-sky-500/16 via-violet-500/12 to-orange-500/14" />
-            <div className="relative rounded-[1.6rem] border border-white/8 bg-slate-950/65 p-5 sm:p-6">
-              <div className="mb-5 flex items-center justify-between gap-4">
+          <div className="glass-panel relative w-full max-w-[31rem] overflow-hidden rounded-[2rem] p-4 sm:p-6">
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-r from-sky-500/16 via-violet-500/12 to-orange-500/14" />
+            <div className="relative rounded-[1.6rem] border border-white/8 bg-slate-950/65 p-4 sm:p-6">
+              <div className="mb-4 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Profile snapshot</p>
                   <h2 className="mt-2 text-2xl font-semibold text-white">Developer portfolio</h2>
@@ -219,7 +218,7 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className="grid gap-5 md:grid-cols-[0.95fr_1.05fr]">
+              <div className="grid gap-4 md:grid-cols-[0.95fr_1.05fr]">
                 <div className="relative mx-auto aspect-[4/5] w-full max-w-[17rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900">
                   <Image
                     src={yourImage}
@@ -233,12 +232,11 @@ const Hero = () => {
                 </div>
 
                 <div className="flex flex-col justify-between gap-4">
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
                       <p className="text-sm font-semibold text-slate-300">Focus</p>
-                      <p className="mt-2 text-sm leading-7 text-slate-400">
-                        Frontend craftsmanship, backend integration, AI/ML experimentation, and connected
-                        system-oriented product thinking.
+                      <p className="mt-2 text-sm leading-6 text-slate-400">
+                        Frontend quality, backend integration, and practical product work across emerging domains.
                       </p>
                     </div>
                     <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
@@ -246,9 +244,8 @@ const Hero = () => {
                         <FiMapPin className="text-sky-300" />
                         Ahmedabad, India
                       </p>
-                      <p className="mt-2 text-sm leading-7 text-slate-400">
-                        Open to placements, internships, and product teams where frontend quality, ownership, and
-                        strong execution matter.
+                      <p className="mt-2 text-sm leading-6 text-slate-400">
+                        Open to internships and early-career opportunities where strong execution is valued.
                       </p>
                     </div>
                   </div>

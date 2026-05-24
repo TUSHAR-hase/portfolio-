@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { FiArrowUpRight, FiCpu, FiGithub, FiLayers, FiSmartphone, FiX } from "react-icons/fi";
@@ -284,6 +284,7 @@ const projects = [
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [showAll, setShowAll] = useState(false);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "all") {
@@ -292,8 +293,30 @@ const Portfolio = () => {
     return projects.filter((project) => project.category === activeFilter);
   }, [activeFilter]);
 
+  const visibleProjects = useMemo(() => {
+    const limit = activeFilter === "all" ? 6 : 4;
+    return showAll ? filteredProjects : filteredProjects.slice(0, limit);
+  }, [activeFilter, filteredProjects, showAll]);
+
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeFilter]);
+
+  useEffect(() => {
+    if (!selectedProject) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedProject]);
+
   return (
-    <section id="portfolio" className="section-shell py-24 sm:py-28">
+    <section id="portfolio" className="section-shell py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -304,10 +327,10 @@ const Portfolio = () => {
         >
           <div className="max-w-3xl">
             <span className="section-kicker">Projects</span>
-            <h2 className="section-title mt-6 text-balance">Selected work that reflects frontend polish, full-stack execution, and wider technical curiosity.</h2>
+            <h2 className="section-title mt-6 text-balance">Selected work across frontend, full-stack, AI/ML, and systems.</h2>
             <p className="section-copy mt-6">
-              The goal here is not just variety. It&apos;s to show that I can work across web apps, mobile concepts,
-              AI/ML-oriented ideas, and system-focused problem solving while keeping the experience professional.
+              The focus here is range with clarity, not volume. Each project highlights a different part of how I
+              build.
             </p>
           </div>
 
@@ -330,8 +353,8 @@ const Portfolio = () => {
           </div>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filteredProjects.map((project, index) => {
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {visibleProjects.map((project, index) => {
             const category = categoryMeta[project.category];
             const CategoryIcon = category.icon;
 
@@ -367,7 +390,7 @@ const Portfolio = () => {
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                      <h3 className="text-xl font-semibold text-white">{project.title}</h3>
                       <p className="mt-2 text-sm font-medium text-sky-300">{project.spotlight}</p>
                     </div>
                   </div>
@@ -393,6 +416,19 @@ const Portfolio = () => {
             );
           })}
         </div>
+
+        {filteredProjects.length > visibleProjects.length && (
+          <div className="mt-8 flex justify-center">
+            <motion.button
+              type="button"
+              onClick={() => setShowAll(true)}
+              whileTap={{ scale: 0.96 }}
+              className="button-secondary text-sm"
+            >
+              Show more projects
+            </motion.button>
+          </div>
+        )}
       </div>
 
       <AnimatePresence>
@@ -401,7 +437,7 @@ const Portfolio = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/82 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto bg-slate-950/82 p-4 py-6 backdrop-blur-md sm:items-center"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
@@ -410,12 +446,12 @@ const Portfolio = () => {
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
               transition={{ duration: 0.28 }}
               onClick={(event) => event.stopPropagation()}
-              className="glass-panel relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-[2rem] p-5 sm:p-8"
+              className="glass-panel relative w-full max-w-5xl overflow-hidden rounded-[2rem] p-5 pt-16 sm:max-h-[90vh] sm:overflow-y-auto sm:p-8 sm:pt-8"
             >
               <button
                 type="button"
                 onClick={() => setSelectedProject(null)}
-                className="sticky left-full top-0 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white"
+                className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-white"
                 aria-label="Close project details"
               >
                 <FiX className="text-xl" />
@@ -435,7 +471,7 @@ const Portfolio = () => {
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Project overview</p>
                   <h3 className="mt-3 text-3xl font-semibold text-white">{selectedProject.title}</h3>
-                  <p className="mt-5 text-sm leading-7 text-slate-300">{selectedProject.description}</p>
+                  <p className="mt-5 text-sm leading-6 text-slate-300">{selectedProject.description}</p>
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {selectedProject.tech.map((tech) => (
@@ -458,7 +494,7 @@ const Portfolio = () => {
 
                   <div className="mt-8">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Key features</p>
-                    <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+                    <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-300">
                       {selectedProject.details.features.map((feature) => (
                         <li key={feature} className="flex gap-3">
                           <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-sky-400 to-violet-400" />

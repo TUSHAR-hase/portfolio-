@@ -53,6 +53,15 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, [sectionIds]);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = isOpen ? "hidden" : previousOverflow;
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -61,7 +70,7 @@ const Navbar = () => {
       className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6"
     >
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between rounded-full border px-4 py-3 transition-all duration-300 sm:px-6 ${
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full border px-4 py-3 transition-all duration-300 sm:px-6 ${
           isScrolled
             ? "border-white/12 bg-slate-950/78 shadow-[0_18px_50px_rgba(2,6,23,0.42)] backdrop-blur-2xl"
             : "border-white/8 bg-slate-950/52 backdrop-blur-xl"
@@ -71,10 +80,10 @@ const Navbar = () => {
           href="#home"
           className="flex items-center gap-3 text-sm font-semibold tracking-[0.24em] text-slate-100 uppercase"
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-violet-500 text-sm font-bold text-slate-950">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-violet-500 text-sm font-bold text-slate-950">
             TT
           </span>
-          <span className="hidden sm:block">Tushar Thakor</span>
+          <span className="hidden md:block">Tushar Thakor</span>
         </a>
 
         <nav className="hidden items-center gap-2 lg:flex">
