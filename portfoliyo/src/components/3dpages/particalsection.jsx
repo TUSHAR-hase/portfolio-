@@ -1,63 +1,90 @@
-'use client'
+'use client';
 
 import { useFrame, useThree } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
 export function Particles({ count = 1000 }) {
-  const { viewport } = useThree();
-  const particlesRef = useRef();
+    const { viewport } = useThree();
+    const particlesRef = useRef();
 
-  // Initialize particles with positions, velocities, and sizes
-  const [positions, particles] = useMemo(() => {
-    const positions = new Float32Array(count * 3); // For x, y, z of each particle
-    const particlesData = [];
-    for (let i = 0; i < count; i++) {
-      const x = Math.random() * viewport.width - viewport.width / 2;
-      const y = Math.random() * viewport.height - viewport.height / 2;
-      const z = Math.random() * 10 - 5;
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
+    // Initialize particle data
+    const particlesData = useMemo(() => {
+        const data = [];
+        for (let i = 0; i < count; i++) {
+            const x = Math.random() * viewport.width - viewport.width / 2;
+            const y = Math.random() * viewport.height - viewport.height / 2;
+            const z = Math.random() * 10 - 5;
+            const velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.2, // slight horizontal drift
+                (Math.random() - 0.5) * 0.4, // vertical drift
+                0
+            );
+            const size = Math.random() * 0.5 + 0.3;
+            data.push({ position: new THREE.Vector3(x, y, z), velocity, size });
+        }
+        return data;
+    }, [count, viewport]);
 
-      const velocity = new THREE.Vector3(0, -0.5, 0);
-      const size = Math.random() * 0.5 + 0.5;
-      particlesData.push({ position: new THREE.Vector3(x, y, z), velocity, size });
-    }
-    return [positions, particlesData];
-  }, [count, viewport]);
+    // Create positions array for the geometry
+    const positions = useMemo(() => {
+        const pos = new Float32Array(count * 3);
+        particlesData.forEach((p, i) => {
+            pos[i * 3] = p.position.x;
+            pos[i * 3 + 1] = p.position.y;
+            pos[i * 3 + 2] = p.position.z;
+        });
+        return pos;
+    }, [particlesData, count]);
 
-  // Update particle positions on each frame
-  useFrame(() => {
-    const positionsArray = particlesRef.current.geometry.attributes.position.array;
+    // Reference to the geometry to update positions
+    const geometryRef = useRef();
 
-    particles.forEach((particle, i) => {
-      particle.position.add(particle.velocity);
-      if (particle.position.y < -viewport.height / 2) {
-        particle.position.y = viewport.height / 2;
-      }
-      // Update positions array
-      positionsArray[i * 3] = particle.position.x;
-      positionsArray[i * 3 + 1] = particle.position.y;
-      positionsArray[i * 3 + 2] = particle.position.z;
+    // Update positions on each frame
+    useFrame(() => {
+        if (!geometryRef.current) return;
+        const posArray = geometryRef.current.attributes.position.array;
+
+        particlesData.forEach((p, i) => {
+            // Update position
+            p.position.x += p.velocity.x;
+            p.position.y += p.velocity.y;
+            p.position.z += p.velocity.z;
+
+            // Wrap around boundaries
+            if (p.position.y < -viewport.height / 2) p.position.y = viewport.height / 2;
+            if (p.position.y > viewport.height / 2) p.position.y = -viewport.height / 2;
+            if (p.position.x < -viewport.width / 2) p.position.x = viewport.width / 2;
+            if (p.position.x > viewport.width / 2) p.position.x = -viewport.width / 2;
+
+            // Update array
+            posArray[i * 3] = p.position.x;
+            posArray[i * 3 + 1] = p.position.y;
+            posArray[i * 3 + 2] = p.position.z;
+        });
+
+        geometryRef.current.attributes.position.needsUpdate = true;
     });
 
-    particlesRef.current.geometry.attributes.position.needsUpdate = true;
-  });
-
-  return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
-        {/* Attach the positions array directly */}
-        <bufferGeometry attach="attributes-position" array={positions} itemSize={3} count={count} />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.05}
-        color="#3B82F6"
-        transparent
-        opacity={0.6}
-        sizeAttenuation={true}
-      />
-    </points>
-  );
+    return (
+        <points ref={particlesRef}>
+            <bufferGeometry ref={geometryRef}>
+                <bufferAttribute
+                    attach="attributes-position"
+                    array={positions}
+                    itemSize={3}
+                    count={count}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                size={0.06}
+                color="#6366f1" // indigo-500
+                transparent
+                opacity={0.6}
+                sizeAttenuation={true}
+                blending={THREE.AdditiveBlending}
+                depthWrite={false}
+            />
+        </points>
+    );
 }

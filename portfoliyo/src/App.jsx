@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import Home from './components/pages/home';
 import ProjectDetails from './components/pages/projectdetail';
@@ -7,12 +8,17 @@ import Navbar from './components/ui/navigation';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br w-full from-gray-900 to-blue-900 text-white">
+      {/* ─── Global background & font styling ─── */}
+      <div className="min-h-screen w-full bg-gradient-to-br from-indigo-50/40 via-white to-white font-sans antialiased text-slate-900">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
-        </Routes>
+        
+        {/* ─── Page transitions with AnimatePresence ─── */}
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/project/:id" element={<ProjectDetails />} />
+          </Routes>
+        </AnimatePresence>
       </div>
     </Router>
   );

@@ -8,7 +8,7 @@ const SkillBubble = ({ skill, position }) => {
     <group position={position}>
       <Sphere args={[0.8]}>
         <meshStandardMaterial
-          color="#ec4899"
+          color="#2563eb"
           metalness={0.6}
           roughness={0.2}
           transparent
@@ -32,20 +32,20 @@ const Skills = () => {
   const skills = ['React', 'Firebase', 'Flutter', 'Node.js', 'Next.js', 'MongoDB','Rest APIs','c++','javascript','MySQL','Machine Learning'];
 
   return (
-    <section id="skills" className="relative py-28 bg-gradient-to-b from-dark-primary w-full to-purple-900/30">
-      <div className="max-w-7xl mx-auto px-4">
+    <section id="skills" className="relative w-full bg-white py-20 sm:py-24">
+      <div className="mx-auto max-w-[86rem] px-4">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl font-bold text-center mb-20 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent"
+          className="mb-12 text-center text-4xl font-bold text-slate-900"
         >
           Technical Arsenal
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* 3D Canvas */}
-          <div className="h-96 w-full rounded-2xl overflow-hidden border border-white/10 bg-dark-primary/30 backdrop-blur-lg">
+          <div className="h-96 w-full overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
             <Canvas camera={{ position: [0, 0, 5] }}>
               <ambientLight intensity={0.5} />
               <pointLight position={[10, 10, 10]} />
@@ -68,13 +68,13 @@ const Skills = () => {
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-purple-400/30 transition-all"
+                className="rounded-lg border border-slate-200 bg-slate-50 p-5 transition-all hover:border-blue-200 hover:bg-blue-50"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white">
                     <span className="text-xl font-bold">{index + 1}</span>
                   </div>
-                  <h3 className="text-xl font-semibold text-white/90">{skill}</h3>
+                  <h3 className="text-xl font-semibold text-slate-800">{skill}</h3>
                 </div>
               </motion.div>
             ))}
