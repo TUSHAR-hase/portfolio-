@@ -1,103 +1,173 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FiGithub, FiInstagram, FiLinkedin } from "react-icons/fi";
+import {
+  FiArrowUp,
+  FiClock,
+  FiCode,
+  FiGitBranch,
+  FiGithub,
+  FiInstagram,
+  FiLinkedin,
+  FiTerminal,
+} from "react-icons/fi";
+
+import { sound } from "../../utils/sound";
 
 const footerLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#resume" },
-    { label: "Projects", href: "#portfolio" },
-    { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#home" },
+  { label: "About & CS", href: "#about" },
+  { label: "Skills & Matrix", href: "#skills" },
+  { label: "Engineered Systems", href: "#portfolio" },
+  { label: "Resume (CV)", href: "#resume" },
+  { label: "Contact Dispatch", href: "#contact" },
 ];
 
 const socials = [
-    {
-        label: "GitHub",
-        href: "https://github.com/TUSHAR-hase",
-        icon: FiGithub,
-    },
-    {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/in/thakor-tushar-a34ab3288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        icon: FiLinkedin,
-    },
-    {
-        label: "Instagram",
-        href: "https://www.instagram.com/tushar_vaghela1507?igsh=amI3dGtzNXZlMTdh",
-        icon: FiInstagram,
-    },
+  { label: "GitHub", href: "https://github.com/TUSHAR-hase", icon: FiGithub },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/thakor-tushar-a34ab3288",
+    icon: FiLinkedin,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/tushar_vaghela1507",
+    icon: FiInstagram,
+  },
 ];
 
-const Footer = () => {
-    return (
-        <footer className="relative overflow-hidden bg-white py-12 sm:py-16">
-            {/* ─── Background (consistent with all sections) ─── */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50/40 via-white to-white" />
-            <div className="absolute -top-40 -right-40 h-[40rem] w-[40rem] rounded-full bg-indigo-100/20 blur-3xl" />
-            <div className="absolute -bottom-40 -left-40 h-[35rem] w-[35rem] rounded-full bg-blue-50/30 blur-3xl" />
+export default function Footer({ onOpenTerminal }) {
+  const [istTime, setIstTime] = useState("");
 
-            <div className="relative mx-auto max-w-7xl px-4 py-8 lg:px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.25 }}
-                    transition={{ duration: 0.55 }}
-                    className="rounded-2xl border border-slate-200/60 bg-white/70 p-6 shadow-sm backdrop-blur-sm sm:p-8"
-                >
-                    <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="max-w-2xl">
-                            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-600">
-                                Portfolio
-                            </p>
-                            <h2 className="mt-3 text-3xl font-semibold text-slate-900">Tushar Thakor</h2>
-                            <p className="mt-4 text-sm leading-7 text-slate-500">
-                                Frontend-focused full-stack developer building polished products across web, AI/ML, mobile, and
-                                systems work.
-                            </p>
-                        </div>
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options = {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
+      setIstTime(now.toLocaleTimeString("en-US", options));
+    };
 
-                        <div className="flex flex-wrap gap-3">
-                            {socials.map((social) => {
-                                const Icon = social.icon;
-                                return (
-                                    <motion.a
-                                        key={social.label}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileHover={{ y: -2 }}
-                                        whileTap={{ scale: 0.96 }}
-                                        className="inline-flex items-center gap-2 rounded-full border border-indigo-200/60 bg-indigo-50/80 px-4 py-2 text-sm font-semibold text-indigo-700 shadow-sm backdrop-blur-sm transition hover:bg-indigo-100/80 hover:text-indigo-800"
-                                    >
-                                        <Icon className="text-indigo-600" />
-                                        {social.label}
-                                    </motion.a>
-                                );
-                            })}
-                        </div>
-                    </div>
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-                    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 border-t border-slate-200/60 pt-6">
-                        {footerLinks.map((link) => (
-                            <a
-                                key={link.label}
-                                href={link.href}
-                                className="text-sm font-medium text-slate-500 transition hover:text-indigo-600"
-                            >
-                                {link.label}
-                            </a>
-                        ))}
-                    </div>
-                </motion.div>
+  const scrollToTop = () => {
+    sound.playClick();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-                <div className="mt-8 flex flex-col gap-3 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
-                    <p>&copy; 2026 Tushar Thakor. All rights reserved.</p>
-                    <p>Crafted with React, Tailwind CSS, and Framer Motion.</p>
-                </div>
+  return (
+    <footer className="section-shell border-t border-border/80 bg-surface/80 pt-16 pb-12 dark:bg-[#070b14]">
+      <div className="section-inner py-0">
+        <div className="glass-panel p-6 sm:p-10">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs font-bold text-accent-bright uppercase tracking-wider">
+                  IITRAM Computer Science &amp; Engineering
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              </div>
+
+              <h3 className="mt-2 text-3xl font-black text-strong">
+                Tushar Thakor
+              </h3>
+
+              <p className="mt-3 text-xs leading-relaxed text-secondary sm:text-sm">
+                Full-Stack Software Engineer &amp; CSE Undergraduate. Designing reliable distributed web architectures, high-efficiency algorithms, and applied machine learning models.
+              </p>
+
+              {/* Live IST clock + Git build tag */}
+              <div className="mt-5 flex flex-wrap items-center gap-4 text-xs font-mono text-muted">
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-surface-2/60 px-2.5 py-1">
+                  <FiClock className="text-cyan-400" />
+                  Ahmedabad, IN · {istTime || "12:00:00 PM"} IST
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-surface-2/60 px-2.5 py-1">
+                  <FiGitBranch className="text-indigo-400" />
+                  main@cse-v2.4
+                </span>
+              </div>
             </div>
-        </footer>
-    );
-};
 
-export default Footer;
+            {/* Quick Actions & Social Channels */}
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-wrap gap-2.5">
+                {socials.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.96 }}
+                      onClick={() => sound.playClick()}
+                      className="button-secondary flex items-center gap-2 py-2 px-3.5 text-xs"
+                    >
+                      <Icon className="text-base text-accent-bright" />
+                      <span>{social.label}</span>
+                    </motion.a>
+                  );
+                })}
+              </div>
+
+              {/* Terminal Launcher */}
+              <button
+                type="button"
+                onClick={() => {
+                  sound.playClick();
+                  if (onOpenTerminal) onOpenTerminal();
+                }}
+                className="button-cyber flex items-center justify-center text-xs py-2 px-3.5"
+              >
+                <FiTerminal className="mr-1.5 text-cyan-400" />
+                Open Interactive Terminal (CLI)
+              </button>
+            </div>
+          </div>
+
+          {/* Links Row */}
+          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-border/60 pt-6">
+            {footerLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => sound.playClick()}
+                className="text-xs font-semibold text-muted transition hover:text-accent-bright"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Bar with Back to Top */}
+        <div className="mt-8 flex flex-col gap-4 text-xs font-mono text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Tushar Thakor. All code rights reserved.</p>
+
+          <div className="flex items-center gap-4">
+            <span>Press [T] for CLI</span>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="flex items-center gap-1.5 rounded-lg border border-border/80 bg-surface px-3 py-1.5 text-xs font-semibold text-accent-bright transition hover:bg-surface-2"
+            >
+              Back to Top
+              <FiArrowUp />
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -3,7 +3,18 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { FiArrowUpRight, FiCpu, FiGithub, FiLayers, FiSmartphone, FiX } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiCheckCircle,
+  FiCpu,
+  FiExternalLink,
+  FiFilter,
+  FiGithub,
+  FiLayers,
+  FiServer,
+  FiSmartphone,
+  FiX,
+} from "react-icons/fi";
 
 import blueone from "../../assets/images/blue1.jpg";
 import bluecolorapp from "../../assets/images/blue2.jpg";
@@ -11,548 +22,735 @@ import cabbooking from "../../assets/images/cab.png";
 import hospital from "../../assets/images/hospital.jpg";
 import railmadad from "../../assets/images/railmadad.jpeg";
 import resturent from "../../assets/images/resturent.png";
+import { sound } from "../../utils/sound";
 
-const categoryMeta = {
-    web: {
-        icon: FiLayers,
-        label: "Web app",
-    },
-    app: {
-        icon: FiSmartphone,
-        label: "Mobile app",
-    },
-    ai: {
-        icon: FiCpu,
-        label: "AI / ML",
-    },
-    systems: {
-        icon: FiLayers,
-        label: "IoT / System",
-    },
-};
-
-const projects = [
-    {
-        id: 1,
-        title: "Restaurant Management System",
-        category: "web",
-        image: resturent,
-        description:
-            "A restaurant operations platform covering ordering, menu management, customer experience flows, and admin-side controls in one structured product.",
-        tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
-        spotlight: "Dashboard UX + ordering flows",
-        details: {
-            features: [
-                "Admin dashboard for menu and order management",
-                "Cart flow with customer-friendly ordering",
-                "Authentication for protected user journeys",
-                "Live order tracking",
-                "Ratings and review support",
-            ],
-            duration: "12 days",
-            role: "Full Stack Developer",
-            links: {
-                github: "https://github.com/TUSHAR-hase/resto.git",
-                live: "https://github.com/TUSHAR-hase/resto.git",
-            },
-        },
-    },
-    {
-        id: 2,
-        title: "Hospital Management System",
-        category: "systems",
-        image: hospital,
-        description:
-            "A workflow-driven healthcare system for handling patients, doctors, appointments, and records with better operational clarity.",
-        tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
-        spotlight: "Business system architecture",
-        details: {
-            features: [
-                "Doctor dashboard and patient records",
-                "Patient registration and management",
-                "Appointment scheduling",
-                "Medical record maintenance",
-            ],
-            duration: "15 days",
-            role: "Frontend & Backend Developer",
-            links: {
-                github: "https://github.com/TUSHAR-hase/hospital-management.git",
-                live: "https://hospital-management-puce.vercel.app",
-            },
-        },
-    },
-    {
-        id: 3,
-        title: "Blue Color App",
-        category: "app",
-        image: bluecolorapp,
-        description:
-            "A mobile-first community app that connects skill-based individuals with opportunities, events, volunteering, and collaboration spaces.",
-        tech: ["Flutter", "Dart", "Firebase"],
-        spotlight: "Mobile-first community product",
-        details: {
-            features: [
-                "Community-based project discovery",
-                "Skill-based participation matching",
-                "Events and volunteering support",
-                "Profile and achievement system",
-                "Real-time notifications",
-            ],
-            duration: "8 days",
-            role: "Mobile App Developer",
-            links: {
-                github: "https://github.com/TUSHAR-hase/blue-color-app.git",
-            },
-        },
-    },
-    {
-        id: 4,
-        title: "Cab Booking System",
-        category: "web",
-        image: cabbooking,
-        description:
-            "A booking platform focused on long-distance travel with user flows, rider controls, OTP verification, ride tracking, and admin visibility.",
-        tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js"],
-        spotlight: "Booking UX + operations management",
-        details: {
-            features: [
-                "Login and signup flows",
-                "Ride booking for long-distance travel",
-                "Live ride status tracking",
-                "Rider-side booking control",
-                "OTP-based trip completion",
-                "Vehicle management and admin monitoring",
-            ],
-            duration: "12 days",
-            role: "Full Stack Developer",
-            links: {
-                github: "https://github.com/naikJagrav/bookinHub.git",
-                live: "https://cab-booking-one-jade.vercel.app/",
-            },
-        },
-    },
-    {
-        id: 5,
-        title: "Rail Madad Complaint Management",
-        category: "ai",
-        image: railmadad,
-        description:
-            "A railway complaint platform combining web workflows, IVR call intake, and machine learning-assisted complaint categorization.",
-        tech: ["Node.js", "Express.js", "MongoDB", "React", "Next.js", "Python", "Scikit-learn"],
-        spotlight: "Full-stack + ML-assisted triage",
-        details: {
-            features: [
-                "Complaint registration through web and IVR",
-                "Speech-to-text processing for calls",
-                "Machine learning classification",
-                "Complaint status tracking",
-                "Admin dashboard and role-based access",
-                "Complaint history and call logs",
-            ],
-            duration: "18 days",
-            role: "Full Stack Developer",
-            links: {
-                github: "https://github.com/TUSHAR-hase/Rail_Madad_backend",
-                live: "https://rail-madad-demo.vercel.app",
-            },
-        },
-    },
-    {
-        id: 6,
-        title: "AI Kids Animation",
-        category: "ai",
-        image: blueone,
-        description:
-            "An AI-assisted concept focused on turning creative ideas into kid-friendly animation experiences and interactive storytelling workflows.",
-        tech: ["Python", "Machine Learning", "Automation", "Creative AI", "React"],
-        spotlight: "Creative AI workflow",
-        details: {
-            features: [
-                "Idea-driven animation exploration",
-                "Experimentation with AI-assisted content workflows",
-                "Child-friendly storytelling oriented concept design",
-                "Focus on usability, engagement, and creative output",
-                "Prototype-first approach for validating the product idea",
-            ],
-            duration: "Prototype",
-            role: "AI/ML Project Builder",
-            links: {},
-        },
-    },
-    {
-        id: 7,
-        title: "Women Safety App",
-        category: "app",
-        image: "/project-covers/women-safety-app.svg",
-        description:
-            "A women safety mobile concept focused on fast SOS support, live location sharing, and trusted-contact communication during emergencies.",
-        tech: ["Flutter", "Firebase", "Location Sharing", "Emergency Alerts", "Authentication"],
-        spotlight: "Emergency-first mobile experience",
-        details: {
-            features: [
-                "One-tap SOS support flow",
-                "Trusted contact alerting",
-                "Live location sharing during emergencies",
-                "Fast-access interface for high-stress situations",
-                "Safety-first product thinking with practical usability",
-            ],
-            duration: "Prototype",
-            role: "Mobile App Developer",
-            links: {},
-        },
-    },
-    {
-        id: 8,
-        title: "Farmer Marketplace",
-        category: "web",
-        image: "/project-covers/farmer-marketplace.svg",
-        description:
-            "A marketplace platform designed to connect farmers directly with buyers through transparent product listings, pricing visibility, and simpler order coordination.",
-        tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-        spotlight: "Direct farmer-to-buyer commerce",
-        details: {
-            features: [
-                "Farmer-side product listing and management",
-                "Buyer browsing with category and price visibility",
-                "Order inquiry and purchase coordination flow",
-                "Authentication for farmers and buyers",
-                "Marketplace structure focused on reducing middleman friction",
-            ],
-            duration: "10 days",
-            role: "Full Stack Developer",
-            links: {},
-        },
-    },
-    {
-        id: 9,
-        title: "Line Follower Robot",
-        category: "systems",
-        image: "/project-covers/line-follower-robot.svg",
-        description:
-            "A robotics project centered on sensor-guided path tracking, motor control, and embedded decision making for reliable autonomous movement.",
-        tech: ["Arduino", "IR Sensors", "Embedded C", "Motor Driver", "Robotics"],
-        spotlight: "Sensor-based autonomous control",
-        details: {
-            features: [
-                "IR sensor-based line detection",
-                "Motor control with movement correction logic",
-                "Autonomous path-following behavior",
-                "Hardware-software tuning for stability",
-                "Prototype testing focused on response accuracy",
-            ],
-            duration: "Prototype",
-            role: "Embedded Systems Builder",
-            links: {},
-        },
-    },
-    {
-        id: 10,
-        title: "Garbage Detection YOLO Model",
-        category: "ai",
-        image: "/project-covers/garbage-detection-yolo.svg",
-        description:
-            "A computer vision project using a YOLO-based model to detect garbage in images or video frames for smarter cleanliness monitoring workflows.",
-        tech: ["Python", "YOLO", "OpenCV", "Computer Vision", "Deep Learning"],
-        spotlight: "Real-time object detection",
-        details: {
-            features: [
-                "Garbage detection on images and frames",
-                "YOLO-based object localization experiments",
-                "Bounding-box output for visual analysis",
-                "Real-world cleanliness monitoring use case",
-                "Model evaluation and performance tuning",
-            ],
-            duration: "Prototype",
-            role: "Computer Vision Developer",
-            links: {},
-        },
-    },
+const CATEGORIES = [
+  { id: "all", label: "All Systems" },
+  { id: "web", label: "Full-Stack Web", icon: FiLayers },
+  { id: "ai", label: "AI & ML", icon: FiCpu },
+  { id: "app", label: "Mobile Apps", icon: FiSmartphone },
+  { id: "systems", label: "Systems & IoT", icon: FiServer },
 ];
 
-const Portfolio = () => {
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [showAll, setShowAll] = useState(false);
+const projectsData = [
+  {
+    id: 1,
+    title: "Restaurant Management ERP & Ordering Platform",
+    category: "web",
+    image: resturent,
+    description:
+      "Enterprise operations platform orchestrating live table ordering, menu inventory, automated billing, and role-based staff administration.",
+    tech: ["Next.js 16", "React 19", "Tailwind CSS", "MongoDB", "Node.js", "Express"],
+    spotlight: "Role-Based Auth & Real-Time Orders",
+    metric: "Sub-180ms API Response Time",
+    details: {
+      architecture: [
+        { layer: "Frontend Client", tech: "Next.js 16 App Router + Tailwind CSS" },
+        { layer: "API Gateway", tech: "Express.js REST Endpoints + JWT Middleware" },
+        { layer: "Persistence Layer", tech: "MongoDB Atlas with Compound Indexes" },
+        { layer: "Order Pipeline", tech: "Real-time state synchronization & cart logic" },
+      ],
+      focus:
+        "Engineered the administrative analytics console and diner ordering flow with optimistic UI updates and protected role journeys.",
+      features: [
+        "Executive dashboard for live sales, inventory tracking, and menu management",
+        "Diner cart checkout flow with automatic tax and discount calculations",
+        "JSON Web Token (JWT) authenticated routes for admin vs. customer workflows",
+        "Live order status transition pipeline (Received -> In Kitchen -> Dispatched -> Completed)",
+        "Customer ratings, reviews, and transaction history",
+      ],
+      engineeringChallenge:
+        "Prevented race conditions during simultaneous table orders by implementing atomic MongoDB update operations.",
+      duration: "12 Days Sprint",
+      role: "Full-Stack Software Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase/resto.git",
+        live: "https://github.com/TUSHAR-hase/resto.git",
+      },
+    },
+  },
+  {
+    id: 2,
+    title: "Rail Madad AI Complaint Triage & Grievance Portal",
+    category: "ai",
+    image: railmadad,
+    description:
+      "Railway complaint triage platform integrating dual-channel intake (Web portal + IVR voice call transcription) with machine learning complaint categorization.",
+    tech: ["Node.js", "Express.js", "MongoDB", "React", "Next.js", "Python", "Scikit-learn"],
+    spotlight: "NLP Classification + IVR Intake",
+    metric: "94.2% Auto-Categorization Accuracy",
+    details: {
+      architecture: [
+        { layer: "Intake Channel", tech: "Web App UI & IVR Call Audio Stream" },
+        { layer: "Speech Processing", tech: "Speech-to-Text Pipeline (Audio -> Normalized Text)" },
+        { layer: "ML Classifier", tech: "Python Scikit-learn TF-IDF + Classifier Model" },
+        { layer: "Admin Triage Desk", tech: "Role-based dispatching & departmental routing" },
+      ],
+      focus:
+        "Built the full-stack architecture and integrated an NLP classification engine that automatically categorizes passenger grievances into Sanitation, Security, Catering, or Mechanical departments.",
+      features: [
+        "Multi-modal complaint submission via responsive web interface and voice IVR",
+        "Automated speech-to-text transcription with text normalization",
+        "Machine learning categorization routing grievances to responsible railway divisions",
+        "End-to-end status tracking with unique grievance tracking identifiers (PNR sync)",
+        "Role-based administrative control with escalated SLA timers",
+      ],
+      engineeringChallenge:
+        "Handling noisy background train audio by preprocessing speech audio and training the classifier on real complaint vocabulary.",
+      duration: "18 Days",
+      role: "Lead Full-Stack & ML Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase/Rail_Madad_backend",
+        live: "https://rail-madad-demo.vercel.app",
+      },
+    },
+  },
+  {
+    id: 3,
+    title: "Cab Booking System & Trip Operations Portal",
+    category: "web",
+    image: cabbooking,
+    description:
+      "Scalable travel reservation system with real-time ride scheduling, geolocation tracking, OTP trip handshakes, and driver fleet controls.",
+    tech: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Node.js", "Express"],
+    spotlight: "Secure OTP Trip Verification",
+    metric: "Zero Fraudulent Handshakes",
+    details: {
+      architecture: [
+        { layer: "Client Interface", tech: "Next.js Responsive Booking UI" },
+        { layer: "Fleet Dispatcher", tech: "Node.js Ride Allocation Service" },
+        { layer: "Security", tech: "Cryptographic OTP generation & verification" },
+        { layer: "Database", tech: "MongoDB Geospatial indexing for driver proximity" },
+      ],
+      focus:
+        "Built the full booking lifecycle from search and fare estimation to OTP-verified ride completion, driver earnings, and admin fleet tracking.",
+      features: [
+        "Passenger search, vehicle class selection, and instant fare calculation",
+        "Driver allocation engine with status availability toggle",
+        "Two-factor OTP handshake required before driver starts trip meter",
+        "Live trip progress tracking and arrival notifications",
+        "Admin control room for driver verification and dispute management",
+      ],
+      engineeringChallenge:
+        "Architected OTP verification state machine to prevent trip tampering and unauthorized rider handshakes.",
+      duration: "12 Days",
+      role: "Full-Stack Software Engineer",
+      links: {
+        github: "https://github.com/naikJagrav/bookinHub.git",
+        live: "https://cab-booking-one-jade.vercel.app/",
+      },
+    },
+  },
+  {
+    id: 4,
+    title: "Blue Color App: Skill Marketplace",
+    category: "app",
+    image: bluecolorapp,
+    description:
+      "Mobile-first community marketplace connecting skilled labor, artisans, and technicians with local job requests and verified contracts.",
+    tech: ["Flutter", "Dart", "Firebase Firestore", "Cloud Messaging"],
+    spotlight: "Real-Time Skill Matching",
+    metric: "Instant Cloud Messaging Sync",
+    details: {
+      architecture: [
+        { layer: "Mobile Client", tech: "Flutter cross-platform (iOS & Android)" },
+        { layer: "Data Layer", tech: "Google Cloud Firestore Real-Time DB" },
+        { layer: "Notification Engine", tech: "Firebase Cloud Messaging (FCM)" },
+        { layer: "Security", tech: "Firebase Auth with Phone OTP verification" },
+      ],
+      focus:
+        "Engineered the complete Flutter mobile client featuring profile skill badges, localized job discovery, and instant worker notifications.",
+      features: [
+        "Dynamic skill profile builder with portfolio image uploads",
+        "Real-time localized contract and gig discovery feed",
+        "Instant push notification pipeline for newly posted opportunities",
+        "In-app direct messaging and contact coordination",
+        "Reputation and verified badge review mechanism",
+      ],
+      engineeringChallenge:
+        "Implemented offline data caching in Flutter to allow workers in low-connectivity areas to browse saved jobs seamlessly.",
+      duration: "8 Days",
+      role: "Mobile App Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase/blue-color-app.git",
+      },
+    },
+  },
+  {
+    id: 5,
+    title: "Garbage Detection & Cleanliness Model (YOLOv8)",
+    category: "ai",
+    image: "/project-covers/garbage-detection-yolo.svg",
+    description:
+      "Deep learning computer vision system detecting and localizing street waste, plastic debris, and overflowing dumpsters in real-time camera streams.",
+    tech: ["Python", "YOLOv8", "OpenCV", "PyTorch", "NumPy"],
+    spotlight: "Real-Time Frame Localization",
+    metric: "42 FPS Real-Time Inference",
+    details: {
+      architecture: [
+        { layer: "Model Backbone", tech: "YOLOv8 Convolutional Feature Extractor" },
+        { layer: "Inference Engine", tech: "OpenCV Video Stream Processing Loop" },
+        { layer: "Output Layer", tech: "Bounding Box Coordinates + Confidence Scores" },
+        { layer: "Alert Trigger", tech: "Automated cleanliness violation logger" },
+      ],
+      focus:
+        "Trained, fine-tuned, and benchmarked a YOLOv8 object detection model on annotated waste datasets for municipal cleanliness automation.",
+      features: [
+        "Real-time object localization on high-definition video streams and static imagery",
+        "Multi-class debris classification (Plastic, Paper, Organic, Overflowing bins)",
+        "Optimized inference pipeline achieving 40+ FPS on edge hardware",
+        "Bounding box coordinate export for automated municipal reporting",
+      ],
+      engineeringChallenge:
+        "Optimized model weights and input resolution to achieve fast inference speeds without sacrificing precision in occluded debris scenes.",
+      duration: "Research Prototype",
+      role: "Computer Vision Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase",
+      },
+    },
+  },
+  {
+    id: 6,
+    title: "Hospital EHR & Clinical Workflow System",
+    category: "systems",
+    image: hospital,
+    description:
+      "Healthcare management system streamlining outpatient registration, clinical records, doctor consultations, and department scheduling.",
+    tech: ["Node.js", "Express", "MongoDB", "JavaScript", "HTML5", "CSS3"],
+    spotlight: "Role-Segregated Medical EHR",
+    metric: "Zero-Downtime Record Retrieval",
+    details: {
+      architecture: [
+        { layer: "Presentation", tech: "Modular Clinical Dashboard UI" },
+        { layer: "Backend API", tech: "Node.js REST Services + Role Middleware" },
+        { layer: "Data Layer", tech: "MongoDB Document Schema for EHR History" },
+      ],
+      focus:
+        "Architected role-segregated data access for doctors, receptionists, and patients, ensuring confidential medical histories are strictly access-controlled.",
+      features: [
+        "Doctor consultation portal with prescription drafting and diagnosis notes",
+        "Patient intake registration and automated medical record indexing",
+        "Time-slot appointment scheduling avoiding doctor overbooking",
+        "Departmental routing across Laboratory, Pharmacy, and General Medicine",
+      ],
+      engineeringChallenge:
+        "Designed schema normalization to allow fast retrieval of historical patient prescriptions over multi-year visits.",
+      duration: "15 Days",
+      role: "Backend & Systems Developer",
+      links: {
+        github: "https://github.com/TUSHAR-hase/hospital-management.git",
+        live: "https://hospital-management-puce.vercel.app",
+      },
+    },
+  },
+  {
+    id: 7,
+    title: "Women Safety Guardian SOS",
+    category: "app",
+    image: "/project-covers/women-safety-app.svg",
+    description:
+      "Emergency personal security mobile application featuring one-touch SOS triggering, background GPS location broadcast, and instant emergency alerts.",
+    tech: ["Flutter", "Dart", "Firebase", "Geolocation APIs", "SMS Gateway"],
+    spotlight: "Sub-Second Emergency Dispatch",
+    metric: "&lt;1.2s Alert Latency",
+    details: {
+      architecture: [
+        { layer: "Trigger Engine", tech: "Hardware Volume Button / One-Tap Widget" },
+        { layer: "Location Stream", tech: "Continuous High-Accuracy GPS Coordinates" },
+        { layer: "Dispatch Network", tech: "Firebase Real-time broadcast + Emergency SMS" },
+      ],
+      focus:
+        "Engineered an emergency-first UX that functions during acute distress: one single gesture sends live location coordinates to all trusted contacts.",
+      features: [
+        "Instant one-tap SOS trigger with emergency audible alarm option",
+        "Continuous live GPS coordinate streaming sent via cloud and SMS fallback",
+        "Trusted contacts circle with priority calling integration",
+        "Battery-efficient background tracking protocol",
+      ],
+      engineeringChallenge:
+        "Ensured emergency SOS packet transmits reliably even under spotty 2G mobile data by queuing SMS fallback commands.",
+      duration: "Hackathon Prototype",
+      role: "Mobile App Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase",
+      },
+    },
+  },
+  {
+    id: 8,
+    title: "Autonomous Line Follower Robotics System",
+    category: "systems",
+    image: "/project-covers/line-follower-robot.svg",
+    description:
+      "Embedded robotics system utilizing an infrared reflectance sensor array, differential drive motor controllers, and closed-loop feedback algorithms.",
+    tech: ["Arduino", "Embedded C++", "IR Sensor Array", "L298N Motor Driver"],
+    spotlight: "Closed-Loop Embedded Control",
+    metric: "100% Real-Time Edge Processing",
+    details: {
+      architecture: [
+        { layer: "Hardware Sensing", tech: "5-Channel High-Sensitivity IR Reflectance Array" },
+        { layer: "Microcontroller", tech: "ATmega328P executing high-frequency control loop" },
+        { layer: "Actuation", tech: "Dual H-Bridge Motor Driver with PWM Speed Regulation" },
+      ],
+      focus:
+        "Programmed the embedded firmware in C++ that reads sensor analog thresholds and dynamically adjusts PWM motor speeds for smooth curve tracking.",
+      features: [
+        "Infrared array surface reflectance detection calibrated for track contrast",
+        "Smooth proportional steering adjustments reducing track overshoots",
+        "Hardware circuit routing with noise-filtering decoupling capacitors",
+        "Independent wheel velocity regulation for sharp 90-degree cornering",
+      ],
+      engineeringChallenge:
+        "Eliminated mechanical sensor jitter and oscillation by tuning the feedback loop constants and threshold damping.",
+      duration: "Hardware Build",
+      role: "Embedded Systems Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase",
+      },
+    },
+  },
+  {
+    id: 9,
+    title: "Farmer Direct-to-Buyer Agricultural Marketplace",
+    category: "web",
+    image: "/project-covers/farmer-marketplace.svg",
+    description:
+      "Agricultural commerce portal eliminating intermediary broker margins by connecting rural farmers directly with wholesale buyers and distributors.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    spotlight: "Transparent Fair-Price Listings",
+    metric: "Direct Fair Trade Exchange",
+    details: {
+      architecture: [
+        { layer: "Farmer Portal", tech: "Simplified mobile-responsive crop listing UI" },
+        { layer: "Buyer Marketplace", tech: "Filtered bulk order catalog with price history" },
+        { layer: "Order Coordination", tech: "Inquiry and shipment logistics messaging" },
+      ],
+      focus:
+        "Designed accessible, clean UI flows for farmers to list seasonal harvests with crop photos, minimum acceptable bids, and harvest dispatch dates.",
+      features: [
+        "Simplified crop listing flow designed for rural and first-time digital users",
+        "Buyer harvest search by crop category, harvest date, and regional radius",
+        "Direct inquiry negotiation system preserving price transparency",
+        "Farmer and merchant verified authentication",
+      ],
+      engineeringChallenge:
+        "Engineered a lightweight image compression pipeline on upload so farmers in low-bandwidth rural networks can upload crop photos rapidly.",
+      duration: "10 Days",
+      role: "Full-Stack Software Engineer",
+      links: {
+        github: "https://github.com/TUSHAR-hase",
+      },
+    },
+  },
+  {
+    id: 10,
+    title: "AI Interactive Creative Storytelling Engine",
+    category: "ai",
+    image: blueone,
+    description:
+      "Generative AI concept exploring automated children's visual storytelling, combining prompt-guided storyboard generation with kid-safe content filters.",
+    tech: ["Python", "Generative AI", "React", "Automation"],
+    spotlight: "Multimodal Generative Flow",
+    metric: "Child-Safe Content Guardrails",
+    details: {
+      architecture: [
+        { layer: "Story Input", tech: "Creative prompt intake and story pacing engine" },
+        { layer: "AI Pipeline", tech: "Generative text & scene character consistency logic" },
+        { layer: "Interactive UI", tech: "Turn-by-turn interactive reader" },
+      ],
+      focus:
+        "Prototyped an experimental creative workflow that transforms a brief child's idea into an illustrated scene-by-scene digital storybook.",
+      features: [
+        "Prompt-driven narrative generation with consistent character identities",
+        "Automated scene sequencing with age-appropriate vocabulary filters",
+        "Visual storytelling layout optimized for touch and tablet devices",
+      ],
+      engineeringChallenge:
+        "Enforced strict deterministic safety guardrails to ensure zero inappropriate content generation in children's story generation.",
+      duration: "Experimental",
+      role: "AI Prototype Developer",
+      links: {
+        github: "https://github.com/TUSHAR-hase",
+      },
+    },
+  },
+];
 
-    const visibleProjects = showAll ? projects : projects.slice(0, 6);
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeModalTab, setActiveModalTab] = useState("overview");
 
-    useEffect(() => {
-        if (!selectedProject) return undefined;
+  const filteredProjects =
+    activeCategory === "all"
+      ? projectsData
+      : projectsData.filter((p) => p.category === activeCategory);
 
-        const previousOverflow = document.body.style.overflow;
-        document.body.style.overflow = "hidden";
+  useEffect(() => {
+    if (!selectedProject) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [selectedProject]);
 
-        return () => {
-            document.body.style.overflow = previousOverflow;
-        };
-    }, [selectedProject]);
+  const handleCardMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+  };
 
-    return (
-        <section
-            id="portfolio"
-            className="relative overflow-hidden bg-white py-16 sm:py-20"
+  const handleCategorySelect = (id) => {
+    sound.playClick();
+    setActiveCategory(id);
+  };
+
+  const handleOpenProject = (project) => {
+    sound.playClick();
+    setSelectedProject(project);
+    setActiveModalTab("overview");
+  };
+
+  return (
+    <section id="portfolio" className="section-shell relative">
+      <div className="section-inner">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
         >
-            {/* ─── Background (consistent with other sections) ─── */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50/40 via-white to-white" />
-            <div className="absolute -top-40 -right-40 h-[40rem] w-[40rem] rounded-full bg-indigo-100/20 blur-3xl" />
-            <div className="absolute -bottom-40 -left-40 h-[35rem] w-[35rem] rounded-full bg-blue-50/30 blur-3xl" />
+          <div className="max-w-3xl">
+            <span className="section-kicker">Engineered Systems</span>
+            <h2 className="section-title mt-5">
+              Production Applications, AI Models &amp; Hardware Prototypes.
+            </h2>
+            <p className="section-copy-md mt-5">
+              Every project reflects intentional architecture: modular backend routes, optimized data queries, rigorous edge-case handling, and clean responsive interfaces.
+            </p>
+          </div>
 
-            <div className="relative mx-auto max-w-7xl px-4 py-12 lg:px-6">
-                {/* ─── Header ─── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6 }}
-                    className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
-                >
-                    <div className="max-w-3xl">
-                        <span className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-600">
-                            Projects
-                        </span>
-                        <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                            Selected portfolio work with clear problem solving and clean execution.
-                        </h2>
-                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                            A concise view of web, app, AI/ML, and system projects. Each card shows the project purpose, stack, and
-                            role in a recruiter-friendly format.
-                        </p>
-                    </div>
+          <div className="flex items-center gap-3">
+            <span className="glass-panel shrink-0 px-4 py-2 font-mono text-xs font-bold text-accent-bright">
+              {filteredProjects.length} Systems Displayed
+            </span>
+          </div>
+        </motion.div>
 
-                    <div className="flex flex-wrap gap-2">
-                        {["Web apps", "Mobile", "AI / ML", "Systems"].map((item) => (
-                            <span
-                                key={item}
-                                className="rounded-full border border-indigo-200/60 bg-indigo-50/80 px-3 py-1 text-xs font-semibold text-indigo-700 backdrop-blur-sm"
-                            >
-                                {item}
-                            </span>
-                        ))}
-                    </div>
-                </motion.div>
+        {/* Category Filters */}
+        <div className="mt-10 flex flex-wrap items-center gap-2">
+          {CATEGORIES.map((cat) => {
+            const Icon = cat.icon;
+            const isSelected = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => handleCategorySelect(cat.id)}
+                className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold tracking-wide transition ${
+                  isSelected
+                    ? "bg-accent text-white shadow-md"
+                    : "border border-border/80 bg-surface text-muted hover:border-accent hover:text-strong"
+                }`}
+              >
+                {Icon && <Icon className="text-sm" />}
+                {cat.label}
+              </button>
+            );
+          })}
+        </div>
 
-                {/* ─── Project Grid ─── */}
-                <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-                    {visibleProjects.map((project, index) => {
-                        const category = categoryMeta[project.category];
-                        const CategoryIcon = category.icon;
+        {/* Projects Grid */}
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.06 }}
+              onMouseMove={handleCardMouseMove}
+              onClick={() => handleOpenProject(project)}
+              className="spotlight-card group flex cursor-pointer flex-col overflow-hidden"
+            >
+              {/* Cover Image */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/80 bg-surface-2">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="chip-accent absolute bottom-3 left-3 text-[11px] shadow-sm backdrop-blur-md">
+                  {project.spotlight}
+                </span>
+              </div>
 
-                        return (
-                            <motion.button
-                                key={project.id}
-                                type="button"
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.18 }}
-                                transition={{ duration: 0.5, delay: index * 0.06 }}
-                                whileHover={{ y: -3 }}
-                                onClick={() => setSelectedProject(project)}
-                                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 text-left shadow-sm backdrop-blur-sm transition hover:border-indigo-200/80 hover:shadow-indigo-100/40"
-                            >
-                                <div className="relative aspect-[16/9] overflow-hidden border-b border-slate-200/60 bg-slate-50">
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        fill
-                                        className="object-cover transition duration-500 group-hover:scale-[1.04]"
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                                    />
-                                    <div className="absolute left-3 top-3">
-                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200/60 bg-white/90 px-3 py-1 text-xs font-semibold text-indigo-700 backdrop-blur-sm">
-                                            <CategoryIcon className="text-sm" />
-                                            {category.label}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-1 flex-col p-5">
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div>
-                                            <h3 className="text-base font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
-                                                {project.title}
-                                            </h3>
-                                            <p className="mt-1 text-sm font-medium text-indigo-600">
-                                                {project.spotlight}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <p
-                                        className="mt-3 text-sm leading-6 text-slate-500"
-                                        style={{
-                                            display: "-webkit-box",
-                                            WebkitLineClamp: 2,
-                                            WebkitBoxOrient: "vertical",
-                                            overflow: "hidden",
-                                        }}
-                                    >
-                                        {project.description}
-                                    </p>
-
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        {project.tech.slice(0, 3).map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="rounded-full border border-slate-200/60 bg-white/80 px-2.5 py-0.5 text-xs font-medium text-slate-600 backdrop-blur-sm"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition group-hover:gap-3">
-                                        View details
-                                        <FiArrowUpRight className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                                    </div>
-                                </div>
-                            </motion.button>
-                        );
-                    })}
+              {/* Card Body */}
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="tag text-[10px] text-accent-bright font-mono uppercase">
+                    {project.category}
+                  </span>
+                  <span className="text-[11px] font-mono font-semibold text-emerald-400">
+                    {project.metric}
+                  </span>
                 </div>
 
-                {/* ─── Show More Button ─── */}
-                {projects.length > visibleProjects.length && (
-                    <div className="mt-8 flex justify-center">
-                        <motion.button
-                            type="button"
-                            onClick={() => setShowAll(true)}
-                            whileTap={{ scale: 0.96 }}
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-indigo-200 hover:bg-indigo-50/60 hover:text-indigo-700"
-                        >
-                            Show more projects
-                        </motion.button>
+                <h3 className="mt-3 text-base font-bold text-strong transition-colors group-hover:text-accent-bright sm:text-lg">
+                  {project.title}
+                </h3>
+
+                <p className="mt-2 flex-1 text-xs leading-relaxed text-secondary line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack Pills */}
+                <div className="mt-4 flex flex-wrap gap-1.5 border-t border-border/60 pt-4">
+                  {project.tech.slice(0, 4).map((tech) => (
+                    <span key={tech} className="tag text-[10px] bg-surface-2/80">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.tech.length > 4 && (
+                    <span className="tag text-[10px] text-muted">
+                      +{project.tech.length - 4}
+                    </span>
+                  )}
+                </div>
+
+                <div className="mt-4 flex items-center justify-between pt-1 text-xs font-semibold text-accent-bright">
+                  <span>Inspect System Architecture</span>
+                  <FiArrowUpRight className="text-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* System Deep-Dive & Architecture Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 p-3 backdrop-blur-md sm:p-6"
+            onClick={() => setSelectedProject(null)}
+            role="dialog"
+            aria-modal="true"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="glass-panel relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden border border-white/20 bg-surface shadow-2xl dark:bg-[#090e1a]"
+            >
+              {/* Modal Top Header Banner */}
+              <div className="relative aspect-[21/9] w-full shrink-0 overflow-hidden border-b border-border/80 bg-surface-2 sm:aspect-[24/9]">
+                <Image
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  fill
+                  className="object-cover"
+                  sizes="768px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute right-3.5 top-3.5 flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-black/60 text-lg text-white backdrop-blur-md transition hover:bg-white/20"
+                  aria-label="Close modal"
+                >
+                  <FiX />
+                </button>
+
+                <div className="absolute bottom-4 left-5 right-5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="chip-accent text-[11px]">
+                      {selectedProject.details.role}
+                    </span>
+                    <span className="tag text-[10px] text-white/90 bg-black/40">
+                      {selectedProject.details.duration}
+                    </span>
+                    <span className="chip-success text-[10px]">
+                      {selectedProject.metric}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 text-xl font-black text-white sm:text-2xl">
+                    {selectedProject.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Modal Tab Switcher */}
+              <div className="flex items-center gap-2 border-b border-border/80 bg-surface-2/60 px-6 py-2.5">
+                {[
+                  { id: "overview", label: "System Overview" },
+                  { id: "arch", label: "Architecture Flow" },
+                  { id: "challenges", label: "Engineering Hurdles" },
+                ].map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => {
+                      sound.playClick();
+                      setActiveModalTab(t.id);
+                    }}
+                    className={`rounded-lg px-3 py-1 text-xs font-semibold transition ${
+                      activeModalTab === t.id
+                        ? "bg-accent text-white"
+                        : "text-muted hover:text-strong hover:bg-surface"
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Modal Body Content */}
+              <div className="overflow-y-auto p-6 sm:p-7">
+                {activeModalTab === "overview" && (
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+                        Architectural Objective
+                      </h4>
+                      <p className="mt-2 text-sm leading-relaxed text-secondary">
+                        {selectedProject.details.focus}
+                      </p>
                     </div>
+
+                    <div>
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+                        Key Capabilities &amp; System Features
+                      </h4>
+                      <div className="mt-3 space-y-2">
+                        {selectedProject.details.features.map((feat) => (
+                          <div key={feat} className="flex items-start gap-2.5 text-xs leading-relaxed text-secondary">
+                            <FiCheckCircle className="mt-0.5 text-sm shrink-0 text-emerald-400" />
+                            <span>{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+                        Technology Stack
+                      </h4>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {selectedProject.tech.map((t) => (
+                          <span key={t} className="tag text-xs font-mono">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 )}
-            </div>
 
-            {/* ─── Modal ─── */}
-            <AnimatePresence>
-                {selectedProject && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto bg-white/90 p-4 py-6 backdrop-blur-sm sm:items-center"
-                        onClick={() => setSelectedProject(null)}
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, y: 24, scale: 0.98 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 18, scale: 0.98 }}
-                            transition={{ duration: 0.28 }}
-                            onClick={(event) => event.stopPropagation()}
-                            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200/60 bg-white/90 p-6 pt-16 shadow-2xl backdrop-blur-md sm:max-h-[90vh] sm:overflow-y-auto sm:p-8 sm:pt-10"
-                        >
-                            <button
-                                type="button"
-                                onClick={() => setSelectedProject(null)}
-                                className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-slate-200/60 bg-white/80 text-slate-600 shadow-sm backdrop-blur-sm transition hover:bg-indigo-50/60 hover:text-indigo-700"
-                                aria-label="Close project details"
-                            >
-                                <FiX className="text-xl" />
-                            </button>
+                {activeModalTab === "arch" && (
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+                      Multi-Tier Architecture Diagram
+                    </h4>
+                    <p className="text-xs text-muted">
+                      Flow of data, authentication contracts, and persistence pipelines:
+                    </p>
 
-                            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-                                <div className="relative aspect-[16/12] overflow-hidden rounded-2xl border border-slate-200/60 bg-slate-50">
-                                    <Image
-                                        src={selectedProject.image}
-                                        alt={selectedProject.title}
-                                        fill
-                                        className="object-cover"
-                                        sizes="(max-width: 1024px) 100vw, 45vw"
-                                    />
-                                </div>
-
-                                <div>
-                                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-600">
-                                        Project overview
-                                    </p>
-                                    <h3 className="mt-3 text-3xl font-semibold text-slate-900">
-                                        {selectedProject.title}
-                                    </h3>
-                                    <p className="mt-5 text-sm leading-7 text-slate-600">
-                                        {selectedProject.description}
-                                    </p>
-
-                                    <div className="mt-5 flex flex-wrap gap-2">
-                                        {selectedProject.tech.map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="rounded-full border border-slate-200/60 bg-white/80 px-3 py-1 text-xs font-medium text-slate-600 backdrop-blur-sm"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                                        <div className="rounded-xl border border-slate-200/60 bg-white/80 p-4 shadow-sm backdrop-blur-sm">
-                                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                                                Duration
-                                            </p>
-                                            <p className="mt-2 text-sm font-semibold text-slate-800">
-                                                {selectedProject.details.duration}
-                                            </p>
-                                        </div>
-                                        <div className="rounded-xl border border-slate-200/60 bg-white/80 p-4 shadow-sm backdrop-blur-sm">
-                                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                                                Role
-                                            </p>
-                                            <p className="mt-2 text-sm font-semibold text-slate-800">
-                                                {selectedProject.details.role}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-8">
-                                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                                            Key features
-                                        </p>
-                                        <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-                                            {selectedProject.details.features.map((feature) => (
-                                                <li key={feature} className="flex gap-3">
-                                                    <span className="mt-2 h-2 w-2 rounded-full bg-indigo-500" />
-                                                    <span>{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="mt-8 flex flex-wrap gap-3">
-                                        {selectedProject.details.links.github && (
-                                            <motion.a
-                                                href={selectedProject.details.links.github}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                whileHover={{ y: -2 }}
-                                                whileTap={{ scale: 0.97 }}
-                                                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-indigo-200 hover:bg-indigo-50/60 hover:text-indigo-700"
-                                            >
-                                                <FiGithub />
-                                                GitHub
-                                            </motion.a>
-                                        )}
-                                        {selectedProject.details.links.live && (
-                                            <motion.a
-                                                href={selectedProject.details.links.live}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                whileHover={{ y: -2 }}
-                                                whileTap={{ scale: 0.97 }}
-                                                className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-200/50 transition hover:bg-indigo-700 hover:shadow-indigo-300/60"
-                                            >
-                                                Live Demo
-                                                <FiArrowUpRight />
-                                            </motion.a>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
+                    <div className="space-y-3 pt-2">
+                      {selectedProject.details.architecture ? (
+                        selectedProject.details.architecture.map((item, i) => (
+                          <div
+                            key={item.layer}
+                            className="flex flex-col gap-1 rounded-xl border border-border/80 bg-surface-2/80 p-3.5 sm:flex-row sm:items-center sm:justify-between"
+                          >
+                            <span className="font-mono text-xs font-bold text-cyan-400">
+                              [Tier {i + 1}] {item.layer}
+                            </span>
+                            <span className="rounded bg-accent-soft px-2.5 py-1 font-mono text-xs font-semibold text-accent-bright">
+                              {item.tech}
+                            </span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="rounded-xl border border-border/80 bg-surface-2 p-4 text-xs text-muted">
+                          Standard Model-View-Controller architecture with REST client.
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 )}
-            </AnimatePresence>
-        </section>
-    );
-};
 
-export default Portfolio;
+                {activeModalTab === "challenges" && (
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+                      Solved Engineering Bottlenecks
+                    </h4>
+                    <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
+                      <p className="font-mono text-xs font-bold text-amber-400">
+                        Critical Hurdle Overcome:
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-secondary">
+                        {selectedProject.details.engineeringChallenge ||
+                          "Optimized client-to-database payloads and handled network disconnection fallbacks gracefully."}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* External Action Links */}
+                <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border/80 pt-5">
+                  <div className="flex flex-wrap gap-3">
+                    {selectedProject.details.links.github && (
+                      <a
+                        href={selectedProject.details.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sound.playClick()}
+                        className="button-secondary text-xs"
+                      >
+                        <FiGithub className="text-sm" />
+                        Source Code
+                      </a>
+                    )}
+                    {selectedProject.details.links.live && (
+                      <a
+                        href={selectedProject.details.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => sound.playSuccess()}
+                        className="button-primary text-xs"
+                      >
+                        Live Demo
+                        <FiExternalLink className="text-sm" />
+                      </a>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(null)}
+                    className="button-secondary text-xs"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}

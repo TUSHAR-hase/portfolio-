@@ -1,0 +1,88 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FiGithub, FiInstagram, FiLinkedin } from "react-icons/fi";
+
+const footerLinks = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#resume" },
+    { label: "Projects", href: "#portfolio" },
+    { label: "Contact", href: "#contact" },
+];
+
+const socials = [
+    { label: "GitHub", href: "https://github.com/TUSHAR-hase", icon: FiGithub },
+    {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/thakor-tushar-a34ab3288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        icon: FiLinkedin,
+    },
+    {
+        label: "Instagram",
+        href: "https://www.instagram.com/tushar_vaghela1507?igsh=amI3dGtzNXZlMTdh",
+        icon: FiInstagram,
+    },
+];
+
+const Footer = () => {
+    return (
+        <footer className="section-shell">
+            <div className="section-inner py-12 sm:py-16">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.25 }}
+                    transition={{ duration: 0.55 }}
+                    className="glass-panel p-6 sm:p-8"
+                >
+                    <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="max-w-2xl">
+                            <p className="text-sm font-bold uppercase tracking-[0.16em] text-teal-200">Portfolio</p>
+                            <h2 className="mt-3 text-3xl font-bold text-white">Tushar Thakor</h2>
+                            <p className="mt-4 text-sm leading-7 text-slate-400">
+                                Frontend-focused full-stack developer building practical products across web, AI/ML,
+                                mobile, and systems work.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                            {socials.map((social) => {
+                                const Icon = social.icon;
+                                return (
+                                    <motion.a
+                                        key={social.label}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ y: -2 }}
+                                        whileTap={{ scale: 0.96 }}
+                                        className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-bold text-slate-200 backdrop-blur-sm hover:border-teal-300/40 hover:text-white"
+                                    >
+                                        <Icon className="text-teal-200" />
+                                        {social.label}
+                                    </motion.a>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-6">
+                        {footerLinks.map((link) => (
+                            <a key={link.label} href={link.href} className="text-sm font-medium text-slate-400 hover:text-teal-200">
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
+                </motion.div>
+
+                <div className="mt-8 flex flex-col gap-3 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
+                    <p>&copy; 2026 Tushar Thakor. All rights reserved.</p>
+                    <p>Built with React, Tailwind CSS, and Framer Motion.</p>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;

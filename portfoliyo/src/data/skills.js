@@ -1,0 +1,117 @@
+import {
+  FiCheckCircle,
+  FiCode,
+  FiCpu,
+  FiDatabase,
+  FiGlobe,
+  FiLayers,
+  FiServer,
+  FiTerminal,
+} from "react-icons/fi";
+import { FaGitAlt, FaNodeJs, FaReact } from "react-icons/fa";
+import {
+  SiCplusplus,
+  SiDart,
+  SiExpress,
+  SiFirebase,
+  SiFlutter,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiNextdotjs,
+  SiOpencv,
+  SiPostman,
+  SiPython,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
+
+export const skillCategories = [
+  {
+    id: "languages",
+    title: "Programming Languages",
+    icon: FiCode,
+    description: "Core languages utilized for algorithmic problem solving, backend systems, and application logic.",
+    skills: [
+      { name: "C++", icon: SiCplusplus, note: "Data structures, algorithms, object-oriented design, memory management" },
+      { name: "Python", icon: SiPython, note: "Machine learning workflows, computer vision, data processing scripts" },
+      { name: "JavaScript (ES6+)", icon: SiJavascript, note: "Asynchronous I/O, event-driven runtime, modern DOM architecture" },
+      { name: "TypeScript", icon: SiTypescript, note: "Static typing, interface contracts, compile-time safety" },
+      { name: "Dart", icon: SiDart, note: "Reactive cross-platform mobile application development" },
+      { name: "SQL", icon: FiDatabase, note: "Relational queries, schema modeling, constraints, index optimization" },
+    ],
+  },
+  {
+    id: "frontend",
+    title: "Frontend Engineering",
+    icon: FiGlobe,
+    description: "Building responsive, accessible, and high-performance client applications with modern component architecture.",
+    skills: [
+      { name: "React 19", icon: FaReact, note: "Component lifecycle, custom hooks, state management, concurrent rendering" },
+      { name: "Next.js 16", icon: SiNextdotjs, note: "App Router, server/client components, static generation, API routes" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, note: "Utility-first design systems, responsive layouts, theme configuration" },
+      { name: "HTML5 / Semantic Web", icon: FiLayers, note: "Accessible markup (a11y), clean document structure, SEO hierarchy" },
+      { name: "CSS3 / Modern Layout", icon: FiLayers, note: "Flexbox, CSS Grid, animations, media queries" },
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend Development & APIs",
+    icon: FiServer,
+    description: "Architecting RESTful web services, server-side business logic, authentication, and API endpoints.",
+    skills: [
+      { name: "Node.js", icon: FaNodeJs, note: "Asynchronous backend runtimes, event loop, service orchestration" },
+      { name: "Express.js", icon: SiExpress, note: "RESTful routing, middleware pipelines, error handling, request parsing" },
+      { name: "REST API Design", icon: FiServer, note: "HTTP methods, status codes, payload validation, stateless architecture" },
+      { name: "Authentication & Security", icon: FiTerminal, note: "JSON Web Tokens (JWT), password hashing, protected endpoint middleware" },
+    ],
+  },
+  {
+    id: "databases",
+    title: "Database Systems",
+    icon: FiDatabase,
+    description: "Data modeling, schema design, indexing, and persistent storage management across document and relational stores.",
+    skills: [
+      { name: "MongoDB", icon: SiMongodb, note: "Document data modeling, Mongoose schemas, validation, aggregation pipelines" },
+      { name: "MySQL", icon: SiMysql, note: "Relational schema design, normalization, foreign keys, transactional integrity" },
+      { name: "Firebase Firestore", icon: SiFirebase, note: "NoSQL document collections, real-time sync listeners, security rules" },
+    ],
+  },
+  {
+    id: "mobile_ai",
+    title: "Mobile & Applied Machine Learning",
+    icon: FiCpu,
+    description: "Cross-platform mobile applications and practical machine learning / computer vision integration.",
+    skills: [
+      { name: "Flutter", icon: SiFlutter, note: "Widget tree architecture, reactive state management, platform channels" },
+      { name: "YOLOv8", icon: FiCpu, note: "Convolutional object detection, bounding-box localization, model inference" },
+      { name: "OpenCV", icon: SiOpencv, note: "Video frame capture, image transformations, visual preprocessing" },
+      { name: "Scikit-learn", icon: FiCpu, note: "Supervised classification, TF-IDF text feature extraction, NLP triage" },
+    ],
+  },
+  {
+    id: "cs_fundamentals",
+    title: "Computer Science Fundamentals",
+    icon: FiTerminal,
+    description: "Core computational foundations mastered through academic coursework at IITRAM.",
+    skills: [
+      { name: "Data Structures & Algorithms", icon: FiCode, note: "Complexity analysis (Big-O), arrays, trees, graphs, dynamic programming" },
+      { name: "Object-Oriented Programming", icon: FiLayers, note: "Encapsulation, inheritance, polymorphism, abstraction in C++" },
+      { name: "Database Management Systems", icon: FiDatabase, note: "ACID properties, query planning, indexing strategies, normalization" },
+      { name: "Operating Systems", icon: FiServer, note: "Process scheduling, thread concurrency, virtual memory, synchronization" },
+      { name: "Computer Networks", icon: FiGlobe, note: "TCP/IP suite, socket communication, HTTP/HTTPS protocols, DNS" },
+    ],
+  },
+  {
+    id: "tools",
+    title: "Developer Tools & Workflow",
+    icon: FiTerminal,
+    description: "Engineering tooling, version control, API testing, and deployment platforms.",
+    skills: [
+      { name: "Git & GitHub", icon: FaGitAlt, note: "Branch management, pull requests, semantic versioning, code reviews" },
+      { name: "Postman", icon: SiPostman, note: "Endpoint testing, environment variables, request payload verification" },
+      { name: "Vercel", icon: SiNextdotjs, note: "Automated continuous deployment, edge hosting, environment config" },
+      { name: "Firebase Services", icon: SiFirebase, note: "Authentication providers, cloud messaging, cloud hosting" },
+    ],
+  },
+];

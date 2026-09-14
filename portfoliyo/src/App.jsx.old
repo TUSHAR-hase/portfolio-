@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       {/* ─── Global background & font styling ─── */}
-      <div className="min-h-screen w-full bg-gradient-to-br from-indigo-50/40 via-white to-white font-sans antialiased text-slate-900">
+      <div className="min-h-screen w-full bg-slate-950 font-sans antialiased text-slate-100">
         <Navbar />
         
         {/* ─── Page transitions with AnimatePresence ─── */}

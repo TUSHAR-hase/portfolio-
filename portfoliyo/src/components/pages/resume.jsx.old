@@ -1,0 +1,127 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FiArrowRight, FiAward, FiBriefcase, FiDownload, FiPenTool } from "react-icons/fi";
+
+import SkillsSection from "./skill";
+
+const focusCards = [
+    {
+        title: "Internship ready",
+        copy: "Projects and resume are shaped to show my strengths quickly.",
+        icon: FiBriefcase,
+    },
+    {
+        title: "End-to-end builder",
+        copy: "I can move from UI idea to working app flow with APIs and data.",
+        icon: FiPenTool,
+    },
+    {
+        title: "Fast learner",
+        copy: "Hackathons and side projects keep me learning by building.",
+        icon: FiAward,
+    },
+];
+
+const Resume = () => (
+    <section id="resume" className="section-shell">
+        <div className="section-inner">
+            <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+            >
+                <div className="max-w-3xl">
+                    <span className="section-kicker">Resume & Skills</span>
+                    <h2 className="section-title mt-5">
+                        A focused skill set for modern frontend and full-stack work.
+                    </h2>
+                    <p className="section-copy mt-5">
+                        This section shows the tools I use most, the type of work I am ready for, and how I approach
+                        real product tasks.
+                    </p>
+                </div>
+
+                <motion.a
+                    href="/TUSHAR_THAKOR_RESUME.pdf"
+                    download
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="button-primary"
+                >
+                    <FiDownload className="text-lg" />
+                    Download Resume
+                </motion.a>
+            </motion.div>
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
+                <motion.div
+                    initial={{ opacity: 0, y: 26 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6 }}
+                    className="glass-panel p-6 sm:p-8"
+                >
+                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-teal-200">Career summary</p>
+                    <h3 className="mt-3 text-2xl font-bold text-white">
+                        Frontend-focused full-stack developer looking for internship roles.
+                    </h3>
+                    <p className="mt-4 text-sm leading-7 text-slate-300">
+                        I like building apps that people can actually use: responsive screens, clear user journeys,
+                        backend routes, database operations, and simple motion that makes the UI feel alive.
+                    </p>
+
+                    <div className="mt-6 space-y-3">
+                        <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                            <p className="text-sm font-bold text-white">What I am looking for</p>
+                            <p className="mt-2 text-sm leading-6 text-slate-400">
+                                Internship opportunities in frontend, full-stack, or product-focused development.
+                            </p>
+                        </div>
+                        <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                            <p className="text-sm font-bold text-white">How I work</p>
+                            <p className="mt-2 text-sm leading-6 text-slate-400">
+                                I keep components reusable, layouts responsive, and features connected to real data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="#portfolio" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-teal-200 hover:text-teal-100">
+                        See selected work
+                        <FiArrowRight />
+                    </a>
+                </motion.div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                    {focusCards.map((card, index) => {
+                        const Icon = card.icon;
+                        return (
+                            <motion.div
+                                key={card.title}
+                                initial={{ opacity: 0, y: 26 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.55, delay: index * 0.08 }}
+                                className="glass-panel p-6 hover:border-teal-300/40"
+                            >
+                                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-amber-300/10 text-amber-200">
+                                    <Icon className="text-xl" />
+                                </div>
+                                <h3 className="mt-4 text-lg font-bold text-white">{card.title}</h3>
+                                <p className="mt-2 text-sm leading-6 text-slate-400">{card.copy}</p>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+            </div>
+
+            <div className="mt-12">
+                <SkillsSection />
+            </div>
+        </div>
+    </section>
+);
+
+export default Resume;

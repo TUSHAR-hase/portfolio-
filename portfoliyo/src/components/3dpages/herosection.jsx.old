@@ -1,0 +1,196 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import {
+    FiArrowRight,
+    FiCode,
+    FiDatabase,
+    FiDownload,
+    FiGithub,
+    FiLinkedin,
+    FiMail,
+    FiMapPin,
+    FiServer,
+} from "react-icons/fi";
+
+import yourImage from "../../assets/images/tushrphoto.jpg";
+
+const stack = ["React", "Next.js", "Node.js", "MongoDB", "Flutter", "Python"];
+
+const metrics = [
+    { value: "10+", label: "Projects" },
+    { value: "3+", label: "Hackathons" },
+    { value: "4", label: "Domains" },
+];
+
+const workflow = [
+    { icon: FiCode, label: "Frontend", copy: "Clean screens and smooth flows" },
+    { icon: FiServer, label: "Backend", copy: "APIs, auth, and product logic" },
+    { icon: FiDatabase, label: "Data", copy: "MongoDB, Firebase, and ML ideas" },
+];
+
+const Hero = () => {
+    return (
+        <section id="home" className="section-shell flex min-h-screen items-center pt-24">
+            <div className="section-inner w-full">
+                <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+                    <motion.div
+                        initial={{ opacity: 0, y: 28 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <div className="section-kicker">Open to internships</div>
+
+                        <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+                            Tushar Thakor builds full-stack web apps with sharp UI and working backend logic.
+                        </h1>
+
+                        <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                            I turn product ideas into responsive interfaces, API-connected flows, dashboards, and practical
+                            prototypes using React, Next.js, Node.js, MongoDB, Flutter, and Python.
+                        </p>
+
+                        <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+                            <span className="inline-flex items-center gap-2">
+                                <FiMapPin className="text-teal-300" />
+                                Ahmedabad, Gujarat
+                            </span>
+                            <span className="h-1 w-1 rounded-full bg-slate-600" />
+                            <span className="inline-flex items-center gap-2">
+                                <FiCode className="text-amber-300" />
+                                Full Stack Developer
+                            </span>
+                        </div>
+
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <motion.a href="#portfolio" whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }} className="button-primary">
+                                View Projects
+                                <FiArrowRight />
+                            </motion.a>
+                            <motion.a
+                                href="/TUSHAR_THAKOR_RESUME.pdf"
+                                download
+                                whileHover={{ y: -3 }}
+                                whileTap={{ scale: 0.97 }}
+                                className="button-secondary"
+                            >
+                                <FiDownload />
+                                Resume
+                            </motion.a>
+                        </div>
+
+                        <div className="mt-8 flex flex-wrap gap-2">
+                            {stack.map((item) => (
+                                <span key={item} className="tag">
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
+                            {metrics.map((metric) => (
+                                <div key={metric.label} className="glass-panel p-4 text-center">
+                                    <p className="text-2xl font-black text-white">{metric.value}</p>
+                                    <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">{metric.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.94 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative"
+                    >
+                        <div className="glass-panel overflow-hidden">
+                            <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr] lg:grid-cols-1 xl:grid-cols-[0.9fr_1.1fr]">
+                                <div className="relative min-h-[320px] overflow-hidden bg-slate-900">
+                                    <Image
+                                        src={yourImage}
+                                        alt="Tushar Thakor"
+                                        fill
+                                        className="object-cover object-[center_20%]"
+                                        sizes="(max-width: 768px) 100vw, 420px"
+                                        priority
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
+                                    <div className="absolute bottom-4 left-4 right-4">
+                                        <p className="text-2xl font-black text-white">Software Developer Engineer</p>
+                                        <p className="mt-1 text-sm text-teal-100">Frontend-led full-stack builder</p>
+                                    </div>
+                                </div>
+
+                                <div className="bg-slate-950/72 p-5">
+                                    <div className="flex items-center gap-2 border-b border-white/10 pb-4">
+                                        <span className="h-3 w-3 rounded-full bg-rose-400" />
+                                        <span className="h-3 w-3 rounded-full bg-amber-300" />
+                                        <span className="h-3 w-3 rounded-full bg-teal-300" />
+                                        <span className="ml-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">portfolio.tsx</span>
+                                    </div>
+
+                                    <div className="mt-5 space-y-3 font-mono text-sm text-slate-300">
+                                        <p><span className="text-teal-300">const</span> developer = "Tushar";</p>
+                                        <p><span className="text-teal-300">focus</span>: ["UI", "APIs", "Dashboards"];</p>
+                                        <p><span className="text-amber-300">status</span>: "Ready for internship";</p>
+                                    </div>
+
+                                    <div className="mt-6 space-y-3">
+                                        {workflow.map((item, index) => {
+                                            const Icon = item.icon;
+                                            return (
+                                                <motion.div
+                                                    key={item.label}
+                                                    animate={{ x: [0, 4, 0] }}
+                                                    transition={{ duration: 4, delay: index * 0.35, repeat: Infinity, ease: "easeInOut" }}
+                                                    className="rounded-lg border border-white/10 bg-white/[0.04] p-4"
+                                                >
+                                                    <div className="flex items-start gap-3">
+                                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-300/10 text-teal-200">
+                                                            <Icon />
+                                                        </span>
+                                                        <div>
+                                                            <p className="font-semibold text-white">{item.label}</p>
+                                                            <p className="mt-1 text-sm leading-6 text-slate-400">{item.copy}</p>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-5 flex items-center justify-center gap-3">
+                            {[
+                                { href: "https://github.com/TUSHAR-hase", icon: FiGithub, label: "GitHub" },
+                                { href: "https://www.linkedin.com/in/thakor-tushar-a34ab3288", icon: FiLinkedin, label: "LinkedIn" },
+                                { href: "mailto:thakorrajta859@gmail.com", icon: FiMail, label: "Email" },
+                            ].map((social) => {
+                                const Icon = social.icon;
+                                return (
+                                    <motion.a
+                                        key={social.label}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-slate-300 hover:border-teal-300/50 hover:text-white"
+                                        aria-label={social.label}
+                                    >
+                                        <Icon size={18} />
+                                    </motion.a>
+                                );
+                            })}
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Hero;

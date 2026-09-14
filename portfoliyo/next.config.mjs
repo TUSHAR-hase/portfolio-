@@ -8,17 +8,12 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Enable Next's built-in image optimization (AVIF/WebP, responsive sizes,
+  // lazy loading). Requires `sharp`, which is installed.
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
   },
-  reactStrictMode: false,
-  webpack: (config) => {
-    config.resolve.fallback = {
-      ...(config.resolve.fallback || {}),
-      fs: false,
-    };
-    return config;
-  },
+  reactStrictMode: true,
 };
 
 export default nextConfig;

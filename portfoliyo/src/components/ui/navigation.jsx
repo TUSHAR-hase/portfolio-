@@ -3,209 +3,310 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { HiArrowDownTray, HiBars3BottomRight, HiMiniXMark } from "react-icons/hi2";
+import {
+  FiDownload,
+  FiMoon,
+  FiSun,
+  FiTerminal,
+  FiVolume2,
+  FiVolumeX,
+} from "react-icons/fi";
+import { HiBars3BottomRight, HiMiniXMark } from "react-icons/hi2";
 
 import yourImage from "../../assets/images/tushrphoto.jpg";
+import { sound } from "../../utils/sound";
 
 const resumeLink = "/TUSHAR_THAKOR_RESUME.pdf";
 
 const links = [
-    { label: "Home", href: "#home", id: "home" },
-    { label: "About", href: "#about", id: "about" },
-    { label: "Skills", href: "#resume", id: "resume" },
-    { label: "Projects", href: "#portfolio", id: "portfolio" },
-    { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Home", href: "#home", id: "home" },
+  { label: "About", href: "#about", id: "about" },
+  { label: "Skills", href: "#skills", id: "skills" },
+  { label: "Projects", href: "#portfolio", id: "portfolio" },
+  { label: "Resume", href: "#resume", id: "resume" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
-const Navbar = () => {
-    const [activeLink, setActiveLink] = useState("home");
-    const [isOpen, setIsOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+const currentTheme = () =>
+  typeof document !== "undefined" && document.documentElement.classList.contains("dark")
+    ? "dark"
+    : "light";
 
-    const sectionIds = useMemo(() => links.map((item) => item.id), []);
+export default function Navbar({ onOpenTerminal }) {
+  const [activeLink, setActiveLink] = useState("home");
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setThemeState] = useState("dark");
+  const [isMuted, setIsMuted] = useState(false);
 
-    useEffect(() => {
-        const onScroll = () => setIsScrolled(window.scrollY > 24);
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+  const sectionIds = useMemo(() => links.map((item) => item.id), []);
 
-    useEffect(() => {
-        const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+  useEffect(() => {
+    setThemeState(currentTheme());
+    setIsMuted(sound.getMuted());
+  }, []);
 
-        if (!sections.length) return undefined;
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveLink(entry.target.id);
-                    }
-                });
-            },
-            {
-                rootMargin: "-35% 0px -45% 0px",
-                threshold: 0.15,
-            }
-        );
+  useEffect(() => {
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+    if (!sections.length) return undefined;
 
-        sections.forEach((section) => observer.observe(section));
-        return () => observer.disconnect();
-    }, [sectionIds]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveLink(entry.target.id);
+        });
+      },
+      { rootMargin: "-35% 0px -45% 0px", threshold: 0.15 }
+    );
 
-    useEffect(() => {
-        const previousOverflow = document.body.style.overflow;
-        document.body.style.overflow = isOpen ? "hidden" : previousOverflow;
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [sectionIds]);
 
-        return () => {
-            document.body.style.overflow = previousOverflow;
-        };
-    }, [isOpen]);
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = isOpen ? "hidden" : previousOverflow;
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
 
-    return (
-        <motion.header
-            initial={{ y: -80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6"
+  const toggleTheme = () => {
+    sound.playClick();
+    const next = theme === "dark" ? "light" : "dark";
+    const root = document.documentElement;
+    root.setAttribute("class", next);
+    root.style.colorScheme = next;
+    try {
+      localStorage.setItem("th-theme", next);
+    } catch {
+      /* ignore */
+    }
+    setThemeState(next);
+  };
+
+  const toggleSound = () => {
+    const nextMuted = sound.toggleMute();
+    setIsMuted(nextMuted);
+    if (!nextMuted) {
+      sound.playSuccess();
+    }
+  };
+
+  const handleNavClick = () => {
+    sound.playClick();
+    setIsOpen(false);
+  };
+
+  return (
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6"
+    >
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border px-3.5 py-2.5 transition-all duration-300 sm:px-6 ${
+          isScrolled
+            ? "border-white/15 bg-surface/85 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-[#070b14]/85"
+            : "border-border/60 bg-surface/65 backdrop-blur-md dark:border-white/5 dark:bg-[#070b14]/65"
+        }`}
+      >
+        {/* Brand Profile */}
+        <a
+          href="#home"
+          onClick={() => sound.playClick()}
+          className="group flex items-center gap-3 text-sm font-semibold"
         >
-            <div
-                className={`mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border px-4 py-2.5 transition-all duration-300 sm:px-6 ${
-                    isScrolled
-                        ? "border-slate-200/60 bg-white/90 shadow-lg shadow-slate-200/30 backdrop-blur-md"
-                        : "border-transparent bg-white/80 backdrop-blur-sm"
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border border-border-strong/50 shadow-sm transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src={yourImage}
+              alt="Tushar Thakor"
+              fill
+              className="object-cover object-[center_20%]"
+              sizes="40px"
+              priority
+            />
+            {/* Pulsing online indicator */}
+            <span
+              className="absolute bottom-0.5 right-0.5 h-2.5 w-2.5 rounded-full border-2 border-surface bg-emerald-500"
+              title="Active · Open to SWE roles"
+            />
+          </div>
+          <div className="hidden sm:block">
+            <div className="flex items-center gap-2">
+              <span className="font-bold tracking-tight text-strong">Tushar Thakor</span>
+              <span className="rounded bg-accent/15 px-1.5 py-0.5 text-[10px] font-mono font-bold text-accent-bright">
+                CSE
+              </span>
+            </div>
+            <p className="text-[11px] text-muted">IITRAM · Software Engineer</p>
+          </div>
+        </a>
+
+        {/* Desktop Navigation Links */}
+        <nav className="hidden items-center gap-1 rounded-xl border border-border/40 bg-surface-2/60 p-1 backdrop-blur-sm lg:flex" aria-label="Primary">
+          {links.map((link) => {
+            const isActive = activeLink === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={handleNavClick}
+                className={`relative rounded-lg px-3.5 py-1.5 text-xs font-semibold tracking-wide transition ${
+                  isActive
+                    ? "text-white"
+                    : "text-muted hover:text-strong hover:bg-surface/50"
                 }`}
-            >
-                {/* ─── Logo with Image ─── */}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="active-pill"
+                    className="absolute inset-0 z-0 rounded-lg bg-accent shadow-sm"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{link.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Action Controls */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Terminal Launcher */}
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.92 }}
+            onClick={() => {
+              sound.playClick();
+              if (onOpenTerminal) onOpenTerminal();
+            }}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-accent-border bg-accent-soft px-2.5 text-xs font-mono font-bold text-accent-bright shadow-sm hover:bg-accent/20"
+            title="Open Interactive Terminal (Press 'T')"
+            aria-label="Open developer terminal"
+          >
+            <FiTerminal className="text-sm text-cyan-400" />
+            <span className="hidden sm:inline">CLI</span>
+            <kbd className="hidden rounded bg-black/25 px-1 text-[10px] text-muted md:inline">T</kbd>
+          </motion.button>
+
+          {/* Sound Mute Toggle */}
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleSound}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-surface text-base text-muted hover:text-strong hover:bg-surface-2"
+            aria-label={isMuted ? "Unmute sound effects" : "Mute sound effects"}
+            title={isMuted ? "Sound: Off" : "Sound: On"}
+          >
+            {isMuted ? <FiVolumeX className="text-rose-400" /> : <FiVolume2 className="text-emerald-400" />}
+          </motion.button>
+
+          {/* Theme Toggle */}
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleTheme}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-surface text-base text-muted hover:text-strong hover:bg-surface-2"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            title={theme === "dark" ? "Light Mode" : "Dark Mode"}
+          >
+            {theme === "dark" ? <FiSun className="text-amber-400" /> : <FiMoon className="text-indigo-600" />}
+          </motion.button>
+
+          {/* Resume CTA */}
+          <motion.a
+            href={resumeLink}
+            download
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => sound.playSuccess()}
+            className="button-primary hidden h-9 px-3.5 text-xs lg:inline-flex"
+          >
+            <FiDownload className="text-sm" />
+            CV
+          </motion.a>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.92 }}
+            onClick={() => {
+              sound.playClick();
+              setIsOpen((prev) => !prev);
+            }}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-surface text-lg text-strong lg:hidden"
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <HiMiniXMark className="text-xl" /> : <HiBars3BottomRight className="text-xl" />}
+          </motion.button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.2 }}
+            className="mx-auto mt-2 max-w-7xl overflow-hidden rounded-2xl border border-white/15 bg-surface/95 p-4 shadow-xl backdrop-blur-xl lg:hidden dark:bg-[#0b1120]/95"
+          >
+            <div className="space-y-1">
+              {links.map((link) => (
                 <a
-                    href="#home"
-                    className="flex items-center gap-3 text-sm font-semibold tracking-[0.24em] text-slate-800 uppercase"
+                  key={link.id}
+                  href={link.href}
+                  onClick={handleNavClick}
+                  className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                    activeLink === link.id
+                      ? "bg-accent text-white"
+                      : "text-secondary hover:bg-surface-2 hover:text-strong"
+                  }`}
                 >
-                    <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/90 shadow-md shadow-indigo-200/30">
-                        <Image
-                            src={yourImage}
-                            alt="Tushar Thakor"
-                            fill
-                            className="object-cover object-[center_20%]"
-                            sizes="40px"
-                            priority
-                        />
-                    </span>
-                    <span className="hidden font-medium tracking-normal text-slate-700 md:block">
-                        Tushar Thakor
-                    </span>
+                  <span>{link.label}</span>
+                  {activeLink === link.id && <span className="h-2 w-2 rounded-full bg-white" />}
                 </a>
-
-                {/* ─── Desktop Navigation ─── */}
-                <nav className="hidden items-center gap-1 lg:flex">
-                    {links.map((link) => (
-                        <a
-                            key={link.id}
-                            href={link.href}
-                            className={`relative rounded-full px-4 py-2 text-sm font-semibold transition ${
-                                activeLink === link.id
-                                    ? "text-indigo-700"
-                                    : "text-slate-600 hover:text-indigo-600"
-                            }`}
-                        >
-                            {activeLink === link.id && (
-                                <motion.span
-                                    layoutId="active-nav-pill"
-                                    className="absolute inset-0 rounded-full bg-indigo-50/80 backdrop-blur-sm"
-                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                />
-                            )}
-                            <span className="relative z-10">{link.label}</span>
-                        </a>
-                    ))}
-                </nav>
-
-                {/* ─── Desktop CTA buttons ─── */}
-                <div className="hidden items-center gap-3 lg:flex">
-                    <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-indigo-200 hover:bg-indigo-50/60 hover:text-indigo-700"
-                    >
-                        Let&apos;s talk
-                    </a>
-                    <motion.a
-                        href={resumeLink}
-                        download
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.97 }}
-                        className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-200/50 transition hover:bg-indigo-700 hover:shadow-indigo-300/60"
-                    >
-                        <HiArrowDownTray className="text-lg" />
-                        Resume
-                    </motion.a>
-                </div>
-
-                {/* ─── Mobile menu toggle ─── */}
-                <motion.button
-                    type="button"
-                    whileTap={{ scale: 0.94 }}
-                    onClick={() => setIsOpen((prev) => !prev)}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200/60 bg-white/80 text-slate-700 shadow-sm backdrop-blur-sm lg:hidden"
-                    aria-label="Toggle navigation menu"
-                >
-                    {isOpen ? <HiMiniXMark className="text-2xl" /> : <HiBars3BottomRight className="text-2xl" />}
-                </motion.button>
+              ))}
             </div>
 
-            {/* ─── Mobile Dropdown ─── */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -18 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -18 }}
-                        transition={{ duration: 0.22 }}
-                        className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-2xl border border-slate-200/60 bg-white/90 p-4 shadow-xl backdrop-blur-md lg:hidden"
-                    >
-                        <div className="space-y-1">
-                            {links.map((link) => (
-                                <a
-                                    key={link.id}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition ${
-                                        activeLink === link.id
-                                            ? "bg-indigo-50/80 text-indigo-700"
-                                            : "text-slate-600 hover:bg-slate-50/80 hover:text-slate-800"
-                                    }`}
-                                >
-                                    <span>{link.label}</span>
-                                    {activeLink === link.id && (
-                                        <span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />
-                                    )}
-                                </a>
-                            ))}
-                        </div>
-
-                        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                            <a
-                                href="#contact"
-                                onClick={() => setIsOpen(false)}
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200/60 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-indigo-200 hover:bg-indigo-50/60 hover:text-indigo-700"
-                            >
-                                Let&apos;s talk
-                            </a>
-                            <a
-                                href={resumeLink}
-                                download
-                                onClick={() => setIsOpen(false)}
-                                className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-200/50 transition hover:bg-indigo-700 hover:shadow-indigo-300/60"
-                            >
-                                <HiArrowDownTray className="text-lg" />
-                                Download Resume
-                            </a>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.header>
-    );
-};
-
-export default Navbar;
+            <div className="mt-4 grid grid-cols-2 gap-2 border-t border-border/40 pt-4">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  if (onOpenTerminal) onOpenTerminal();
+                }}
+                className="button-cyber flex items-center justify-center text-xs"
+              >
+                <FiTerminal className="mr-1.5 text-cyan-400" />
+                Dev Terminal
+              </button>
+              <a
+                href={resumeLink}
+                download
+                onClick={() => {
+                  sound.playSuccess();
+                  setIsOpen(false);
+                }}
+                className="button-primary flex items-center justify-center text-xs"
+              >
+                <FiDownload className="mr-1.5" />
+                Resume
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  );
+}

@@ -1,193 +1,274 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiBriefcase, FiCpu, FiTarget, FiZap } from "react-icons/fi";
+import {
+  FiAward,
+  FiBookOpen,
+  FiCheckCircle,
+  FiCode,
+  FiCpu,
+  FiDatabase,
+  FiGitBranch,
+  FiLayers,
+  FiServer,
+} from "react-icons/fi";
 
-const stats = [
-    { value: "10+", label: "Projects delivered" },
-    { value: "3+", label: "Hackathons" },
-    { value: "4", label: "Core domains" },
+const coursework = [
+  "Data Structures & Algorithms",
+  "Object Oriented Programming (C++)",
+  "Database Management Systems",
+  "Operating Systems & Concurrency",
+  "Computer Networks & Protocols",
+  "Software Engineering Principles",
+  "Artificial Intelligence & Machine Learning",
+  "Microprocessors & Embedded Systems",
 ];
 
-const highlights = [
-    {
-        title: "Product-first mindset",
-        copy: "I care about usability, structure, and solving the right problem.",
-        icon: FiTarget,
-    },
-    {
-        title: "Cross-domain execution",
-        copy: "My projects span web, backend, AI/ML, mobile, and systems work.",
-        icon: FiCpu,
-    },
-    {
-        title: "Reliable collaboration",
-        copy: "Hackathons and team builds taught me ownership, clarity, and speed.",
-        icon: FiBriefcase,
-    },
+const pillars = [
+  {
+    icon: FiCode,
+    title: "Algorithms & Complexity",
+    description:
+      "Trained in rigorous computational thinking. Analyzing Big-O bounds, tree/graph traversals, dynamic programming, and memory-efficient data representation.",
+    tag: "DSA Focus",
+  },
+  {
+    icon: FiServer,
+    title: "Full-Stack Architecture",
+    description:
+      "Designing end-to-end web apps. Next.js 16 Edge runtime, Express.js micro-routes, JWT security, and resilient MongoDB/PostgreSQL schemas.",
+    tag: "Production Ready",
+  },
+  {
+    icon: FiCpu,
+    title: "Applied AI & Vision",
+    description:
+      "Translating AI research into functional products — from YOLOv8 real-time object detection models to NLP-driven complaint triage systems.",
+    tag: "ML Pipelines",
+  },
+  {
+    icon: FiLayers,
+    title: "Embedded & Systems",
+    description:
+      "Interfacing software directly with physical hardware using Arduino, sensor networks, motor drivers, and low-latency C++ control loops.",
+    tag: "IoT & Hardware",
+  },
 ];
 
-const journey = [
-    {
-        year: "IITRAM",
-        title: "Computer Science foundation",
-        copy: "Built a strong base in programming, web fundamentals, and software problem solving.",
-    },
-    {
-        year: "Projects",
-        title: "Built across domains",
-        copy: "Worked on full-stack apps, mobile concepts, AI/ML ideas, and practical system-led projects.",
-    },
-    {
-        year: "Now",
-        title: "Refining for opportunities",
-        copy: "Improving frontend execution, DSA, and delivery quality for internship opportunities.",
-    },
+const milestones = [
+  {
+    year: "2023 - Present",
+    title: "B.Tech Computer Science & Engineering",
+    org: "IITRAM (Institute of Infrastructure, Technology, Research and Management)",
+    desc: "Maintaining strong academic standing while mastering core computer science foundations, systems programming, and scalable software design.",
+    icon: FiBookOpen,
+  },
+  {
+    year: "Hackathons & Builds",
+    title: "Full-Stack & ML Solutions",
+    org: "National & University Level Hackathons",
+    desc: "Built Rail Madad complaint classifier, Women Safety SOS Flutter app, and deployed multi-role enterprise web portals.",
+    icon: FiAward,
+  },
+  {
+    year: "Continuous Shipping",
+    title: "10+ End-to-End Projects",
+    org: "Open Source & Real-World Deployments",
+    desc: "Architected complete applications from zero commits to live production deployments on Vercel and cloud platforms.",
+    icon: FiGitBranch,
+  },
 ];
 
-const About = () => {
-    return (
-        <section
-            id="about"
-            className="relative overflow-hidden bg-white py-16 sm:py-20"
+export default function About() {
+  const handleCardMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+  };
+
+  return (
+    <section id="about" className="section-shell relative">
+      <div className="section-inner">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
         >
-            {/* ─── Background (same as Hero) ─── */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50/40 via-white to-white" />
-            <div className="absolute -top-40 -right-40 h-[40rem] w-[40rem] rounded-full bg-indigo-100/20 blur-3xl" />
-            <div className="absolute -bottom-40 -left-40 h-[35rem] w-[35rem] rounded-full bg-blue-50/30 blur-3xl" />
+          <span className="section-kicker">About · CS Engineer</span>
+          <h2 className="section-title mt-5">
+            Grounded in Computer Science Theory. Driven by Building at Scale.
+          </h2>
+          <p className="section-copy-md mt-5">
+            I am a Computer Science &amp; Engineering student at <strong className="text-strong font-semibold">IITRAM</strong>.
+            I bridge the gap between rigorous algorithmic problem-solving and shipping clean, maintainable, user-first web applications.
+          </p>
+        </motion.div>
 
-            <div className="relative mx-auto max-w-7xl px-4 py-12 lg:px-6">
-                {/* ─── Header ─── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6 }}
-                    className="max-w-3xl"
-                >
-                    <span className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-600">
-                        About
-                    </span>
-                    <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                        A developer focused on useful products, clean execution, and steady growth.
-                    </h2>
-                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                        I enjoy turning ideas into reliable digital experiences. My work combines frontend polish, full-stack
-                        implementation, and curiosity for AI/ML and IoT.
-                    </p>
-                </motion.div>
-
-                {/* ─── Main Grid: Who I am + Journey ─── */}
-                <div className="mt-10 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-                    {/* ── Left: Who I am + Stats ── */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.6 }}
-                        className="rounded-2xl border border-slate-200/60 bg-white/70 p-6 shadow-sm backdrop-blur-sm sm:p-8"
-                    >
-                        <div className="flex flex-wrap items-start justify-between gap-6">
-                            <div className="max-w-2xl">
-                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-600">
-                                    Who I am
-                                </p>
-                                <h3 className="mt-3 text-2xl font-semibold text-slate-900">
-                                    Turning technical skills into practical, internship-focused projects.
-                                </h3>
-                                <p className="mt-4 text-sm leading-7 text-slate-600">
-                                    I&apos;m a Computer Science student at IITRAM with a strong interest in frontend-led product
-                                    development. I also work across backend flows, mobile concepts, and AI/ML or IoT-driven ideas when a
-                                    problem needs broader thinking.
-                                </p>
-                            </div>
-
-                            {/* Current focus card */}
-                            <div className="rounded-xl border border-slate-200/60 bg-white/80 p-5 shadow-sm backdrop-blur-sm sm:max-w-sm">
-                                <p className="flex items-center gap-2 text-sm font-semibold text-indigo-700">
-                                    <FiZap className="text-indigo-500" />
-                                    Current focus
-                                </p>
-                                <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-                                    <li>Responsive interfaces that feel clear on every screen</li>
-                                    <li>Cleaner full-stack projects with stronger structure</li>
-                                    <li>Sharper DSA and hands-on AI/ML or IoT exploration</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Stats */}
-                        <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                            {stats.map((stat) => (
-                                <div
-                                    key={stat.label}
-                                    className="rounded-xl border border-slate-200/60 bg-white/80 p-4 text-center shadow-sm backdrop-blur-sm"
-                                >
-                                    <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
-                                    <p className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-500">
-                                        {stat.label}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
-
-                    {/* ── Right: Journey ── */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.65, delay: 0.08 }}
-                        className="rounded-2xl border border-slate-200/60 bg-white/70 p-6 shadow-sm backdrop-blur-sm sm:p-8"
-                    >
-                        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-600">
-                            Journey
-                        </p>
-                        <div className="mt-6 space-y-4">
-                            {journey.map((item) => (
-                                <div
-                                    key={item.year}
-                                    className="relative rounded-xl border border-slate-200/60 bg-white/80 p-5 pl-8 shadow-sm"
-                                >
-                                    <span className="absolute left-4 top-6 h-2.5 w-2.5 rounded-full bg-indigo-600" />
-                                    <div className="flex flex-wrap items-center justify-between gap-3">
-                                        <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-                                        <span className="rounded-full border border-indigo-200/60 bg-indigo-50/80 px-3 py-1 text-xs font-semibold text-indigo-700">
-                                            {item.year}
-                                        </span>
-                                    </div>
-                                    <p className="mt-2 text-sm leading-6 text-slate-500">{item.copy}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
-
-                {/* ─── Highlights Grid ─── */}
-                <div className="mt-10 grid gap-4 md:grid-cols-3">
-                    {highlights.map((item, index) => {
-                        const Icon = item.icon;
-                        return (
-                            <motion.div
-                                key={item.title}
-                                initial={{ opacity: 0, y: 28 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.2 }}
-                                transition={{ duration: 0.55, delay: index * 0.08 }}
-                                className="rounded-2xl border border-slate-200/60 bg-white/70 p-6 shadow-sm backdrop-blur-sm transition hover:border-indigo-200/80 hover:shadow-indigo-100/40"
-                            >
-                                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50/80 text-indigo-700">
-                                    <Icon className="text-xl" />
-                                </div>
-                                <h3 className="mt-4 text-lg font-semibold text-slate-900">{item.title}</h3>
-                                <p className="mt-2 text-sm leading-6 text-slate-500">{item.copy}</p>
-                            </motion.div>
-                        );
-                    })}
-                </div>
+        {/* Academic Card + Core Pillars Grid */}
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Engineering Academic Background Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            onMouseMove={handleCardMouseMove}
+            className="spotlight-card p-6 sm:p-8"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/80 pb-4">
+              <div>
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+                  Academic Focus
+                </p>
+                <h3 className="mt-1 text-2xl font-bold text-strong">
+                  IITRAM Computer Science
+                </h3>
+              </div>
+              <span className="chip-accent text-xs">B.Tech CSE</span>
             </div>
-        </section>
-    );
-};
 
-export default About;
+            <p className="mt-5 text-sm leading-relaxed text-secondary">
+              At IITRAM, my education combines rigorous core CS disciplines—formal data structures, algorithm design, operating systems, and network protocols—with extensive hands-on software development.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-secondary">
+              Rather than writing throwaway scripts, I focus on system modularity, clean API contracts, and low-latency database queries.
+            </p>
+
+            {/* University Coursework Chips */}
+            <div className="mt-6">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-muted">
+                Key Computer Science Coursework:
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {coursework.map((course) => (
+                  <span
+                    key={course}
+                    className="tag border border-border/80 bg-surface-2/80 text-[11px]"
+                  >
+                    <FiCheckCircle className="text-accent-bright" />
+                    {course}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Metrics */}
+            <div className="mt-8 grid grid-cols-3 gap-3 border-t border-border/80 pt-6">
+              <div className="rounded-xl border border-border/60 bg-surface-2/50 p-3 text-center">
+                <p className="text-xl font-black text-accent-bright">250+</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted">
+                  DSA Problems
+                </p>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-surface-2/50 p-3 text-center">
+                <p className="text-xl font-black text-cyan-400">10+</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted">
+                  Full Builds
+                </p>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-surface-2/50 p-3 text-center">
+                <p className="text-xl font-black text-emerald-400">3+</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted">
+                  Hackathons
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Journey / Milestone Timeline */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            onMouseMove={handleCardMouseMove}
+            className="spotlight-card p-6 sm:p-8"
+          >
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-accent-bright">
+              Engineering Path
+            </p>
+            <h3 className="mt-1 text-2xl font-bold text-strong">
+              Milestones &amp; Trajectory
+            </h3>
+
+            <div className="mt-6 space-y-5">
+              {milestones.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="relative rounded-xl border border-border/60 bg-surface-2/60 p-4 pl-12 transition hover:border-accent/40"
+                  >
+                    <span className="absolute left-3.5 top-4.5 flex h-6 w-6 items-center justify-center rounded-lg bg-accent-soft text-accent-bright">
+                      <Icon className="text-sm" />
+                    </span>
+                    <div className="flex flex-wrap items-center justify-between gap-1">
+                      <h4 className="text-sm font-bold text-strong">{item.title}</h4>
+                      <span className="rounded bg-accent-soft px-2 py-0.5 text-[10px] font-mono text-accent-bright">
+                        {item.year}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs font-semibold text-accent-cyan">
+                      {item.org}
+                    </p>
+                    <p className="mt-2 text-xs leading-relaxed text-secondary">
+                      {item.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* 4 Core Pillars Grid */}
+        <div className="mt-8">
+          <div className="mb-6">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-muted">
+              Technical Disciplines
+            </span>
+            <h3 className="mt-1 text-2xl font-bold text-strong">
+              How I Solve Engineering Challenges
+            </h3>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {pillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <motion.div
+                  key={pillar.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  onMouseMove={handleCardMouseMove}
+                  className="spotlight-card flex flex-col p-5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent-bright">
+                      <Icon className="text-lg" />
+                    </span>
+                    <span className="tag text-[10px]">{pillar.tag}</span>
+                  </div>
+
+                  <h4 className="mt-4 text-base font-bold text-strong">
+                    {pillar.title}
+                  </h4>
+                  <p className="mt-2 text-xs leading-relaxed text-secondary flex-1">
+                    {pillar.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

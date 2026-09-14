@@ -12,72 +12,65 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
 });
 
+// Absolute origin used for canonical + social share URLs.
+export const SITE_URL = "https://portfolio-sigma-one-hbcernvfa9.vercel.app";
+export const SITE_NAME = "Tushar Thakor — Computer Science & Software Engineer | IITRAM";
+
 export const metadata = {
-  title: "Tushar Thakor - Frontend-Focused Full Stack Developer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Tushar Thakor — Computer Science & Software Engineer | IITRAM",
+    template: "%s · Tushar Thakor",
+  },
   description:
-    "Tushar Thakor is a Computer Science student at IITRAM and a frontend-focused full stack developer skilled in React, Next.js, Node.js, MongoDB, Flutter, C++, AI/ML concepts, and IoT-oriented problem solving.",
-  keywords: [
-    "Tushar Thakor",
-    "Thakor Tushar",
-    "Tushar Thakor IITRAM",
-    "Thakor Tushar IITRAM Computer Science",
-    "Tushar Thakor portfolio",
-    "Tushar Thakor full stack developer",
-    "Tushar Thakor frontend developer",
-    "Tushar Thakor React Next developer",
-    "Tushar Thakor hackathon winner",
-    "IITRAM Computer Science student Tushar Thakor",
-    "Tushar Thakor MERN stack developer",
-    "Tushar Thakor AI ML projects",
-    "Tushar Thakor IoT projects",
-    "Tushar Thakor women safety app",
-    "Tushar Thakor kids animation AI project",
-    "Tushar Thakor farmer marketplace project",
-    "Tushar Thakor line follower robot",
-    "Tushar Thakor garbage detection yolo model",
-    "IITRAM developer portfolio",
-    "IITRAM",
-    "Thakor Tushar IITRAM",
-    "IITRAM Computer Science",
-    "Frontend Developer",
-    "Full Stack Developer",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Flutter",
-    "MongoDB",
-    "AI ML",
-    "IoT",
-    "C++",
-    "Hackathon Projects",
-    "AI Kids Animation",
-    "Women Safety App",
-    "Farmer Marketplace",
-    "Line Follower Robot",
-    "Garbage Detection YOLO Model",
-    "Cab Booking System",
-  ].join(", "),
+    "Portfolio of Tushar Thakor, a Computer Science & Engineering student at IITRAM building production web platforms, distributed REST APIs, algorithmic solutions, and applied AI/ML systems with Next.js, React, Node.js, C++, and MongoDB.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
-    title: "Tushar Thakor - Frontend-Focused Full Stack Developer",
-    description: "Portfolio of Tushar Thakor featuring frontend, full-stack, AI/ML, and IoT-oriented project work",
-    url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app",
-    siteName: "Tushar Thakor Portfolio",
+    title: "Tushar Thakor — Computer Science & Software Engineer | IITRAM",
+    description:
+      "Full-stack web apps, distributed REST APIs, C++ algorithmic solutions, and applied AI/ML models built end to end.",
+    url: SITE_URL,
+    siteName: "Tushar Thakor",
     images: [
       {
-        url: "https://portfolio-sigma-one-hbcernvfa9.vercel.app/_next/static/media/tushrphoto.5808b86a.jpg",
+        url: `${SITE_URL}/og.jpg`,
         width: 1200,
         height: 630,
-        alt: "Tushar Thakor Portfolio",
+        alt: "Tushar Thakor — Computer Science & Software Engineer",
       },
     ],
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tushar Thakor — Computer Science & Software Engineer | IITRAM",
+    description:
+      "Full-stack web apps, distributed REST APIs, C++ algorithmic solutions, and applied AI/ML models built end to end.",
+    images: [`${SITE_URL}/og.jpg`],
+  },
 };
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#060913" },
+  ],
+};
+
+// Apply default 'dark' theme or saved theme before paint
+const themeScript = `try{var t=localStorage.getItem('th-theme')||'dark',d=document.documentElement;d.setAttribute('class',t);d.style.colorScheme=t}catch(e){}`;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}>{children}</body>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {children}
+      </body>
     </html>
   );
 }
