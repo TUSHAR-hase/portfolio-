@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FiDownload, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
-import yourImage from "../../assets/images/tushrphoto.jpg";
+import yourImage from "../../assets/images/tuhsar.png";
 
 const navLinks = [
   { label: "Home", href: "#home" },

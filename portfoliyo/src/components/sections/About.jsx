@@ -5,6 +5,7 @@ import {
   FiLayers,
   FiServer,
 } from "react-icons/fi";
+import SystemVisual from "./SystemVisual";
 
 const technicalDisciplines = [
   {
@@ -112,6 +113,20 @@ export default function About() {
               );
             })}
           </div>
+        </div>
+
+        {/* Interactive Architecture & Runtime Topology */}
+        <div className="mt-14 border-t border-border pt-12">
+          <div className="max-w-2xl mb-6">
+            <span className="kicker">System Architecture</span>
+            <h3 className="mt-3 text-xl font-bold text-text-primary sm:text-2xl">
+              Full-stack system topology &amp; runtime layers.
+            </h3>
+            <p className="mt-2 text-xs leading-relaxed text-text-secondary sm:text-sm">
+              Interactive architectural model demonstrating how client interfaces, API routing, stateless authorization, data persistence, and edge inference connect in my applications.
+            </p>
+          </div>
+          <SystemVisual />
         </div>
       </div>
     </section>

@@ -1,17 +1,34 @@
 "use client";
 
-import { FiArrowRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin } from "react-icons/fi";
-import SystemVisual from "./SystemVisual";
+import Image from "next/image";
+import {
+  FiArrowRight,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+} from "react-icons/fi";
+import portraitImg from "../../assets/images/tuhsar.png";
 
 export default function Hero() {
   return (
-    <section id="home" className="site-shell pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-border">
+    <section
+      id="home"
+      className="site-shell relative border-b border-border overflow-hidden bg-[var(--bg)] pt-20 sm:pt-24 lg:pt-0"
+    >
+      {/* Subtle ambient lighting across the Hero background */}
+      <div
+        className="pointer-events-none absolute -top-24 right-1/4 h-96 w-96 rounded-full bg-accent/[0.05] blur-3xl dark:bg-accent/[0.08]"
+        aria-hidden="true"
+      />
+
       <div className="site-container">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-          {/* Left Column: Narrative & Technical Focus */}
-          <div>
+        <div className="grid items-end gap-10 lg:grid-cols-[1.12fr_0.88fr] xl:grid-cols-[1.18fr_0.82fr] lg:gap-8 xl:gap-14">
+          {/* Left Column: Narrative & Technical Value Proposition */}
+          <div className="order-2 lg:order-1 flex flex-col justify-center pt-2 pb-14 sm:pb-16 lg:pt-32 lg:pb-24 xl:pt-36 xl:pb-28">
             {/* Status & Credibility Badge */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2.5">
               <span className="kicker">
                 IITRAM · Computer Science &amp; Engineering
               </span>
@@ -22,28 +39,28 @@ export default function Hero() {
             </div>
 
             {/* Confident, Professional Headline */}
-            <h1 className="mt-6 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
-              Computer Science student focused on building reliable software and solving problems through thoughtful engineering.
+            <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl lg:text-[42px] xl:text-[50px] leading-[1.12]">
+              Computer Science student focused on building reliable software and engineered systems.
             </h1>
 
             {/* Concise Value Proposition */}
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg">
               I am <strong className="font-semibold text-text-primary">Tushar Thakor</strong>, an undergraduate at{" "}
               <strong className="font-semibold text-text-primary">IITRAM</strong> (Ahmedabad). I specialize in developing full-stack web platforms, architecting RESTful services, and implementing data structures and algorithms in C++ and JavaScript.
             </p>
 
             {/* Credibility / Location metadata */}
-            <div className="mt-5 flex flex-wrap items-center gap-4 text-xs font-mono text-text-muted">
+            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono text-text-muted">
               <span className="inline-flex items-center gap-1.5">
                 <FiMapPin className="text-accent" />
                 Ahmedabad, Gujarat, India
               </span>
-              <span>·</span>
+              <span className="hidden sm:inline">·</span>
               <span>Full-Stack Development</span>
-              <span>·</span>
+              <span className="hidden sm:inline">·</span>
               <span>REST APIs &amp; Databases</span>
-              <span>·</span>
-              <span>DSA Problem Solving</span>
+              <span className="hidden sm:inline">·</span>
+              <span>DSA in C++</span>
             </div>
 
             {/* CTAs */}
@@ -67,7 +84,7 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Social Links */}
+            {/* Verified External Channels */}
             <div className="mt-8 flex flex-wrap items-center gap-5 border-t border-border pt-6">
               <a
                 href="https://github.com/TUSHAR-hase"
@@ -99,9 +116,51 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Original Interactive System Architecture Visual */}
-          <div className="w-full">
-            <SystemVisual />
+          {/* Right Column: Seamlessly Integrated Portrait Stage */}
+          <div className="order-1 lg:order-2 self-end flex justify-center lg:justify-end w-full">
+            <div className="relative w-full max-w-[210px] sm:max-w-[250px] md:max-w-[290px] lg:max-w-[430px] xl:max-w-[470px]">
+              {/* Atmospheric Backlight */}
+              <div
+                className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-accent/[0.08] blur-3xl dark:bg-accent/[0.12]"
+                aria-hidden="true"
+              />
+
+              {/* Seamless Portrait Stage - NO box, NO card border, NO floating container */}
+              <div className="relative aspect-[4/5] w-full hero-portrait-mask">
+                <Image
+                  src={portraitImg}
+                  alt="Professional portrait of Tushar Thakor"
+                  priority
+                  fill
+                  sizes="(max-width: 640px) 210px, (max-width: 1024px) 290px, 470px"
+                  className="object-cover object-[center_10%] contrast-[1.02] brightness-[0.99] dark:brightness-[0.94] dark:contrast-[1.05] transition-transform duration-700 ease-out hover:scale-[1.015]"
+                />
+
+                {/* Left Edge Dissolve: smoothly blends studio backdrop into the text canvas */}
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/60 to-transparent"
+                  aria-hidden="true"
+                />
+
+                {/* Top Edge Dissolve: eliminates any upper photographic boundary */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-12 sm:h-16 lg:h-20 bg-gradient-to-b from-[var(--bg)] via-[var(--bg)]/50 to-transparent"
+                  aria-hidden="true"
+                />
+
+                {/* Right Edge Dissolve: softens into right margin */}
+                <div
+                  className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-14 lg:w-20 bg-gradient-to-l from-[var(--bg)] via-[var(--bg)]/40 to-transparent"
+                  aria-hidden="true"
+                />
+
+                {/* Bottom Grounding Dissolve: anchors the portrait directly into the Hero baseline floor */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-24 lg:h-32 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/80 to-transparent"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -315,6 +315,12 @@ select {
   border-color: var(--danger) !important;
 }
 
+/* Editorial Hero Portrait Atmospheric Blend */
+.hero-portrait-mask {
+  mask-image: radial-gradient(ellipse 90% 88% at 52% 46%, black 52%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 88% at 52% 46%, black 52%, transparent 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
