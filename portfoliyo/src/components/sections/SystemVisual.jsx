@@ -67,22 +67,22 @@ export default function SystemVisual() {
   const [activeNode, setActiveNode] = useState(nodes[0]);
 
   return (
-    <div className="card-base overflow-hidden border border-border bg-surface p-5 sm:p-6">
+    <div className="card-base overflow-hidden border border-border bg-surface p-4 sm:p-6">
       {/* Top Console Bar */}
-      <div className="flex items-center justify-between border-b border-border pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-border pb-3.5">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="font-mono text-xs font-semibold text-text-primary">
             System Architecture &amp; Data Pipeline
           </span>
         </div>
-        <span className="font-mono text-[11px] text-text-muted">
+        <span className="font-mono text-[10px] sm:text-[11px] text-text-muted self-start sm:self-auto">
           Active Topology
         </span>
       </div>
 
       {/* Interactive Topology Graph */}
-      <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
+      <div className="mt-4 sm:mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
         {nodes.map((node) => {
           const Icon = node.icon;
           const isSelected = activeNode.id === node.id;
@@ -92,7 +92,7 @@ export default function SystemVisual() {
               key={node.id}
               type="button"
               onClick={() => setActiveNode(node)}
-              className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-all ${
+              className={`flex min-h-[48px] items-start gap-3 rounded-lg border p-3 text-left transition-all ${
                 isSelected
                   ? "border-accent bg-accent-light shadow-sm"
                   : "border-border bg-surface-raised hover:border-border-strong hover:bg-surface-hover"
@@ -113,7 +113,7 @@ export default function SystemVisual() {
                   <p className="truncate text-xs font-bold text-text-primary">
                     {node.title}
                   </p>
-                  <span className="font-mono text-[10px] text-text-muted">
+                  <span className="font-mono text-[10px] text-text-muted shrink-0">
                     {node.latency}
                   </span>
                 </div>
@@ -127,10 +127,10 @@ export default function SystemVisual() {
       </div>
 
       {/* Node Inspector Detail Panel */}
-      <div className="mt-5 rounded-lg border border-border bg-surface-raised p-4">
-        <div className="flex items-center justify-between gap-2 border-b border-border pb-2.5">
+      <div className="mt-4 sm:mt-5 rounded-lg border border-border bg-surface-raised p-3.5 sm:p-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 border-b border-border pb-2.5">
           <div className="flex items-center gap-2">
-            <FiCheckCircle className="text-xs text-emerald-500" />
+            <FiCheckCircle className="text-xs text-emerald-500 shrink-0" />
             <span className="font-mono text-xs font-bold text-text-primary">
               {activeNode.title} Specifications
             </span>
@@ -144,13 +144,12 @@ export default function SystemVisual() {
           {activeNode.role}
         </p>
 
-        <div className="mt-3 flex flex-wrap items-center gap-3 pt-2 text-[11px] font-mono text-text-muted border-t border-border">
+        <div className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3 pt-2 text-[10px] sm:text-[11px] font-mono text-text-muted border-t border-border">
           <span>Technology: <strong className="text-text-primary font-medium">{activeNode.tech}</strong></span>
-          <span>·</span>
+          <span className="hidden sm:inline">·</span>
           <span>Target Latency: <strong className="text-emerald-600 dark:text-emerald-400 font-medium">{activeNode.latency}</strong></span>
         </div>
       </div>
     </div>
   );
 }
-

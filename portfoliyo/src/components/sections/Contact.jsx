@@ -98,22 +98,22 @@ export default function Contact() {
   return (
     <section id="contact" className="site-shell section-padding">
       <div className="site-container">
-        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           {/* Left Column: Direct Communication Channels */}
           <div>
             <span className="kicker">Get in Touch</span>
             <h2 className="section-heading mt-4">
               Let&apos;s connect and discuss opportunities.
             </h2>
-            <p className="section-lead mt-4">
+            <p className="section-lead mt-3 sm:mt-4">
               I am open to Software Engineering and Full-Stack development internships, technical project collaborations, and professional engineering discussions.
             </p>
 
-            <div className="mt-8 space-y-3.5">
+            <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-3.5">
               {/* Email Card */}
-              <div className="card-base flex items-center justify-between p-4">
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
+              <div className="card-base flex items-center justify-between p-3.5 sm:p-4">
+                <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                  <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
                     <FiMail className="text-base" />
                   </span>
                   <div className="min-w-0">
@@ -132,7 +132,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="btn-secondary py-1 px-2.5 text-xs shrink-0 ml-2"
+                  className="btn-secondary min-h-[38px] py-1 px-2.5 text-xs shrink-0 ml-2"
                   title="Copy email to clipboard"
                 >
                   {copied ? (
@@ -150,9 +150,9 @@ export default function Contact() {
               </div>
 
               {/* Phone Card */}
-              <div className="card-base flex items-center justify-between p-4">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
+              <div className="card-base flex items-center justify-between p-3.5 sm:p-4">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
                     <FiPhone className="text-base" />
                   </span>
                   <div>
@@ -170,15 +170,15 @@ export default function Contact() {
 
                 <a
                   href={`tel:${PHONE.replace(/\s+/g, "")}`}
-                  className="btn-secondary py-1 px-2.5 text-xs"
+                  className="btn-secondary min-h-[38px] py-1 px-2.5 text-xs flex items-center"
                 >
                   Call
                 </a>
               </div>
 
               {/* Location Card */}
-              <div className="card-base flex items-center gap-3 p-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
+              <div className="card-base flex items-center gap-2.5 sm:gap-3 p-3.5 sm:p-4">
+                <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
                   <FiMapPin className="text-base" />
                 </span>
                 <div>
@@ -193,7 +193,7 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div className="mt-8 border-t border-border pt-6">
+            <div className="mt-6 sm:mt-8 border-t border-border pt-5 sm:pt-6">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-text-muted">
                 Profiles &amp; Repositories:
               </h4>
@@ -202,7 +202,7 @@ export default function Contact() {
                   href="https://github.com/TUSHAR-hase"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary text-xs py-1.5 px-3"
+                  className="btn-secondary min-h-[38px] text-xs py-1.5 px-3"
                 >
                   <FiGithub />
                   GitHub
@@ -212,7 +212,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/thakor-tushar-a34ab3288"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary text-xs py-1.5 px-3"
+                  className="btn-secondary min-h-[38px] text-xs py-1.5 px-3"
                 >
                   <FiLinkedin />
                   LinkedIn
@@ -222,18 +222,18 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Professional Contact Form */}
-          <div className="card-base p-6 sm:p-8">
-            <div className="border-b border-border pb-4">
-              <h3 className="text-lg font-bold text-text-primary">
+          <div className="card-base p-4 sm:p-6 lg:p-8">
+            <div className="border-b border-border pb-3.5 sm:pb-4">
+              <h3 className="text-base sm:text-lg font-bold text-text-primary">
                 Send a Message
               </h3>
-              <p className="text-xs text-text-muted">
+              <p className="text-xs text-text-muted mt-1">
                 Fill in the details below to contact me directly regarding internships, projects, or inquiries.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6 space-y-4">
-              {/* Name & Email */}
+            <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-5 sm:mt-6 space-y-4">
+              {/* Name & Email (Single column on mobile, 2 cols on sm+) */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-xs font-semibold text-text-primary">
@@ -241,6 +241,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="name"
+                    autoComplete="name"
                     {...register("name", {
                       required: "Please enter your name.",
                       minLength: { value: 2, message: "Name must be at least 2 characters." },
@@ -261,6 +262,7 @@ export default function Contact() {
                   <input
                     id="email"
                     type="email"
+                    autoComplete="email"
                     {...register("email", {
                       required: "Please enter your email.",
                       pattern: {
@@ -315,7 +317,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
-                  rows="5"
+                  rows="4"
                   {...register("message", {
                     required: "Please provide your message.",
                     minLength: { value: 10, message: "Message should be at least 10 characters." },

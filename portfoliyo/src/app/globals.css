@@ -159,8 +159,15 @@ select {
   max-width: 76rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 480px) {
+  .site-container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -171,14 +178,21 @@ select {
 }
 
 .section-padding {
-  padding-top: 5.5rem;
-  padding-bottom: 5.5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .section-padding {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
   }
 }
 
@@ -199,17 +213,25 @@ select {
 }
 
 .section-heading {
-  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  font-size: clamp(1.45rem, 3.2vw + 0.6rem, 2.75rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
+  text-wrap: balance;
 }
 
 .section-lead {
-  font-size: 1.0625rem;
-  line-height: 1.7;
+  font-size: 0.9375rem;
+  line-height: 1.65;
   color: var(--text-secondary);
+}
+
+@media (min-width: 640px) {
+  .section-lead {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
 }
 
 .card-base {
@@ -231,7 +253,8 @@ select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -240,6 +263,7 @@ select {
   border: 1px solid transparent;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
 }
 
 .btn-primary:hover {
@@ -259,7 +283,8 @@ select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -268,6 +293,7 @@ select {
   border: 1px solid var(--border);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
 }
 
 .btn-secondary:hover {
@@ -292,14 +318,21 @@ select {
 
 .form-input {
   width: 100%;
+  min-height: 46px;
   padding: 0.75rem 0.95rem;
   border-radius: 0.5rem;
   background-color: var(--surface);
   color: var(--text-primary);
   border: 1px solid var(--border);
-  font-size: 0.875rem;
+  font-size: 1rem;
   outline: none;
   box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 640px) {
+  .form-input {
+    font-size: 0.875rem;
+  }
 }
 
 .form-input::placeholder {

@@ -1,4 +1,4 @@
-import { FiAward, FiBookOpen, FiCalendar, FiCheckCircle, FiMapPin } from "react-icons/fi";
+import { FiBookOpen, FiCalendar, FiCheckCircle, FiMapPin } from "react-icons/fi";
 
 const coursework = [
   "Data Structures & Algorithms",
@@ -21,39 +21,39 @@ export default function Education() {
           <h2 className="section-heading mt-4">
             Computer Science &amp; Engineering at IITRAM.
           </h2>
-          <p className="section-lead mt-4">
+          <p className="section-lead mt-3 sm:mt-4">
             Formal engineering education pairing theoretical computational science with practical software implementation.
           </p>
         </div>
 
         {/* Education Main Card */}
-        <div className="mt-10">
-          <div className="card-base p-6 sm:p-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between border-b border-border pb-6">
+        <div className="mt-8 sm:mt-10">
+          <div className="card-base p-4 sm:p-6 lg:p-8">
+            <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-start md:justify-between border-b border-border pb-5 sm:pb-6">
               <div>
                 <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent">
                   Undergraduate Degree
                 </span>
-                <h3 className="mt-1 text-2xl font-extrabold text-text-primary">
+                <h3 className="mt-1 text-xl font-extrabold text-text-primary sm:text-2xl">
                   Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering
                 </h3>
-                <p className="mt-1 text-base font-semibold text-text-secondary">
+                <p className="mt-1 text-sm sm:text-base font-semibold text-text-secondary">
                   Institute of Infrastructure, Technology, Research and Management (IITRAM)
                 </p>
-                <div className="mt-2.5 flex flex-wrap items-center gap-4 text-xs font-mono text-text-muted">
+                <div className="mt-2.5 flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-mono text-text-muted">
                   <span className="inline-flex items-center gap-1.5">
-                    <FiMapPin className="text-accent" />
+                    <FiMapPin className="text-accent shrink-0" />
                     Ahmedabad, Gujarat, India
                   </span>
                   <span>·</span>
                   <span className="inline-flex items-center gap-1.5">
-                    <FiCalendar className="text-accent" />
+                    <FiCalendar className="text-accent shrink-0" />
                     2023 – Present
                   </span>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2 shrink-0 md:items-end">
+              <div className="flex flex-col gap-2 shrink-0 md:items-end self-start md:self-auto">
                 <span className="badge-tech font-semibold text-xs border-accent/30 text-accent">
                   Full-Time CSE Student
                 </span>
@@ -61,15 +61,15 @@ export default function Education() {
             </div>
 
             {/* Coursework Breakdown */}
-            <div className="mt-6">
+            <div className="mt-5 sm:mt-6">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-text-muted">
                 Core Computer Science Coursework:
               </h4>
-              <div className="mt-3 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-3 grid gap-2 sm:gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
                 {coursework.map((course) => (
                   <div
                     key={course}
-                    className="flex items-center gap-2 rounded-md border border-border bg-surface-raised p-2.5 text-xs text-text-secondary"
+                    className="flex items-center gap-2 rounded-md border border-border bg-surface-raised p-2 sm:p-2.5 text-xs text-text-secondary"
                   >
                     <FiCheckCircle className="text-emerald-500 shrink-0 text-sm" />
                     <span className="font-medium">{course}</span>
@@ -79,7 +79,7 @@ export default function Education() {
             </div>
 
             {/* Academic Focus */}
-            <div className="mt-8 rounded-lg border border-border bg-surface-raised p-4 sm:p-5">
+            <div className="mt-6 sm:mt-8 rounded-lg border border-border bg-surface-raised p-3.5 sm:p-5">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-accent flex items-center gap-1.5">
                 <FiBookOpen /> Academic Focus &amp; Practical Application
               </h4>
@@ -93,4 +93,3 @@ export default function Education() {
     </section>
   );
 }
-

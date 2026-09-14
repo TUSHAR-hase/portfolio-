@@ -25,10 +25,33 @@ export default function Navbar() {
     const isDark = document.documentElement.classList.contains("dark");
     setTheme(isDark ? "dark" : "light");
 
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    const onScroll = () => setIsScrolled(window.scrollY > 15);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
+  // Handle escape key to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isMobileOpen) {
+        setIsMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileOpen]);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -43,17 +66,21 @@ export default function Navbar() {
     setTheme(next);
   };
 
+  const closeMenu = () => {
+    setIsMobileOpen(false);
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-200 ${
         isScrolled
-          ? "border-border bg-surface/90 backdrop-blur-md shadow-sm"
-          : "border-transparent bg-surface/60 backdrop-blur-sm"
+          ? "border-border bg-surface/95 backdrop-blur-md shadow-sm"
+          : "border-transparent bg-surface/80 backdrop-blur-sm"
       }`}
     >
       <div className="site-container flex h-16 items-center justify-between">
         {/* Brand Name */}
-        <a href="#home" className="flex items-center gap-2.5">
+        <a href="#home" onClick={closeMenu} className="flex items-center gap-2.5">
           <div className="relative h-8 w-8 overflow-hidden rounded-md border border-border">
             <Image
               src={yourImage}
@@ -80,19 +107,19 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-md px-3 py-1.5 text-xs font-semibold text-text-muted transition hover:text-text-primary hover:bg-surface-raised"
+              className="rounded-md px-3 py-1.5 text-xs font-semibold text-text-muted transition hover:text-text-primary hover:bg-surface-raised focus-visible:ring-2 focus-visible:ring-accent"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Desktop Controls */}
+        {/* Controls */}
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={toggleTheme}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-surface text-text-muted transition hover:text-text-primary hover:bg-surface-raised"
+            className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-text-muted transition hover:text-text-primary hover:bg-surface-raised focus-visible:ring-2 focus-visible:ring-accent"
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? <FiSun className="text-sm" /> : <FiMoon className="text-sm" />}
@@ -107,48 +134,58 @@ export default function Navbar() {
             Resume
           </a>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle - 44px touch target */}
           <button
             type="button"
             onClick={() => setIsMobileOpen((prev) => !prev)}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-surface text-text-primary md:hidden"
-            aria-label="Toggle navigation menu"
+            className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-text-primary focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+            aria-label={isMobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-nav-drawer"
           >
-            {isMobileOpen ? <FiX className="text-base" /> : <FiMenu className="text-base" />}
+            {isMobileOpen ? <FiX className="text-lg" /> : <FiMenu className="text-lg" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Backdrop & Menu */}
       {isMobileOpen && (
-        <div className="border-b border-border bg-surface px-5 py-4 md:hidden">
-          <div className="space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileOpen(false)}
-                className="block rounded-md px-3 py-2 text-sm font-semibold text-text-secondary hover:bg-surface-raised hover:text-text-primary"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+        <div
+          id="mobile-nav-drawer"
+          className="fixed inset-x-0 top-16 bottom-0 z-40 bg-black/50 backdrop-blur-sm md:hidden animate-fade-in"
+          onClick={closeMenu}
+        >
+          <div
+            className="border-b border-border bg-surface px-5 py-4 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <nav className="space-y-1" aria-label="Mobile Navigation">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-semibold text-text-secondary hover:bg-surface-raised hover:text-text-primary active:bg-surface-raised"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
 
-          <div className="mt-4 border-t border-border pt-4">
-            <a
-              href="/TUSHAR_THAKOR_RESUME.pdf"
-              download
-              onClick={() => setIsMobileOpen(false)}
-              className="btn-primary flex w-full items-center justify-center text-xs"
-            >
-              <FiDownload />
-              Download Resume (PDF)
-            </a>
+            <div className="mt-4 border-t border-border pt-4">
+              <a
+                href="/TUSHAR_THAKOR_RESUME.pdf"
+                download
+                onClick={closeMenu}
+                className="btn-primary flex w-full items-center justify-center text-xs min-h-[44px]"
+              >
+                <FiDownload />
+                Download Resume (PDF)
+              </a>
+            </div>
           </div>
         </div>
       )}
     </header>
   );
 }
-

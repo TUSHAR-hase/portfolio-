@@ -61,37 +61,37 @@ export default function Experience() {
           <h2 className="section-heading mt-4">
             Engineering focus &amp; development trajectory.
           </h2>
-          <p className="section-lead mt-4">
+          <p className="section-lead mt-3 sm:mt-4">
             A structured breakdown of software projects, technical learning milestones, and current development priorities.
           </p>
         </div>
 
         {/* Structured Timeline */}
-        <div className="mt-12 space-y-6">
+        <div className="mt-8 sm:mt-12 space-y-4 sm:space-y-6">
           {technicalMilestones.map((item) => (
-            <div key={item.title} className="card-base p-6 sm:p-8">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-4">
+            <div key={item.title} className="card-base p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-3.5 sm:pb-4">
                 <div>
-                  <span className="font-mono text-xs font-semibold text-accent uppercase tracking-wider">
+                  <span className="font-mono text-[11px] sm:text-xs font-semibold text-accent uppercase tracking-wider">
                     {item.domain}
                   </span>
-                  <h3 className="mt-1 text-lg font-bold text-text-primary sm:text-xl">
+                  <h3 className="mt-1 text-base sm:text-lg lg:text-xl font-bold text-text-primary">
                     {item.title}
                   </h3>
                 </div>
 
-                <span className="badge-tech font-mono text-xs text-text-muted shrink-0">
+                <span className="badge-tech font-mono text-[11px] sm:text-xs text-text-muted self-start sm:self-auto shrink-0">
                   <FiClock />
                   {item.period}
                 </span>
               </div>
 
-              <p className="mt-4 text-sm leading-relaxed text-text-secondary">
+              <p className="mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed text-text-secondary">
                 {item.description}
               </p>
 
-              <div className="mt-5 border-t border-border pt-4">
-                <h4 className="font-mono text-[11px] font-bold uppercase tracking-wider text-text-muted mb-3">
+              <div className="mt-4 sm:mt-5 border-t border-border pt-3.5 sm:pt-4">
+                <h4 className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-text-muted mb-2.5">
                   Technical Implementation Details:
                 </h4>
                 <div className="space-y-2">

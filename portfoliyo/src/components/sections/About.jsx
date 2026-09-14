@@ -58,13 +58,13 @@ export default function About() {
         </div>
 
         {/* Structured Grid */}
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="mt-8 sm:mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Engineering Profile & Approach */}
-          <div className="card-base p-6 sm:p-8">
-            <h3 className="text-lg font-bold text-text-primary">
+          <div className="card-base p-4 sm:p-6 lg:p-8">
+            <h3 className="text-base sm:text-lg font-bold text-text-primary">
               Engineering Profile &amp; Focus
             </h3>
-            <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-text-secondary">
+            <div className="mt-4 space-y-3.5 text-xs sm:text-sm leading-relaxed text-text-secondary">
               <p>
                 My development work centers on building reliable web applications and backend services. I construct client interfaces using React and Next.js, design REST APIs with Node.js and Express, and structure data persistence layers in MongoDB and MySQL.
               </p>
@@ -77,11 +77,11 @@ export default function About() {
             </div>
 
             {/* Core Practices */}
-            <div className="mt-8 border-t border-border pt-6">
+            <div className="mt-6 sm:mt-8 border-t border-border pt-5 sm:pt-6">
               <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-accent">
                 Engineering Practices
               </h4>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-3.5 space-y-2.5">
                 {engineeringPractices.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-xs text-text-secondary">
                     <FiCheckCircle className="mt-0.5 text-sm shrink-0 text-emerald-500" />
@@ -93,11 +93,11 @@ export default function About() {
           </div>
 
           {/* 4 Technical Focus Areas */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="grid gap-3.5 sm:gap-4 sm:grid-cols-2 lg:grid-cols-1">
             {technicalDisciplines.map((area) => {
               const Icon = area.icon;
               return (
-                <div key={area.title} className="card-base p-5">
+                <div key={area.title} className="card-base p-4 sm:p-5">
                   <div className="flex items-center gap-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
                       <Icon className="text-base" />
@@ -116,7 +116,7 @@ export default function About() {
         </div>
 
         {/* Interactive Architecture & Runtime Topology */}
-        <div className="mt-14 border-t border-border pt-12">
+        <div className="mt-10 sm:mt-14 border-t border-border pt-8 sm:pt-12">
           <div className="max-w-2xl mb-6">
             <span className="kicker">System Architecture</span>
             <h3 className="mt-3 text-xl font-bold text-text-primary sm:text-2xl">

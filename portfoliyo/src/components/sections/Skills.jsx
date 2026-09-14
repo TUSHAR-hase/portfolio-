@@ -10,19 +10,19 @@ export default function Skills() {
           <h2 className="section-heading mt-4">
             Technologies &amp; Computer Science foundation.
           </h2>
-          <p className="section-lead mt-4">
+          <p className="section-lead mt-3 sm:mt-4">
             Structured into clear functional disciplines. Every technology listed has been utilized in real, working projects and academic coursework.
           </p>
         </div>
 
         {/* Categories Grid */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category) => {
             const Icon = category.icon;
             return (
-              <div key={category.id} className="card-base flex flex-col p-6">
+              <div key={category.id} className="card-base flex flex-col p-4 sm:p-6">
                 {/* Category Header */}
-                <div className="flex items-center gap-3 border-b border-border pb-4">
+                <div className="flex items-center gap-3 border-b border-border pb-3.5 sm:pb-4">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-surface-raised text-accent">
                     <Icon className="text-base" />
                   </span>
@@ -41,7 +41,7 @@ export default function Skills() {
                 </p>
 
                 {/* Skills List */}
-                <div className="mt-4 flex-1 space-y-2.5">
+                <div className="mt-4 flex-1 space-y-2">
                   {category.skills.map((skill) => {
                     const SkillIcon = skill.icon;
                     return (
@@ -72,4 +72,3 @@ export default function Skills() {
     </section>
   );
 }
-
